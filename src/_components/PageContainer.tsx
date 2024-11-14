@@ -1,13 +1,9 @@
 import React from "react";
-import Memo from "./Memo";
 
 function PageContainer() {
-  return (
-    <div>
-      PageContainer
-      <Memo />
-    </div>
-  );
+  console.log(process.env.NEXT_PUBLIC_SUPABASE_URL);
+
+  return <div>PageContainer</div>;
 }
 
 export default PageContainer;
