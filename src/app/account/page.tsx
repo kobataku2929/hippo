@@ -1,24 +1,24 @@
-import CustomerPortalForm from '@/components/ui/AccountForms/CustomerPortalForm';
-import EmailForm from '@/components/ui/AccountForms/EmailForm';
-import NameForm from '@/components/ui/AccountForms/NameForm';
-import { redirect } from 'next/navigation';
-import { createClient } from '@/utils/supabase/server';
+// import CustomerPortalForm from '@/components/ui/AccountForms/CustomerPortalForm';
+// import EmailForm from '@/components/ui/AccountForms/EmailForm';
+// import NameForm from '@/components/ui/AccountForms/NameForm';
+import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
 import {
   getUserDetails,
   getSubscription,
-  getUser
-} from '@/utils/supabase/queries';
+  getUser,
+} from "@/utils/supabase/queries";
 
 export default async function Account() {
   const supabase = createClient();
   const [user, userDetails, subscription] = await Promise.all([
     getUser(supabase),
     getUserDetails(supabase),
-    getSubscription(supabase)
+    getSubscription(supabase),
   ]);
 
   if (!user) {
-    return redirect('/signin');
+    return redirect("/signin");
   }
 
   return (
@@ -34,9 +34,9 @@ export default async function Account() {
         </div>
       </div>
       <div className="p-4">
-        <CustomerPortalForm subscription={subscription} />
+        {/* <CustomerPortalForm subscription={subscription} />
         <NameForm userName={userDetails?.full_name ?? ''} />
-        <EmailForm userEmail={user.email} />
+        <EmailForm userEmail={user.email} /> */}
       </div>
     </section>
   );

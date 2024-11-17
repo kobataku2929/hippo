@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   images: {
-//     domains: ["assets.bwbx.io"], // 外部画像のホスト名を指定
-//   },
-// };
+const nextConfig = {
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
+    return config;
+  },
+};
 
 export default nextConfig;
