@@ -34,3 +34,16 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## spabase
+
+#ローカルの db を参照して schema ファイルを作成
+supabase db dump -s public --local --file schema.sql
+
+#データベースの TypeScript の型を生成
+schema から（ローカル）
+supabase gen types typescript --local > database.types.ts
+
+#リモート
+プロジェクト ID を指定
+upabase gen types typescript --project-id "$PROJECT_REF" --schema public > database.types.ts

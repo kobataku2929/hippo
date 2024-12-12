@@ -18,6 +18,7 @@ export function Toaster() {
   const pathname = usePathname();
   const router = useRouter();
 
+  //要修正　おそらくこのuseeffectいらない
   useEffect(() => {
     const status = searchParams.get("status");
     const status_description = searchParams.get("status_description");

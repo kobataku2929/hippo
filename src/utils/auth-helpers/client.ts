@@ -30,7 +30,7 @@ export async function signInWithOAuth(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault();
   const formData = new FormData(e.currentTarget);
   const provider = String(formData.get("provider")).trim() as Provider;
-  console.log(provider);
+
   // Create client-side supabase client and call signInWithOAuth
   const supabase = createClient();
   const redirectURL = getURL("/auth/callback");

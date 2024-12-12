@@ -1,0 +1,4258 @@
+{
+  "id": "100114ce-6752-569a-0fcc-0242ac110004",
+  "items": [
+    {
+      "sections": [
+        {
+          "coord": {
+            "lat": 35.68958,
+            "lon": 139.700676
+          },
+          "name": "新宿",
+          "node_id": "00004254",
+          "node_types": ["station"],
+          "numbering": {
+            "departure": [
+              {
+                "number": "05",
+                "symbol": "JC"
+              },
+              {
+                "number": "10",
+                "symbol": "JB"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 4,
+          "distance": 77500,
+          "from_time": "2024-12-06T11:17:00+09:00",
+          "line_name": "かいじ",
+          "move": "ultraexpress_train",
+          "next_transit": true,
+          "provisional_timetable": true,
+          "time": 59,
+          "to_time": "2024-12-06T12:16:00+09:00",
+          "transfer_seconds": 180,
+          "transport": {
+            "color": "#007AC0",
+            "company": {
+              "id": "00000004",
+              "name": "ＪＲ東日本"
+            },
+            "fare": {
+              "unit_0": 1340,
+              "unit_2": 1020,
+              "unit_254": 0,
+              "unit_3": 1790,
+              "unit_48": 1342
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_2": true,
+              "unit_254": true,
+              "unit_3": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 1340,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "0",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 1342,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "48",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 0,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "254",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "default_extra_fare": true,
+                "fare": 1020,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "2",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 1790,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "3",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "id": "00000240",
+            "links": [
+              {
+                "company": {
+                  "id": "00000004",
+                  "name": "ＪＲ東日本"
+                },
+                "destination": {
+                  "id": "00007508",
+                  "name": "八王子"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00004254",
+                  "name": "新宿"
+                },
+                "id": "00000176",
+                "name": "ＪＲ中央本線（東京-塩尻）",
+                "to": {
+                  "id": "00005579",
+                  "name": "大月"
+                }
+              }
+            ],
+            "name": "かいじ",
+            "type": "特急"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.613196,
+            "lon": 138.94273
+          },
+          "name": "大月",
+          "node_id": "00005579",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "32",
+                "symbol": "JC"
+              }
+            ],
+            "departure": [
+              {
+                "number": "01",
+                "symbol": "FJ"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 8,
+          "distance": 26600,
+          "from_time": "2024-12-06T12:34:00+09:00",
+          "line_name": "富士急行線",
+          "move": "local_train",
+          "provisional_timetable": true,
+          "time": 56,
+          "to_time": "2024-12-06T13:30:00+09:00",
+          "transport": {
+            "color": "#0187E8",
+            "company": {
+              "id": "00000133",
+              "name": "富士山麓電気鉄道"
+            },
+            "fare": {
+              "unit_0": 1170,
+              "unit_128": 45350,
+              "unit_130": 129250,
+              "unit_133": 244890,
+              "unit_136": 28400,
+              "unit_138": 80940,
+              "unit_141": 153360,
+              "unit_144": 17490,
+              "unit_146": 49850,
+              "unit_149": 94450,
+              "unit_48": 1161
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_128": true,
+              "unit_130": true,
+              "unit_133": true,
+              "unit_136": true,
+              "unit_138": true,
+              "unit_141": true,
+              "unit_144": true,
+              "unit_146": true,
+              "unit_149": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 1170,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "0",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 1161,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "48",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 45350,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "128",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 129250,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "130",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 244890,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "133",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 28400,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "136",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 80940,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "138",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 153360,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "141",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 17490,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "144",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 49850,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "146",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 94450,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "149",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "id": "00000471",
+            "links": [
+              {
+                "company": {
+                  "id": "00000133",
+                  "name": "富士山麓電気鉄道"
+                },
+                "destination": {
+                  "id": "00001065",
+                  "name": "河口湖"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00005579",
+                  "name": "大月"
+                },
+                "id": "00000833",
+                "name": "富士急行線",
+                "to": {
+                  "id": "00001065",
+                  "name": "河口湖"
+                }
+              }
+            ],
+            "name": "富士急行線",
+            "type": "普通"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.498208,
+            "lon": 138.768629
+          },
+          "name": "河口湖",
+          "node_id": "00001065",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "18",
+                "symbol": "FJ"
+              }
+            ]
+          },
+          "type": "point"
+        }
+      ],
+      "summary": {
+        "_search_mode": "LessTransfersForFilteringLineNetworkSearch-1,LessTransfersForFilteringLineNetworkSearch-2,LessTransfersForFilteringLineNetworkSearch-4,LessTransfersForFilteringLineNetworkSearch-5,LessTransfersForFilteringLineNetworkSearch-8,LessTransfersForFilteringLineNetworkSearch-9,LessTransfersForFilteringLineNetworkSearch-10,BalancedForLineNetworkSearch-1,LessElapsedTimeForFilteringLineNetworkSearch-1,UnuseBusForFilteringLineNetworkSearch-1,PassNearestNodeForFilteringLineNetworkSearch-1",
+        "goal": {
+          "coord": {
+            "lat": 35.498208,
+            "lon": 138.768629
+          },
+          "name": "河口湖",
+          "node_id": "00001065",
+          "node_types": ["station"],
+          "type": "point"
+        },
+        "id": "100114ce-6752-569a-0fcc-0242ac110004",
+        "move": {
+          "distance": 104100,
+          "fare": {
+            "unit_0": 2510,
+            "unit_2": 1020,
+            "unit_3": 1790,
+            "unit_48": 2503
+          },
+          "from_time": "2024-12-06T11:17:00+09:00",
+          "time": 133,
+          "to_time": "2024-12-06T13:30:00+09:00",
+          "transit_count": 1,
+          "type": "move"
+        },
+        "no": "1",
+        "reachable_route": "true",
+        "route_advantage": {
+          "fastest_arrival_time_and_shorter": true,
+          "latest_departure_time_and_shorter": false,
+          "less_expensive": false,
+          "less_expensive_one_month_pass_fare": false,
+          "less_expensive_six_month_pass_fare": false,
+          "less_expensive_three_month_pass_fare": false,
+          "less_expensive_with_ic": false,
+          "less_transfers": true
+        },
+        "route_id": "1",
+        "start": {
+          "coord": {
+            "lat": 35.68958,
+            "lon": 139.700676
+          },
+          "name": "新宿",
+          "node_id": "00004254",
+          "node_types": ["station"],
+          "type": "point"
+        }
+      }
+    },
+    {
+      "sections": [
+        {
+          "coord": {
+            "lat": 35.68958,
+            "lon": 139.700676
+          },
+          "name": "新宿",
+          "node_id": "00004254",
+          "node_types": ["station"],
+          "numbering": {
+            "departure": [
+              {
+                "number": "05",
+                "symbol": "JC"
+              },
+              {
+                "number": "10",
+                "symbol": "JB"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 6,
+          "distance": 42800,
+          "from_time": "2024-12-06T10:51:00+09:00",
+          "line_name": "ＪＲ中央線特別快速",
+          "move": "rapid_train",
+          "next_transit": true,
+          "provisional_timetable": true,
+          "time": 44,
+          "to_time": "2024-12-06T11:35:00+09:00",
+          "transfer_seconds": 180,
+          "transport": {
+            "color": "#F15A22",
+            "company": {
+              "id": "00000004",
+              "name": "ＪＲ東日本"
+            },
+            "fare": {
+              "unit_48": 0
+            },
+            "fare_break": {
+              "unit_0": false,
+              "unit_128": false,
+              "unit_130": false,
+              "unit_133": false,
+              "unit_136": false,
+              "unit_138": false,
+              "unit_141": false,
+              "unit_144": false,
+              "unit_146": false,
+              "unit_149": false,
+              "unit_152": false,
+              "unit_154": false,
+              "unit_157": false,
+              "unit_48": false
+            },
+            "fare_season": "normal",
+            "id": "00000329",
+            "links": [
+              {
+                "company": {
+                  "id": "00000004",
+                  "name": "ＪＲ東日本"
+                },
+                "destination": {
+                  "id": "00007508",
+                  "name": "八王子"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00004254",
+                  "name": "新宿"
+                },
+                "id": "00000176",
+                "name": "ＪＲ中央本線（東京-塩尻）",
+                "to": {
+                  "id": "00002628",
+                  "name": "高尾（東京都）"
+                }
+              }
+            ],
+            "name": "ＪＲ中央線特別快速",
+            "type": "中央特快"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.64216,
+            "lon": 139.281812
+          },
+          "name": "高尾（東京都）",
+          "node_id": "00002628",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "24",
+                "symbol": "JC"
+              }
+            ],
+            "departure": [
+              {
+                "number": "24",
+                "symbol": "JC"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 8,
+          "distance": 34700,
+          "from_time": "2024-12-06T11:51:00+09:00",
+          "line_name": "ＪＲ中央本線（高尾-甲府）",
+          "move": "local_train",
+          "next_transit": true,
+          "provisional_timetable": true,
+          "time": 35,
+          "to_time": "2024-12-06T12:26:00+09:00",
+          "transfer_seconds": 180,
+          "transport": {
+            "color": "#007AC0",
+            "company": {
+              "id": "00000004",
+              "name": "ＪＲ東日本"
+            },
+            "fare": {
+              "unit_0": 1340,
+              "unit_128": 37040,
+              "unit_130": 105590,
+              "unit_133": 193240,
+              "unit_136": 18790,
+              "unit_138": 53570,
+              "unit_141": 101530,
+              "unit_144": 16910,
+              "unit_146": 48210,
+              "unit_149": 91370,
+              "unit_152": 13150,
+              "unit_154": 37490,
+              "unit_157": 71070,
+              "unit_48": 1342
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_128": true,
+              "unit_130": true,
+              "unit_133": true,
+              "unit_136": true,
+              "unit_138": true,
+              "unit_141": true,
+              "unit_144": true,
+              "unit_146": true,
+              "unit_149": true,
+              "unit_152": true,
+              "unit_154": true,
+              "unit_157": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 1340,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "0",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 1342,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "48",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 37040,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "128",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 105590,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "130",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 193240,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "133",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 18790,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "136",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 53570,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "138",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 101530,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "141",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 16910,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "144",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 48210,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "146",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 91370,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "149",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 13150,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "152",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 37490,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "154",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 71070,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "157",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "id": "00000236",
+            "links": [
+              {
+                "company": {
+                  "id": "00000004",
+                  "name": "ＪＲ東日本"
+                },
+                "destination": {
+                  "id": "00005579",
+                  "name": "大月"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00002628",
+                  "name": "高尾（東京都）"
+                },
+                "id": "00000176",
+                "name": "ＪＲ中央本線（東京-塩尻）",
+                "to": {
+                  "id": "00005579",
+                  "name": "大月"
+                }
+              }
+            ],
+            "name": "ＪＲ中央本線（高尾-甲府）",
+            "type": "普通"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.613196,
+            "lon": 138.94273
+          },
+          "name": "大月",
+          "node_id": "00005579",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "32",
+                "symbol": "JC"
+              }
+            ],
+            "departure": [
+              {
+                "number": "01",
+                "symbol": "FJ"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 8,
+          "distance": 26600,
+          "from_time": "2024-12-06T12:44:00+09:00",
+          "line_name": "富士急行線",
+          "move": "local_train",
+          "provisional_timetable": true,
+          "time": 56,
+          "to_time": "2024-12-06T13:40:00+09:00",
+          "transport": {
+            "color": "#0187E8",
+            "company": {
+              "id": "00000133",
+              "name": "富士山麓電気鉄道"
+            },
+            "fare": {
+              "unit_0": 1170,
+              "unit_128": 45350,
+              "unit_130": 129250,
+              "unit_133": 244890,
+              "unit_136": 28400,
+              "unit_138": 80940,
+              "unit_141": 153360,
+              "unit_144": 17490,
+              "unit_146": 49850,
+              "unit_149": 94450,
+              "unit_48": 1161
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_128": true,
+              "unit_130": true,
+              "unit_133": true,
+              "unit_136": true,
+              "unit_138": true,
+              "unit_141": true,
+              "unit_144": true,
+              "unit_146": true,
+              "unit_149": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 1170,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "0",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 1161,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "48",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 45350,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "128",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 129250,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "130",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 244890,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "133",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 28400,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "136",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 80940,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "138",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 153360,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "141",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 17490,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "144",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 49850,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "146",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 94450,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "149",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "id": "00000471",
+            "links": [
+              {
+                "company": {
+                  "id": "00000133",
+                  "name": "富士山麓電気鉄道"
+                },
+                "destination": {
+                  "id": "00001065",
+                  "name": "河口湖"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00005579",
+                  "name": "大月"
+                },
+                "id": "00000833",
+                "name": "富士急行線",
+                "to": {
+                  "id": "00001065",
+                  "name": "河口湖"
+                }
+              }
+            ],
+            "name": "富士急行線",
+            "type": "普通"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.498208,
+            "lon": 138.768629
+          },
+          "name": "河口湖",
+          "node_id": "00001065",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "18",
+                "symbol": "FJ"
+              }
+            ]
+          },
+          "type": "point"
+        }
+      ],
+      "summary": {
+        "_search_mode": "LessElapsedTimeForFilteringLineNetworkSearch-2",
+        "goal": {
+          "coord": {
+            "lat": 35.498208,
+            "lon": 138.768629
+          },
+          "name": "河口湖",
+          "node_id": "00001065",
+          "node_types": ["station"],
+          "type": "point"
+        },
+        "id": "100214ce-6752-569a-0fcc-0242ac110004",
+        "move": {
+          "distance": 104100,
+          "fare": {
+            "unit_0": 2510,
+            "unit_48": 2503
+          },
+          "from_time": "2024-12-06T10:51:00+09:00",
+          "time": 169,
+          "to_time": "2024-12-06T13:40:00+09:00",
+          "transit_count": 2,
+          "type": "move"
+        },
+        "no": "2",
+        "reachable_route": "true",
+        "route_advantage": {
+          "fastest_arrival_time_and_shorter": false,
+          "latest_departure_time_and_shorter": false,
+          "less_expensive": false,
+          "less_expensive_one_month_pass_fare": false,
+          "less_expensive_six_month_pass_fare": false,
+          "less_expensive_three_month_pass_fare": false,
+          "less_expensive_with_ic": false,
+          "less_transfers": false
+        },
+        "route_id": "2",
+        "start": {
+          "coord": {
+            "lat": 35.68958,
+            "lon": 139.700676
+          },
+          "name": "新宿",
+          "node_id": "00004254",
+          "node_types": ["station"],
+          "type": "point"
+        }
+      }
+    },
+    {
+      "sections": [
+        {
+          "coord": {
+            "lat": 35.689664,
+            "lon": 139.699214
+          },
+          "name": "新宿",
+          "node_id": "00004254",
+          "node_types": ["station"],
+          "numbering": {
+            "departure": [
+              {
+                "number": "01",
+                "symbol": "KO"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 6,
+          "distance": 37900,
+          "from_time": "2024-12-06T10:52:00+09:00",
+          "line_name": "京王線特急",
+          "move": "rapid_train",
+          "next_transit": true,
+          "provisional_timetable": true,
+          "time": 39,
+          "to_time": "2024-12-06T11:31:00+09:00",
+          "transport": {
+            "color": "#E0037C",
+            "company": {
+              "id": "00000035",
+              "name": "京王電鉄"
+            },
+            "fare": {
+              "unit_0": 410,
+              "unit_128": 15310,
+              "unit_130": 43640,
+              "unit_133": 82680,
+              "unit_136": 4510,
+              "unit_138": 12860,
+              "unit_141": 24360,
+              "unit_48": 409
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_128": true,
+              "unit_130": true,
+              "unit_133": true,
+              "unit_136": true,
+              "unit_138": true,
+              "unit_141": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 410,
+                "goal": {
+                  "name": "京王八王子",
+                  "node_id": "00001711"
+                },
+                "id": "0",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 409,
+                "goal": {
+                  "name": "京王八王子",
+                  "node_id": "00001711"
+                },
+                "id": "48",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 15310,
+                "goal": {
+                  "name": "京王八王子",
+                  "node_id": "00001711"
+                },
+                "id": "128",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 43640,
+                "goal": {
+                  "name": "京王八王子",
+                  "node_id": "00001711"
+                },
+                "id": "130",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 82680,
+                "goal": {
+                  "name": "京王八王子",
+                  "node_id": "00001711"
+                },
+                "id": "133",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 4510,
+                "goal": {
+                  "name": "京王八王子",
+                  "node_id": "00001711"
+                },
+                "id": "136",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 12860,
+                "goal": {
+                  "name": "京王八王子",
+                  "node_id": "00001711"
+                },
+                "id": "138",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 24360,
+                "goal": {
+                  "name": "京王八王子",
+                  "node_id": "00001711"
+                },
+                "id": "141",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "getoff": "中・後",
+            "id": "00000479",
+            "links": [
+              {
+                "company": {
+                  "id": "00000035",
+                  "name": "京王電鉄"
+                },
+                "destination": {
+                  "id": "00001711",
+                  "name": "京王八王子"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00004254",
+                  "name": "新宿"
+                },
+                "id": "00000274",
+                "name": "京王線",
+                "to": {
+                  "id": "00001711",
+                  "name": "京王八王子"
+                }
+              }
+            ],
+            "name": "京王線特急",
+            "type": "特急"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.657933,
+            "lon": 139.342446
+          },
+          "gateway": "3番口",
+          "name": "京王八王子",
+          "node_id": "00001711",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "34",
+                "symbol": "KO"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 255,
+          "distance": 542,
+          "from_time": "2024-12-06T11:31:00+09:00",
+          "line_name": "徒歩",
+          "move": "walk",
+          "outdoor": true,
+          "time": 8,
+          "to_time": "2024-12-06T11:39:00+09:00",
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.656327,
+            "lon": 139.339092
+          },
+          "gateway": "北口",
+          "name": "八王子",
+          "node_id": "00007508",
+          "node_types": ["station"],
+          "numbering": {
+            "departure": [
+              {
+                "number": "22",
+                "symbol": "JC"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 4,
+          "distance": 40400,
+          "from_time": "2024-12-06T12:14:00+09:00",
+          "line_name": "かいじ",
+          "move": "ultraexpress_train",
+          "next_transit": true,
+          "provisional_timetable": true,
+          "time": 26,
+          "to_time": "2024-12-06T12:40:00+09:00",
+          "transfer_seconds": 180,
+          "transport": {
+            "color": "#007AC0",
+            "company": {
+              "id": "00000004",
+              "name": "ＪＲ東日本"
+            },
+            "fare": {
+              "unit_0": 770,
+              "unit_2": 760,
+              "unit_254": 0,
+              "unit_3": 1530,
+              "unit_48": 770
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_2": true,
+              "unit_254": true,
+              "unit_3": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 770,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "0",
+                "start": {
+                  "name": "八王子",
+                  "node_id": "00007508"
+                }
+              },
+              {
+                "fare": 770,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "48",
+                "start": {
+                  "name": "八王子",
+                  "node_id": "00007508"
+                }
+              },
+              {
+                "fare": 0,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "254",
+                "start": {
+                  "name": "八王子",
+                  "node_id": "00007508"
+                }
+              },
+              {
+                "default_extra_fare": true,
+                "fare": 760,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "2",
+                "start": {
+                  "name": "八王子",
+                  "node_id": "00007508"
+                }
+              },
+              {
+                "fare": 1530,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "3",
+                "start": {
+                  "name": "八王子",
+                  "node_id": "00007508"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "id": "00000240",
+            "links": [
+              {
+                "company": {
+                  "id": "00000004",
+                  "name": "ＪＲ東日本"
+                },
+                "destination": {
+                  "id": "00005579",
+                  "name": "大月"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00007508",
+                  "name": "八王子"
+                },
+                "id": "00000176",
+                "name": "ＪＲ中央本線（東京-塩尻）",
+                "to": {
+                  "id": "00005579",
+                  "name": "大月"
+                }
+              }
+            ],
+            "name": "かいじ",
+            "type": "特急"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.613196,
+            "lon": 138.94273
+          },
+          "name": "大月",
+          "node_id": "00005579",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "32",
+                "symbol": "JC"
+              }
+            ],
+            "departure": [
+              {
+                "number": "01",
+                "symbol": "FJ"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 8,
+          "distance": 26600,
+          "from_time": "2024-12-06T12:58:00+09:00",
+          "line_name": "富士急行線",
+          "move": "local_train",
+          "provisional_timetable": true,
+          "time": 56,
+          "to_time": "2024-12-06T13:54:00+09:00",
+          "transport": {
+            "color": "#0187E8",
+            "company": {
+              "id": "00000133",
+              "name": "富士山麓電気鉄道"
+            },
+            "fare": {
+              "unit_0": 1170,
+              "unit_128": 45350,
+              "unit_130": 129250,
+              "unit_133": 244890,
+              "unit_136": 28400,
+              "unit_138": 80940,
+              "unit_141": 153360,
+              "unit_144": 17490,
+              "unit_146": 49850,
+              "unit_149": 94450,
+              "unit_48": 1161
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_128": true,
+              "unit_130": true,
+              "unit_133": true,
+              "unit_136": true,
+              "unit_138": true,
+              "unit_141": true,
+              "unit_144": true,
+              "unit_146": true,
+              "unit_149": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 1170,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "0",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 1161,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "48",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 45350,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "128",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 129250,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "130",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 244890,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "133",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 28400,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "136",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 80940,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "138",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 153360,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "141",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 17490,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "144",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 49850,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "146",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 94450,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "149",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "id": "00000471",
+            "links": [
+              {
+                "company": {
+                  "id": "00000133",
+                  "name": "富士山麓電気鉄道"
+                },
+                "destination": {
+                  "id": "00001065",
+                  "name": "河口湖"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00005579",
+                  "name": "大月"
+                },
+                "id": "00000833",
+                "name": "富士急行線",
+                "to": {
+                  "id": "00001065",
+                  "name": "河口湖"
+                }
+              }
+            ],
+            "name": "富士急行線",
+            "type": "普通"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.498208,
+            "lon": 138.768629
+          },
+          "name": "河口湖",
+          "node_id": "00001065",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "18",
+                "symbol": "FJ"
+              }
+            ]
+          },
+          "type": "point"
+        }
+      ],
+      "summary": {
+        "_search_mode": "BalancedForLineNetworkSearch-2",
+        "goal": {
+          "coord": {
+            "lat": 35.498208,
+            "lon": 138.768629
+          },
+          "name": "河口湖",
+          "node_id": "00001065",
+          "node_types": ["station"],
+          "type": "point"
+        },
+        "id": "100314ce-6752-569a-0fcc-0242ac110004",
+        "move": {
+          "distance": 105442,
+          "fare": {
+            "unit_0": 2350,
+            "unit_2": 760,
+            "unit_3": 1530,
+            "unit_48": 2340
+          },
+          "from_time": "2024-12-06T10:52:00+09:00",
+          "time": 182,
+          "to_time": "2024-12-06T13:54:00+09:00",
+          "transit_count": 2,
+          "type": "move",
+          "walk_distance": 542
+        },
+        "no": "3",
+        "reachable_route": "true",
+        "route_advantage": {
+          "fastest_arrival_time_and_shorter": false,
+          "latest_departure_time_and_shorter": false,
+          "less_expensive": false,
+          "less_expensive_one_month_pass_fare": false,
+          "less_expensive_six_month_pass_fare": false,
+          "less_expensive_three_month_pass_fare": false,
+          "less_expensive_with_ic": false,
+          "less_transfers": false
+        },
+        "route_id": "3",
+        "start": {
+          "coord": {
+            "lat": 35.689664,
+            "lon": 139.699214
+          },
+          "name": "新宿",
+          "node_id": "00004254",
+          "node_types": ["station"],
+          "type": "point"
+        }
+      }
+    },
+    {
+      "sections": [
+        {
+          "coord": {
+            "lat": 35.689664,
+            "lon": 139.699214
+          },
+          "name": "新宿",
+          "node_id": "00004254",
+          "node_types": ["station"],
+          "numbering": {
+            "departure": [
+              {
+                "number": "01",
+                "symbol": "KO"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 8,
+          "distance": 36100,
+          "from_time": "2024-12-06T10:47:00+09:00",
+          "line_name": "京王線",
+          "move": "local_train",
+          "provisional_timetable": true,
+          "time": 69,
+          "to_time": "2024-12-06T11:56:00+09:00",
+          "transport": {
+            "color": "#E0037C",
+            "company": {
+              "id": "00000035",
+              "name": "京王電鉄"
+            },
+            "fare": {
+              "unit_48": 0
+            },
+            "fare_break": {
+              "unit_0": false,
+              "unit_128": false,
+              "unit_130": false,
+              "unit_133": false,
+              "unit_136": false,
+              "unit_138": false,
+              "unit_141": false,
+              "unit_48": false
+            },
+            "fare_season": "normal",
+            "getoff": "前・中",
+            "id": "00000474",
+            "links": [
+              {
+                "company": {
+                  "id": "00000035",
+                  "name": "京王電鉄"
+                },
+                "destination": {
+                  "id": "00001711",
+                  "name": "京王八王子"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00004254",
+                  "name": "新宿"
+                },
+                "id": "00000274",
+                "name": "京王線",
+                "to": {
+                  "id": "00008408",
+                  "name": "北野（東京都）"
+                }
+              }
+            ],
+            "name": "京王線",
+            "type": "普通"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.64441,
+            "lon": 139.354488
+          },
+          "name": "北野（東京都）",
+          "node_id": "00008408",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "33",
+                "symbol": "KO"
+              }
+            ],
+            "departure": [
+              {
+                "number": "33",
+                "symbol": "KO"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 8,
+          "distance": 6900,
+          "from_time": "2024-12-06T11:56:00+09:00",
+          "line_name": "京王高尾線",
+          "move": "local_train",
+          "next_transit": true,
+          "provisional_timetable": true,
+          "time": 10,
+          "to_time": "2024-12-06T12:06:00+09:00",
+          "transfer_seconds": 180,
+          "transport": {
+            "color": "#E0037C",
+            "company": {
+              "id": "00000035",
+              "name": "京王電鉄"
+            },
+            "fare": {
+              "unit_0": 410,
+              "unit_128": 15310,
+              "unit_130": 43640,
+              "unit_133": 82680,
+              "unit_136": 4510,
+              "unit_138": 12860,
+              "unit_141": 24360,
+              "unit_48": 409
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_128": true,
+              "unit_130": true,
+              "unit_133": true,
+              "unit_136": true,
+              "unit_138": true,
+              "unit_141": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 410,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "0",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 409,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "48",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 15310,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "128",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 43640,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "130",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 82680,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "133",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 4510,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "136",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 12860,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "138",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 24360,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "141",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "getoff": "中",
+            "id": "00000476",
+            "links": [
+              {
+                "company": {
+                  "id": "00000035",
+                  "name": "京王電鉄"
+                },
+                "destination": {
+                  "id": "00002629",
+                  "name": "高尾山口"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00008408",
+                  "name": "北野（東京都）"
+                },
+                "id": "00000276",
+                "name": "京王高尾線",
+                "to": {
+                  "id": "00002628",
+                  "name": "高尾（東京都）"
+                }
+              }
+            ],
+            "name": "京王高尾線",
+            "type": "普通"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.642018,
+            "lon": 139.282795
+          },
+          "name": "高尾（東京都）",
+          "node_id": "00002628",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "52",
+                "symbol": "KO"
+              }
+            ],
+            "departure": [
+              {
+                "number": "24",
+                "symbol": "JC"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 8,
+          "distance": 34700,
+          "from_time": "2024-12-06T12:22:00+09:00",
+          "line_name": "ＪＲ中央本線（高尾-甲府）",
+          "move": "local_train",
+          "next_transit": true,
+          "provisional_timetable": true,
+          "time": 35,
+          "to_time": "2024-12-06T12:57:00+09:00",
+          "transfer_seconds": 180,
+          "transport": {
+            "color": "#007AC0",
+            "company": {
+              "id": "00000004",
+              "name": "ＪＲ東日本"
+            },
+            "fare": {
+              "unit_0": 590,
+              "unit_128": 17810,
+              "unit_130": 50750,
+              "unit_133": 85540,
+              "unit_136": 9190,
+              "unit_138": 26180,
+              "unit_141": 49590,
+              "unit_144": 8270,
+              "unit_146": 23560,
+              "unit_149": 44630,
+              "unit_152": 6430,
+              "unit_154": 18320,
+              "unit_157": 34710,
+              "unit_48": 594
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_128": true,
+              "unit_130": true,
+              "unit_133": true,
+              "unit_136": true,
+              "unit_138": true,
+              "unit_141": true,
+              "unit_144": true,
+              "unit_146": true,
+              "unit_149": true,
+              "unit_152": true,
+              "unit_154": true,
+              "unit_157": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 590,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "0",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 594,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "48",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 17810,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "128",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 50750,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "130",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 85540,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "133",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 9190,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "136",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 26180,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "138",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 49590,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "141",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 8270,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "144",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 23560,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "146",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 44630,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "149",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 6430,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "152",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 18320,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "154",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 34710,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "157",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "id": "00000236",
+            "links": [
+              {
+                "company": {
+                  "id": "00000004",
+                  "name": "ＪＲ東日本"
+                },
+                "destination": {
+                  "id": "00005579",
+                  "name": "大月"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00002628",
+                  "name": "高尾（東京都）"
+                },
+                "id": "00000176",
+                "name": "ＪＲ中央本線（東京-塩尻）",
+                "to": {
+                  "id": "00005579",
+                  "name": "大月"
+                }
+              }
+            ],
+            "name": "ＪＲ中央本線（高尾-甲府）",
+            "type": "普通"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.613196,
+            "lon": 138.94273
+          },
+          "name": "大月",
+          "node_id": "00005579",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "32",
+                "symbol": "JC"
+              }
+            ],
+            "departure": [
+              {
+                "number": "01",
+                "symbol": "FJ"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 8,
+          "distance": 26600,
+          "from_time": "2024-12-06T13:15:00+09:00",
+          "line_name": "富士急行線",
+          "move": "local_train",
+          "provisional_timetable": true,
+          "time": 56,
+          "to_time": "2024-12-06T14:11:00+09:00",
+          "transport": {
+            "color": "#0187E8",
+            "company": {
+              "id": "00000133",
+              "name": "富士山麓電気鉄道"
+            },
+            "fare": {
+              "unit_0": 1170,
+              "unit_128": 45350,
+              "unit_130": 129250,
+              "unit_133": 244890,
+              "unit_136": 28400,
+              "unit_138": 80940,
+              "unit_141": 153360,
+              "unit_144": 17490,
+              "unit_146": 49850,
+              "unit_149": 94450,
+              "unit_48": 1161
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_128": true,
+              "unit_130": true,
+              "unit_133": true,
+              "unit_136": true,
+              "unit_138": true,
+              "unit_141": true,
+              "unit_144": true,
+              "unit_146": true,
+              "unit_149": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 1170,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "0",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 1161,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "48",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 45350,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "128",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 129250,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "130",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 244890,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "133",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 28400,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "136",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 80940,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "138",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 153360,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "141",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 17490,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "144",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 49850,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "146",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 94450,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "149",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "id": "00000471",
+            "links": [
+              {
+                "company": {
+                  "id": "00000133",
+                  "name": "富士山麓電気鉄道"
+                },
+                "destination": {
+                  "id": "00001065",
+                  "name": "河口湖"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00005579",
+                  "name": "大月"
+                },
+                "id": "00000833",
+                "name": "富士急行線",
+                "to": {
+                  "id": "00001065",
+                  "name": "河口湖"
+                }
+              }
+            ],
+            "name": "富士急行線",
+            "type": "普通"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.498208,
+            "lon": 138.768629
+          },
+          "name": "河口湖",
+          "node_id": "00001065",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "18",
+                "symbol": "FJ"
+              }
+            ]
+          },
+          "type": "point"
+        }
+      ],
+      "summary": {
+        "_search_mode": "LessTransfersForFilteringLineNetworkSearch-3",
+        "goal": {
+          "coord": {
+            "lat": 35.498208,
+            "lon": 138.768629
+          },
+          "name": "河口湖",
+          "node_id": "00001065",
+          "node_types": ["station"],
+          "type": "point"
+        },
+        "id": "100414ce-6752-569a-0fcc-0242ac110004",
+        "move": {
+          "distance": 104300,
+          "fare": {
+            "unit_0": 2170,
+            "unit_48": 2164
+          },
+          "from_time": "2024-12-06T10:47:00+09:00",
+          "time": 204,
+          "to_time": "2024-12-06T14:11:00+09:00",
+          "transit_count": 2,
+          "type": "move"
+        },
+        "no": "4",
+        "reachable_route": "true",
+        "route_advantage": {
+          "fastest_arrival_time_and_shorter": false,
+          "latest_departure_time_and_shorter": false,
+          "less_expensive": true,
+          "less_expensive_one_month_pass_fare": true,
+          "less_expensive_six_month_pass_fare": true,
+          "less_expensive_three_month_pass_fare": true,
+          "less_expensive_with_ic": true,
+          "less_transfers": false
+        },
+        "route_id": "4",
+        "start": {
+          "coord": {
+            "lat": 35.689664,
+            "lon": 139.699214
+          },
+          "name": "新宿",
+          "node_id": "00004254",
+          "node_types": ["station"],
+          "type": "point"
+        }
+      }
+    },
+    {
+      "sections": [
+        {
+          "coord": {
+            "lat": 35.689664,
+            "lon": 139.699214
+          },
+          "name": "新宿",
+          "node_id": "00004254",
+          "node_types": ["station"],
+          "numbering": {
+            "departure": [
+              {
+                "number": "01",
+                "symbol": "KO"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 6,
+          "distance": 29700,
+          "from_time": "2024-12-06T10:52:00+09:00",
+          "line_name": "京王線特急",
+          "move": "rapid_train",
+          "next_transit": true,
+          "provisional_timetable": true,
+          "time": 30,
+          "to_time": "2024-12-06T11:22:00+09:00",
+          "transfer_seconds": 180,
+          "transport": {
+            "color": "#E0037C",
+            "company": {
+              "id": "00000035",
+              "name": "京王電鉄"
+            },
+            "fare": {
+              "unit_48": 0
+            },
+            "fare_break": {
+              "unit_0": false,
+              "unit_128": false,
+              "unit_130": false,
+              "unit_133": false,
+              "unit_136": false,
+              "unit_138": false,
+              "unit_141": false,
+              "unit_48": false
+            },
+            "fare_season": "normal",
+            "id": "00000479",
+            "links": [
+              {
+                "company": {
+                  "id": "00000035",
+                  "name": "京王電鉄"
+                },
+                "destination": {
+                  "id": "00001711",
+                  "name": "京王八王子"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00004254",
+                  "name": "新宿"
+                },
+                "id": "00000274",
+                "name": "京王線",
+                "to": {
+                  "id": "00002624",
+                  "name": "高幡不動"
+                }
+              }
+            ],
+            "name": "京王線特急",
+            "type": "特急"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.66211,
+            "lon": 139.41331
+          },
+          "name": "高幡不動",
+          "node_id": "00002624",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "29",
+                "symbol": "KO"
+              }
+            ],
+            "departure": [
+              {
+                "number": "29",
+                "symbol": "KO"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 8,
+          "distance": 6400,
+          "from_time": "2024-12-06T11:30:00+09:00",
+          "line_name": "京王線",
+          "move": "local_train",
+          "provisional_timetable": true,
+          "time": 11,
+          "to_time": "2024-12-06T11:41:00+09:00",
+          "transport": {
+            "color": "#E0037C",
+            "company": {
+              "id": "00000035",
+              "name": "京王電鉄"
+            },
+            "fare": {
+              "unit_48": 0
+            },
+            "fare_break": {
+              "unit_0": false,
+              "unit_128": false,
+              "unit_130": false,
+              "unit_133": false,
+              "unit_136": false,
+              "unit_138": false,
+              "unit_141": false,
+              "unit_48": false
+            },
+            "fare_season": "normal",
+            "getoff": "前・中",
+            "id": "00000474",
+            "links": [
+              {
+                "company": {
+                  "id": "00000035",
+                  "name": "京王電鉄"
+                },
+                "destination": {
+                  "id": "00001711",
+                  "name": "京王八王子"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00002624",
+                  "name": "高幡不動"
+                },
+                "id": "00000274",
+                "name": "京王線",
+                "to": {
+                  "id": "00008408",
+                  "name": "北野（東京都）"
+                }
+              }
+            ],
+            "name": "京王線",
+            "type": "普通"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.64441,
+            "lon": 139.354488
+          },
+          "name": "北野（東京都）",
+          "node_id": "00008408",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "33",
+                "symbol": "KO"
+              }
+            ],
+            "departure": [
+              {
+                "number": "33",
+                "symbol": "KO"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 8,
+          "distance": 6900,
+          "from_time": "2024-12-06T11:41:00+09:00",
+          "line_name": "京王高尾線",
+          "move": "local_train",
+          "next_transit": true,
+          "provisional_timetable": true,
+          "time": 10,
+          "to_time": "2024-12-06T11:51:00+09:00",
+          "transfer_seconds": 180,
+          "transport": {
+            "color": "#E0037C",
+            "company": {
+              "id": "00000035",
+              "name": "京王電鉄"
+            },
+            "fare": {
+              "unit_0": 410,
+              "unit_128": 15310,
+              "unit_130": 43640,
+              "unit_133": 82680,
+              "unit_136": 4510,
+              "unit_138": 12860,
+              "unit_141": 24360,
+              "unit_48": 409
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_128": true,
+              "unit_130": true,
+              "unit_133": true,
+              "unit_136": true,
+              "unit_138": true,
+              "unit_141": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 410,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "0",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 409,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "48",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 15310,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "128",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 43640,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "130",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 82680,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "133",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 4510,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "136",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 12860,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "138",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 24360,
+                "goal": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                },
+                "id": "141",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "getoff": "中",
+            "id": "00000476",
+            "links": [
+              {
+                "company": {
+                  "id": "00000035",
+                  "name": "京王電鉄"
+                },
+                "destination": {
+                  "id": "00002629",
+                  "name": "高尾山口"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00008408",
+                  "name": "北野（東京都）"
+                },
+                "id": "00000276",
+                "name": "京王高尾線",
+                "to": {
+                  "id": "00002628",
+                  "name": "高尾（東京都）"
+                }
+              }
+            ],
+            "name": "京王高尾線",
+            "type": "普通"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.642018,
+            "lon": 139.282795
+          },
+          "name": "高尾（東京都）",
+          "node_id": "00002628",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "52",
+                "symbol": "KO"
+              }
+            ],
+            "departure": [
+              {
+                "number": "24",
+                "symbol": "JC"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 8,
+          "distance": 34700,
+          "from_time": "2024-12-06T12:07:00+09:00",
+          "line_name": "ＪＲ中央本線（高尾-甲府）",
+          "move": "local_train",
+          "next_transit": true,
+          "provisional_timetable": true,
+          "time": 35,
+          "to_time": "2024-12-06T12:42:00+09:00",
+          "transfer_seconds": 180,
+          "transport": {
+            "color": "#007AC0",
+            "company": {
+              "id": "00000004",
+              "name": "ＪＲ東日本"
+            },
+            "fare": {
+              "unit_0": 590,
+              "unit_128": 17810,
+              "unit_130": 50750,
+              "unit_133": 85540,
+              "unit_136": 9190,
+              "unit_138": 26180,
+              "unit_141": 49590,
+              "unit_144": 8270,
+              "unit_146": 23560,
+              "unit_149": 44630,
+              "unit_152": 6430,
+              "unit_154": 18320,
+              "unit_157": 34710,
+              "unit_48": 594
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_128": true,
+              "unit_130": true,
+              "unit_133": true,
+              "unit_136": true,
+              "unit_138": true,
+              "unit_141": true,
+              "unit_144": true,
+              "unit_146": true,
+              "unit_149": true,
+              "unit_152": true,
+              "unit_154": true,
+              "unit_157": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 590,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "0",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 594,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "48",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 17810,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "128",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 50750,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "130",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 85540,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "133",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 9190,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "136",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 26180,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "138",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 49590,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "141",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 8270,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "144",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 23560,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "146",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 44630,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "149",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 6430,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "152",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 18320,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "154",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              },
+              {
+                "fare": 34710,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "157",
+                "start": {
+                  "name": "高尾（東京都）",
+                  "node_id": "00002628"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "id": "00000236",
+            "links": [
+              {
+                "company": {
+                  "id": "00000004",
+                  "name": "ＪＲ東日本"
+                },
+                "destination": {
+                  "id": "00005579",
+                  "name": "大月"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00002628",
+                  "name": "高尾（東京都）"
+                },
+                "id": "00000176",
+                "name": "ＪＲ中央本線（東京-塩尻）",
+                "to": {
+                  "id": "00005579",
+                  "name": "大月"
+                }
+              }
+            ],
+            "name": "ＪＲ中央本線（高尾-甲府）",
+            "type": "普通"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.613196,
+            "lon": 138.94273
+          },
+          "name": "大月",
+          "node_id": "00005579",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "32",
+                "symbol": "JC"
+              }
+            ],
+            "departure": [
+              {
+                "number": "01",
+                "symbol": "FJ"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 8,
+          "distance": 26600,
+          "from_time": "2024-12-06T13:00:00+09:00",
+          "line_name": "富士急行線",
+          "move": "local_train",
+          "provisional_timetable": true,
+          "time": 56,
+          "to_time": "2024-12-06T13:56:00+09:00",
+          "transport": {
+            "color": "#0187E8",
+            "company": {
+              "id": "00000133",
+              "name": "富士山麓電気鉄道"
+            },
+            "fare": {
+              "unit_0": 1170,
+              "unit_128": 45350,
+              "unit_130": 129250,
+              "unit_133": 244890,
+              "unit_136": 28400,
+              "unit_138": 80940,
+              "unit_141": 153360,
+              "unit_144": 17490,
+              "unit_146": 49850,
+              "unit_149": 94450,
+              "unit_48": 1161
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_128": true,
+              "unit_130": true,
+              "unit_133": true,
+              "unit_136": true,
+              "unit_138": true,
+              "unit_141": true,
+              "unit_144": true,
+              "unit_146": true,
+              "unit_149": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 1170,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "0",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 1161,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "48",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 45350,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "128",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 129250,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "130",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 244890,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "133",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 28400,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "136",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 80940,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "138",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 153360,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "141",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 17490,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "144",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 49850,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "146",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 94450,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "149",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "id": "00000471",
+            "links": [
+              {
+                "company": {
+                  "id": "00000133",
+                  "name": "富士山麓電気鉄道"
+                },
+                "destination": {
+                  "id": "00001065",
+                  "name": "河口湖"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00005579",
+                  "name": "大月"
+                },
+                "id": "00000833",
+                "name": "富士急行線",
+                "to": {
+                  "id": "00001065",
+                  "name": "河口湖"
+                }
+              }
+            ],
+            "name": "富士急行線",
+            "type": "普通"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.498208,
+            "lon": 138.768629
+          },
+          "name": "河口湖",
+          "node_id": "00001065",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "18",
+                "symbol": "FJ"
+              }
+            ]
+          },
+          "type": "point"
+        }
+      ],
+      "summary": {
+        "_search_mode": "UnuseBusForFilteringLineNetworkSearch-2",
+        "goal": {
+          "coord": {
+            "lat": 35.498208,
+            "lon": 138.768629
+          },
+          "name": "河口湖",
+          "node_id": "00001065",
+          "node_types": ["station"],
+          "type": "point"
+        },
+        "id": "100514ce-6752-569a-0fcc-0242ac110004",
+        "move": {
+          "distance": 104300,
+          "fare": {
+            "unit_0": 2170,
+            "unit_48": 2164
+          },
+          "from_time": "2024-12-06T10:52:00+09:00",
+          "time": 184,
+          "to_time": "2024-12-06T13:56:00+09:00",
+          "transit_count": 3,
+          "type": "move"
+        },
+        "no": "5",
+        "reachable_route": "true",
+        "route_advantage": {
+          "fastest_arrival_time_and_shorter": false,
+          "latest_departure_time_and_shorter": false,
+          "less_expensive": true,
+          "less_expensive_one_month_pass_fare": true,
+          "less_expensive_six_month_pass_fare": true,
+          "less_expensive_three_month_pass_fare": true,
+          "less_expensive_with_ic": true,
+          "less_transfers": false
+        },
+        "route_id": "5",
+        "start": {
+          "coord": {
+            "lat": 35.689664,
+            "lon": 139.699214
+          },
+          "name": "新宿",
+          "node_id": "00004254",
+          "node_types": ["station"],
+          "type": "point"
+        }
+      }
+    },
+    {
+      "sections": [
+        {
+          "coord": {
+            "lat": 35.690636,
+            "lon": 139.699614
+          },
+          "name": "新宿",
+          "node_id": "00004254",
+          "node_types": ["station"],
+          "numbering": {
+            "departure": [
+              {
+                "number": "01",
+                "symbol": "OH"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 6,
+          "distance": 30800,
+          "from_time": "2024-12-06T10:47:00+09:00",
+          "line_name": "小田急小田原線急行",
+          "move": "rapid_train",
+          "next_transit": true,
+          "provisional_timetable": true,
+          "time": 35,
+          "to_time": "2024-12-06T11:22:00+09:00",
+          "transfer_seconds": 480,
+          "transport": {
+            "color": "#3CB9FB",
+            "company": {
+              "id": "00000073",
+              "name": "小田急電鉄"
+            },
+            "fare": {
+              "unit_0": 390,
+              "unit_128": 13790,
+              "unit_130": 39310,
+              "unit_133": 74470,
+              "unit_136": 5220,
+              "unit_138": 14880,
+              "unit_141": 28190,
+              "unit_48": 387
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_128": true,
+              "unit_130": true,
+              "unit_133": true,
+              "unit_136": true,
+              "unit_138": true,
+              "unit_141": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 390,
+                "goal": {
+                  "name": "町田",
+                  "node_id": "00006194"
+                },
+                "id": "0",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 387,
+                "goal": {
+                  "name": "町田",
+                  "node_id": "00006194"
+                },
+                "id": "48",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 13790,
+                "goal": {
+                  "name": "町田",
+                  "node_id": "00006194"
+                },
+                "id": "128",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 39310,
+                "goal": {
+                  "name": "町田",
+                  "node_id": "00006194"
+                },
+                "id": "130",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 74470,
+                "goal": {
+                  "name": "町田",
+                  "node_id": "00006194"
+                },
+                "id": "133",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 5220,
+                "goal": {
+                  "name": "町田",
+                  "node_id": "00006194"
+                },
+                "id": "136",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 14880,
+                "goal": {
+                  "name": "町田",
+                  "node_id": "00006194"
+                },
+                "id": "138",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              },
+              {
+                "fare": 28190,
+                "goal": {
+                  "name": "町田",
+                  "node_id": "00006194"
+                },
+                "id": "141",
+                "start": {
+                  "name": "新宿",
+                  "node_id": "00004254"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "getoff": "中",
+            "id": "00000462",
+            "links": [
+              {
+                "company": {
+                  "id": "00000073",
+                  "name": "小田急電鉄"
+                },
+                "destination": {
+                  "id": "00003742",
+                  "name": "小田原"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00004254",
+                  "name": "新宿"
+                },
+                "id": "00000686",
+                "name": "小田急小田原線",
+                "to": {
+                  "id": "00006194",
+                  "name": "町田"
+                }
+              }
+            ],
+            "name": "小田急小田原線急行",
+            "type": "急行"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.544015,
+            "lon": 139.445186
+          },
+          "name": "町田",
+          "node_id": "00006194",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "27",
+                "symbol": "OH"
+              }
+            ],
+            "departure": [
+              {
+                "number": "23",
+                "symbol": "JH"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 8,
+          "distance": 19700,
+          "from_time": "2024-12-06T11:35:00+09:00",
+          "line_name": "ＪＲ横浜線",
+          "move": "local_train",
+          "next_transit": true,
+          "provisional_timetable": true,
+          "time": 25,
+          "to_time": "2024-12-06T12:00:00+09:00",
+          "transfer_seconds": 240,
+          "transport": {
+            "color": "#80C241",
+            "company": {
+              "id": "00000004",
+              "name": "ＪＲ東日本"
+            },
+            "fare": {
+              "unit_48": 0
+            },
+            "fare_break": {
+              "unit_0": false,
+              "unit_254": false,
+              "unit_48": false
+            },
+            "fare_season": "normal",
+            "getoff": "前・中",
+            "id": "00000335",
+            "links": [
+              {
+                "company": {
+                  "id": "00000004",
+                  "name": "ＪＲ東日本"
+                },
+                "destination": {
+                  "id": "00007508",
+                  "name": "八王子"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00006194",
+                  "name": "町田"
+                },
+                "id": "00000124",
+                "name": "ＪＲ横浜線",
+                "to": {
+                  "id": "00007508",
+                  "name": "八王子"
+                }
+              }
+            ],
+            "name": "ＪＲ横浜線",
+            "type": "普通"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.655425,
+            "lon": 139.339275
+          },
+          "name": "八王子",
+          "node_id": "00007508",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "32",
+                "symbol": "JH"
+              }
+            ],
+            "departure": [
+              {
+                "number": "22",
+                "symbol": "JC"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 4,
+          "distance": 40400,
+          "from_time": "2024-12-06T12:39:00+09:00",
+          "line_name": "かいじ",
+          "move": "ultraexpress_train",
+          "next_transit": true,
+          "provisional_timetable": true,
+          "time": 26,
+          "to_time": "2024-12-06T13:05:00+09:00",
+          "transfer_seconds": 180,
+          "transport": {
+            "color": "#007AC0",
+            "company": {
+              "id": "00000004",
+              "name": "ＪＲ東日本"
+            },
+            "fare": {
+              "unit_0": 1170,
+              "unit_2": 760,
+              "unit_254": 0,
+              "unit_3": 1530,
+              "unit_48": 1166
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_2": true,
+              "unit_254": true,
+              "unit_3": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 1170,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "0",
+                "start": {
+                  "name": "町田",
+                  "node_id": "00006194"
+                }
+              },
+              {
+                "fare": 1166,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "48",
+                "start": {
+                  "name": "町田",
+                  "node_id": "00006194"
+                }
+              },
+              {
+                "fare": 0,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "254",
+                "start": {
+                  "name": "町田",
+                  "node_id": "00006194"
+                }
+              },
+              {
+                "default_extra_fare": true,
+                "fare": 760,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "2",
+                "start": {
+                  "name": "八王子",
+                  "node_id": "00007508"
+                }
+              },
+              {
+                "fare": 1530,
+                "goal": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                },
+                "id": "3",
+                "start": {
+                  "name": "八王子",
+                  "node_id": "00007508"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "id": "00000240",
+            "links": [
+              {
+                "company": {
+                  "id": "00000004",
+                  "name": "ＪＲ東日本"
+                },
+                "destination": {
+                  "id": "00005579",
+                  "name": "大月"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00007508",
+                  "name": "八王子"
+                },
+                "id": "00000176",
+                "name": "ＪＲ中央本線（東京-塩尻）",
+                "to": {
+                  "id": "00005579",
+                  "name": "大月"
+                }
+              }
+            ],
+            "name": "かいじ",
+            "type": "特急"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.613196,
+            "lon": 138.94273
+          },
+          "name": "大月",
+          "node_id": "00005579",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "32",
+                "symbol": "JC"
+              }
+            ],
+            "departure": [
+              {
+                "number": "01",
+                "symbol": "FJ"
+              }
+            ]
+          },
+          "type": "point"
+        },
+        {
+          "_method": 8,
+          "distance": 26600,
+          "from_time": "2024-12-06T13:23:00+09:00",
+          "line_name": "富士急行線",
+          "move": "local_train",
+          "provisional_timetable": true,
+          "time": 56,
+          "to_time": "2024-12-06T14:19:00+09:00",
+          "transport": {
+            "color": "#0187E8",
+            "company": {
+              "id": "00000133",
+              "name": "富士山麓電気鉄道"
+            },
+            "fare": {
+              "unit_0": 1170,
+              "unit_128": 45350,
+              "unit_130": 129250,
+              "unit_133": 244890,
+              "unit_136": 28400,
+              "unit_138": 80940,
+              "unit_141": 153360,
+              "unit_144": 17490,
+              "unit_146": 49850,
+              "unit_149": 94450,
+              "unit_48": 1161
+            },
+            "fare_break": {
+              "unit_0": true,
+              "unit_128": true,
+              "unit_130": true,
+              "unit_133": true,
+              "unit_136": true,
+              "unit_138": true,
+              "unit_141": true,
+              "unit_144": true,
+              "unit_146": true,
+              "unit_149": true,
+              "unit_48": true
+            },
+            "fare_detail": [
+              {
+                "fare": 1170,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "0",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 1161,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "48",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 45350,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "128",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 129250,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "130",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 244890,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "133",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 28400,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "136",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 80940,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "138",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 153360,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "141",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 17490,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "144",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 49850,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "146",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              },
+              {
+                "fare": 94450,
+                "goal": {
+                  "name": "河口湖",
+                  "node_id": "00001065"
+                },
+                "id": "149",
+                "start": {
+                  "name": "大月",
+                  "node_id": "00005579"
+                }
+              }
+            ],
+            "fare_season": "normal",
+            "id": "00000471",
+            "links": [
+              {
+                "company": {
+                  "id": "00000133",
+                  "name": "富士山麓電気鉄道"
+                },
+                "destination": {
+                  "id": "00001065",
+                  "name": "河口湖"
+                },
+                "direction": "down",
+                "from": {
+                  "id": "00005579",
+                  "name": "大月"
+                },
+                "id": "00000833",
+                "name": "富士急行線",
+                "to": {
+                  "id": "00001065",
+                  "name": "河口湖"
+                }
+              }
+            ],
+            "name": "富士急行線",
+            "type": "普通"
+          },
+          "type": "move"
+        },
+        {
+          "coord": {
+            "lat": 35.498208,
+            "lon": 138.768629
+          },
+          "name": "河口湖",
+          "node_id": "00001065",
+          "node_types": ["station"],
+          "numbering": {
+            "arrival": [
+              {
+                "number": "18",
+                "symbol": "FJ"
+              }
+            ]
+          },
+          "type": "point"
+        }
+      ],
+      "summary": {
+        "_search_mode": "LessTransfersForFilteringLineNetworkSearch-7",
+        "goal": {
+          "coord": {
+            "lat": 35.498208,
+            "lon": 138.768629
+          },
+          "name": "河口湖",
+          "node_id": "00001065",
+          "node_types": ["station"],
+          "type": "point"
+        },
+        "id": "100614ce-6752-569a-0fcc-0242ac110004",
+        "move": {
+          "distance": 117500,
+          "fare": {
+            "unit_0": 2730,
+            "unit_2": 760,
+            "unit_3": 1530,
+            "unit_48": 2714
+          },
+          "from_time": "2024-12-06T10:47:00+09:00",
+          "time": 212,
+          "to_time": "2024-12-06T14:19:00+09:00",
+          "transit_count": 3,
+          "type": "move"
+        },
+        "no": "6",
+        "reachable_route": "true",
+        "route_advantage": {
+          "fastest_arrival_time_and_shorter": false,
+          "latest_departure_time_and_shorter": false,
+          "less_expensive": false,
+          "less_expensive_one_month_pass_fare": false,
+          "less_expensive_six_month_pass_fare": false,
+          "less_expensive_three_month_pass_fare": false,
+          "less_expensive_with_ic": false,
+          "less_transfers": false
+        },
+        "route_id": "6",
+        "start": {
+          "coord": {
+            "lat": 35.690636,
+            "lon": 139.699614
+          },
+          "name": "新宿",
+          "node_id": "00004254",
+          "node_types": ["station"],
+          "type": "point"
+        }
+      }
+    }
+  ],
+  "unit": {
+    "coord": "degree",
+    "currency": "JPY",
+    "datum": "wgs84",
+    "distance": "metre",
+    "time": "minute"
+  }
+}
