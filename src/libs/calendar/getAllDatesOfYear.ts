@@ -59,15 +59,47 @@ export function getAllDatesOfMonth(
   return dates;
 }
 
-const today = new Date();
-const allDatesOfThisMonth = getAllDatesOfMonth(today);
+export function getDatesOfHalfMonth(
+  date: Date
+): { num: number; date: string; day: string }[] {
+  const dates: { num: number; date: string; day: string }[] = [];
+  const year = date.getFullYear();
+  const month = date.getMonth(); // 月（0-basedなので1月は0）
 
-// 結果を表示（YYYY-MM-DD形式）
-allDatesOfThisMonth.forEach((date) => {
-  console.log(date);
-});
+  // 渡された日付から半月の開始日と終了日を判別
+  const day = date.getDate();
+  const startDay = day <= 15 ? 1 : 16; // 前半なら1日、後半なら16日
+  const endDay = day <= 15 ? 15 : new Date(year, month + 1, 0).getDate(); // 前半なら15日、後半なら月末
 
-// 結果を表示（YYYY-MM-DD形式）
-// allDates2028.forEach((date) => {
-//   console.log(date);
-// });
+  // 開始日と終了日からDateオブジェクトを作成
+  const startDate = new Date(year, month, startDay);
+  const endDate = new Date(year, month, endDay);
+
+  // 曜日配列
+  const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
+
+  let counter = 1; // 番号付け用のカウンタ
+
+  // 指定された半月の範囲でループ
+  while (startDate <= endDate) {
+    const weekday = weekdays[startDate.getDay()]; // 曜日を取得
+
+    // 番号、日付、曜日をオブジェクトとして追加
+    dates.push({
+      num: counter,
+      date: startDate
+        .toLocaleDateString("ja-JP", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        })
+        .replace(/\//g, "-"),
+      day: `(${weekday})`,
+    });
+
+    counter++; // 番号を1増やす
+    startDate.setDate(startDate.getDate() + 1); // 1日進める
+  }
+
+  return dates;
+}
