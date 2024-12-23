@@ -1,12 +1,25 @@
 import { redirect } from "next/navigation";
-import PageContainer from "@/_components/PageContainer";
+import { cookies } from "next/headers";
+import {
+  getDefaultShiftTypeView,
+  getDefaultShiftMonthStatusView,
+} from "@/libs/shift/settings";
+import { ShiftTypeView } from "@/libs/shift/settings";
 
-export default function page() {
-  // const defaultView = "staff" || "admin" || "regsterWorkPlace";
-  // return redirect(`/shift/${defaultView}`);
-  return <PageContainer />;
+export default function Shift() {
+  const preferredShiftTypeView =
+    cookies().get("preferredShiftTypeView")?.value || null;
+  const defaultShiftTypeView = getDefaultShiftTypeView(
+    preferredShiftTypeView as ShiftTypeView
+  );
+
+  let defaultStatus;
+
+  if (defaultShiftTypeView === "monthly") {
+    const preferredShiftMonthView =
+      cookies().get("preferredShiftMonthView")?.value || null;
+    defaultStatus = getDefaultShiftMonthStatusView(preferredShiftMonthView);
+  }
+
+  return redirect(`/shift/${defaultShiftTypeView}/${defaultStatus}`);
 }
-
-// const preferredSignInView =
-// cookies().get("preferredSignInView")?.value || null;
-// const defaultView = getDefaultSignInView(preferredSignInView);

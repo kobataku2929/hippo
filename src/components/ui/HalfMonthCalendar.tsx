@@ -1,10 +1,7 @@
 "use client";
 
 import React from "react";
-import {
-  getAllDatesOfMonth,
-  getDatesOfHalfMonth,
-} from "@/libs/calendar/getAllDatesOfYear";
+import { getDatesOfHalfMonth } from "@/libs/calendar/getAllDatesOfYear";
 
 const workers = [
   { id: 1, name: "小林ライオン", worktime: 2 },
@@ -15,9 +12,10 @@ const workers = [
 
 function HalfMonthCalendar() {
   const today = new Date();
-  const allDatesOfThisMonth = getAllDatesOfMonth(today);
+  console.log(today);
+  const allDatesOfThisMonth = getDatesOfHalfMonth(today);
 
-  console.log(allDatesOfThisMonth);
+  console.log("オラ" + allDatesOfThisMonth);
   return (
     <div>
       <div>半月です</div>

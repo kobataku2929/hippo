@@ -58,6 +58,37 @@ export function getAllDatesOfMonth(
 
   return dates;
 }
+/**
+ * 1ヶ月のカレンダーを返します
+ * @param month
+ * @returns
+ */
+export function getMonth(
+  month: string
+): { num: number; date: string; day: string }[] {
+  const year = parseInt(month.substring(0, 4), 10);
+  const monthIndex = parseInt(month.substring(4, 6), 10) - 1;
+
+  const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
+
+  const daysInMonth = new Date(year, monthIndex + 1, 0).getDate(); // その月の日数を取得
+
+  return Array.from({ length: daysInMonth }, (_, i) => {
+    const date = new Date(year, monthIndex, i + 1); // i + 1: 日付
+    return {
+      num: i + 1,
+      date: date
+        .toLocaleDateString("ja-JP", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          timeZone: "Asia/Tokyo",
+        })
+        .replace(/\//g, "-"),
+      day: `(${weekdays[date.getDay()]})`,
+    };
+  });
+}
 
 export function getDatesOfHalfMonth(
   date: Date
@@ -100,6 +131,6 @@ export function getDatesOfHalfMonth(
     counter++; // 番号を1増やす
     startDate.setDate(startDate.getDate() + 1); // 1日進める
   }
-
+  console.log(dates);
   return dates;
 }

@@ -1,9 +1,7 @@
+"use client";
+
 import React from "react";
-import ChangeCalenderDate from "./ChangeCalenderDate";
-import {
-  getAllDatesOfMonth,
-  getMonth,
-} from "@/libs/calendar/getAllDatesOfYear";
+import { getAllDatesOfMonth } from "@/libs/calendar/getAllDatesOfYear";
 
 const workers = [
   { id: 1, name: "小林ライオン", worktime: 2 },
@@ -12,18 +10,14 @@ const workers = [
   { id: 4, name: "ちゃんアグネス", worktime: 40 },
 ];
 
-type MonthCalendarProps = {
-  shiftDate: string;
-};
-
-function MonthCalendar({ shiftDate }: MonthCalendarProps) {
+function DailyCalendar() {
   const today = new Date();
   const allDatesOfThisMonth = getAllDatesOfMonth(today);
-  const month = getMonth(shiftDate);
 
+  console.log(allDatesOfThisMonth);
   return (
     <div>
-      <ChangeCalenderDate shiftDate={shiftDate} />
+      <div>日カレンダーです</div>
       <div className="relative">
         {/* 労働時間ヘッダー */}
         <div className="grid grid-cols-2 w-52 text-xs">
@@ -50,7 +44,7 @@ function MonthCalendar({ shiftDate }: MonthCalendarProps) {
 
         {/* 月の日付ヘッダー */}
         <div className="absolute top-0 left-52 flex h-7">
-          {month.map((monthdate) => (
+          {allDatesOfThisMonth.map((monthdate) => (
             <div
               key={monthdate.date}
               className="w-12 text-xs p-1 border-solid border-t-2 border-r-2 border-indigo-300 bg-slate-300 pr-1"
@@ -85,4 +79,4 @@ function MonthCalendar({ shiftDate }: MonthCalendarProps) {
   );
 }
 
-export default MonthCalendar;
+export default DailyCalendar;
