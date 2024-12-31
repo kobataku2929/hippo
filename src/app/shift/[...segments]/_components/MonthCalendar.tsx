@@ -1,7 +1,6 @@
-"use client";
-
 import React from "react";
-import { getAllDatesOfMonth } from "@/libs/calendar/getAllDatesOfYear";
+import ChangeCalenderDate from "./ChangeCalenderDate";
+import { getMonth } from "@/libs/calendar/getAllDatesOfYear";
 
 const workers = [
   { id: 1, name: "小林ライオン", worktime: 2 },
@@ -10,14 +9,18 @@ const workers = [
   { id: 4, name: "ちゃんアグネス", worktime: 40 },
 ];
 
-function DailyCalendar() {
-  const today = new Date();
-  const allDatesOfThisMonth = getAllDatesOfMonth(today);
+type MonthCalendarProps = {
+  shiftDate: string;
+};
 
-  console.log(allDatesOfThisMonth);
+function MonthCalendar({ shiftDate }: MonthCalendarProps) {
+  // const today = new Date();
+  // const allDatesOfThisMonth = getAllDatesOfMonth(today);
+  const month = getMonth(shiftDate);
+  console.log(month);
   return (
     <div>
-      <div>日カレンダーです</div>
+      <ChangeCalenderDate shiftDate={shiftDate} />
       <div className="relative">
         {/* 労働時間ヘッダー */}
         <div className="grid grid-cols-2 w-52 text-xs">
@@ -44,7 +47,7 @@ function DailyCalendar() {
 
         {/* 月の日付ヘッダー */}
         <div className="absolute top-0 left-52 flex h-7">
-          {allDatesOfThisMonth.map((monthdate) => (
+          {month.map((monthdate) => (
             <div
               key={monthdate.date}
               className="w-12 text-xs p-1 border-solid border-t-2 border-r-2 border-indigo-300 bg-slate-300 pr-1"
@@ -59,7 +62,7 @@ function DailyCalendar() {
         <div className="absolute top-7 left-52">
           {workers.map((worker) => (
             <div key={worker.name} className="flex">
-              {allDatesOfThisMonth.map((_, index) => (
+              {month.map((_, index) => (
                 <div
                   key={`${worker.id}-${index}`}
                   className="flex justify-center items-center  text-xs border-solid border-b-2 border-r-2 h-10 w-12 "
@@ -79,4 +82,4 @@ function DailyCalendar() {
   );
 }
 
-export default DailyCalendar;
+export default MonthCalendar;

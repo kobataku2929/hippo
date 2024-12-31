@@ -1,5 +1,5 @@
 import React from "react";
-import Calendar from "../components/ui/Calendar";
+import Calendar from "../app/shift/[...segments]/_components/Calendar";
 import AfterSignup from "../components/ui/AfterSignup";
 
 import * as holiday_jp from "@holiday-jp/holiday_jp";

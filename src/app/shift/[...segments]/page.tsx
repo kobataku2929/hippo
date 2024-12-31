@@ -7,11 +7,11 @@ import {
   getMonthStatus,
   getDefaultShiftMonthStatusView,
 } from "@/libs/shift/settings";
-import MonthCalendar from "@/components/ui/MonthCalendar";
-import HalfMonthCalendar from "@/components/ui/HalfMonthCalendar";
-import WeekCalendar from "@/components/ui/WeekCalendar";
-import DailyCalendar from "@/components/ui/DailyCalendar";
-import ChangeCalenderType from "@/components/ui/ChangeCalenderType";
+import MonthCalendar from "@/app/shift/[...segments]/_components/MonthCalendar";
+import HalfMonthCalendar from "@/app/shift/[...segments]/_components/HalfMonthCalendar";
+import WeekCalendar from "@/app/shift/[...segments]/_components/WeekCalendar";
+import DailyCalendar from "@/app/shift/[...segments]/_components/DailyCalendar";
+import ChangeCalenderType from "@/app/shift/[...segments]/_components/ChangeCalenderType";
 
 import { ShiftTypeView } from "@/libs/shift/settings";
 
@@ -29,8 +29,6 @@ export default async function Shift({
   }
 
   const viewTypes = getViewTypes();
-
-  console.log(shiftDate);
 
   let viewProp: ShiftTypeView;
 
@@ -66,7 +64,7 @@ export default async function Shift({
       {viewProp === "monthly" && <MonthCalendar shiftDate={shiftDate} />}
       {viewProp === "halfmonthly" && <HalfMonthCalendar />}
       {viewProp === "weekly" && <WeekCalendar />}
-      {viewProp === "daily" && <DailyCalendar />}
+      {viewProp === "daily" && <DailyCalendar shiftDate={shiftDate} />}
     </div>
   );
 }

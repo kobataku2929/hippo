@@ -21,6 +21,78 @@ export function getAllDatesOfYear(year: number): string[] {
   return dates;
 }
 
+/**
+ * 引数の月の1ヶ月のカレンダーを返します
+ * @param month
+ * @returns
+ */
+export function getMonth(
+  month: string
+): { num: number; date: string; day: string }[] {
+  const year = parseInt(month.substring(0, 4), 10);
+  const monthIndex = parseInt(month.substring(4, 6), 10) - 1;
+
+  const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
+
+  const daysInMonth = new Date(year, monthIndex + 1, 0).getDate(); // その月の日数を取得
+
+  return Array.from({ length: daysInMonth }, (_, i) => {
+    const date = new Date(year, monthIndex, i + 1); // i + 1: 日付
+    return {
+      num: i + 1,
+      date: date
+        .toLocaleDateString("ja-JP", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          timeZone: "Asia/Tokyo",
+        })
+        .replace(/\//g, "-"),
+      day: `(${weekdays[date.getDay()]})`,
+    };
+  });
+}
+/**
+ * 引数の日の24時間のカレンダーを返します
+ * @param day
+ * @returns
+ */
+export function getDay(day: string): { hour: number; time: string }[] {
+  const year = parseInt(day.substring(0, 4), 10);
+  const monthIndex = parseInt(day.substring(4, 6), 10) - 1;
+  const dateNum = parseInt(day.substring(6, 8), 10);
+
+  const dateStart = new Date(year, monthIndex, dateNum, 0, 0);
+  const dateEnd = new Date(year, monthIndex, dateNum, 23, 59);
+
+  const intervals: { hour: number; time: string }[] = [];
+
+  for (
+    let currentTime = dateStart;
+    currentTime <= dateEnd;
+    currentTime.setMinutes(currentTime.getMinutes() + 15)
+  ) {
+    intervals.push({
+      hour: currentTime.getHours(),
+      time:
+        currentTime
+          .toLocaleString("ja-JP", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            timeZone: "Asia/Tokyo",
+          })
+          .replace(/\//g, "-") + "+09:00",
+    });
+  }
+  //要確認　23:45から00:00の時、次の日の0時も必要になりそう
+  return intervals;
+}
+
+//下記は多分使わん　後ほど消すと思われる
 export function getAllDatesOfMonth(
   date: Date
 ): { num: number; date: string; day: string }[] {
@@ -57,37 +129,6 @@ export function getAllDatesOfMonth(
   }
 
   return dates;
-}
-/**
- * 1ヶ月のカレンダーを返します
- * @param month
- * @returns
- */
-export function getMonth(
-  month: string
-): { num: number; date: string; day: string }[] {
-  const year = parseInt(month.substring(0, 4), 10);
-  const monthIndex = parseInt(month.substring(4, 6), 10) - 1;
-
-  const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
-
-  const daysInMonth = new Date(year, monthIndex + 1, 0).getDate(); // その月の日数を取得
-
-  return Array.from({ length: daysInMonth }, (_, i) => {
-    const date = new Date(year, monthIndex, i + 1); // i + 1: 日付
-    return {
-      num: i + 1,
-      date: date
-        .toLocaleDateString("ja-JP", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-          timeZone: "Asia/Tokyo",
-        })
-        .replace(/\//g, "-"),
-      day: `(${weekdays[date.getDay()]})`,
-    };
-  });
 }
 
 export function getDatesOfHalfMonth(
