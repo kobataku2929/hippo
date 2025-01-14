@@ -15,7 +15,6 @@ type DailyCalendarProps = {
 };
 
 function DailyCalendar({ shiftDate }: DailyCalendarProps) {
-  console.log(shiftDate);
   const today = getDay("20241201");
 
   return (
@@ -50,7 +49,7 @@ function DailyCalendar({ shiftDate }: DailyCalendarProps) {
           {today.map((time, index) => (
             <div
               key={index}
-              className="w-12 text-xs p-1 border-solid border-t-2 border-r-2 border-indigo-300 bg-slate-300 pr-1"
+              className="w-3 text-xs p-1 border-solid border-t-2 border-r-2 border-indigo-300 bg-slate-300 pr-1"
             >
               {time.hour}
             </div>
@@ -64,23 +63,72 @@ function DailyCalendar({ shiftDate }: DailyCalendarProps) {
               {today.map((_, index) => (
                 <div
                   key={`${worker.id}-${index}`}
-                  className="flex justify-center items-center  text-xs border-solid border-b-2 border-r-2 h-10 w-12 "
-                >
-                  <div className="bg-blue-200 w-10 h-8 rounded-sm">
-                    {index + 1}7:00~
-                    <br />
-                    {worker.id}:00
-                  </div>
-                </div>
+                  className="flex justify-center items-center  text-xs border-solid border-b border-r border-indigo-200 h-10 w-3 "
+                ></div>
               ))}
             </div>
           ))}
         </div>
       </div>
+      <Timeline />
+    </div>
+  );
+}
+
+const HOURS = 24;
+
+const hours = Array.from(Array(HOURS));
+
+const Timeline = () => {
+  return (
+    <div className="w-auto p-4 relative absolute top-8 left-4 right-4 bottom-0">
+      <TimelineGuides />
+
+      <div className="w-full flex justify-between ">
+        {hours.map((_val, i) => (
+          <TimelineHour
+            key={i}
+            hour={i}
+            end={i + 1 === hours.length ? i + 1 : undefined}
+          />
+        ))}
+      </div>
 
       <TimelineGrid />
     </div>
   );
-}
+};
+
+const TimelineGuides = () => (
+  <div className="w-auto flex justify-evenly  border-solid border-l border-r border-gray-300  absolute top-8 left-4 right-4 bottom-0">
+    {Array.from(Array(hours.length - 1)).map((x, i) => (
+      <span key={i} className="border-solid border-l border-gray-300"></span>
+    ))}
+  </div>
+);
+
+const TimelineHour = ({ hour, end }) => {
+  return (
+    <div className="relative w-full pt-4 ">
+      <div className="text-xs absolute left-0 top-0 transform -translate-x-1/2">
+        {hour}
+      </div>
+      <TimelineTicks />
+      {end ? (
+        <div className="text-xs absolute top-0 right-0 transform translate-x-1/2">
+          {end}
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
+const TimelineTicks = () => (
+  <div className="flex justify-evenly w-full h-4">
+    <span className="border-solid border-l border-gray-300"></span>
+    <span className="border-solid border-l border-gray-300"></span>
+    <span className="border-solid border-l border-gray-300"></span>
+  </div>
+);
 
 export default DailyCalendar;

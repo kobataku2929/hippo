@@ -9,10 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
+      // spacing: {
+      //   timeline: "var(--timeline-padding)",
+      //   "timeline-plus-1": "calc(var(--timeline-padding) + 1rem)",
+      // },
     },
   },
   plugins: [],

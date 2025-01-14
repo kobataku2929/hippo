@@ -12,7 +12,7 @@ const entryToDisplayItem = (obj) => {
 
   return {
     id: obj.id,
-    day: obj.day,
+    worker: obj.worker,
     comfortRange: obj.comfortRange,
     offset,
     length,
