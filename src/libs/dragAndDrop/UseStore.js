@@ -21,13 +21,14 @@ const entryToDisplayItem = (obj) => {
 export const useStore = create((set, get) => ({
   items: data.map(entryToDisplayItem),
   getItem: (findId) => get().items.find(({ id }) => id === findId),
-  updateItem: (idToUpdate, offset, length) => {
+  updateItem: (idToUpdate, worker, offset, length) => {
     set((state) => {
       const newItems = [...state.items];
 
       const item = newItems.find(({ id }) => idToUpdate === id);
       item.offset = offset;
       item.length = length;
+      item.worker = worker;
 
       return {
         ...state,

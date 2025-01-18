@@ -81,7 +81,7 @@ const hours = Array.from(Array(HOURS));
 
 const Timeline = () => {
   return (
-    <div className="w-auto p-4 relative absolute top-8 left-4 right-4 bottom-0">
+    <div className="w-auto pt-4 px-4 relative absolute top-8 left-4 right-4 bottom-0">
       <TimelineGuides />
 
       <div className="w-full flex justify-between ">

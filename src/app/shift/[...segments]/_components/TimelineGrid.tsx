@@ -18,9 +18,6 @@ import { useStore } from "@/libs/dragAndDrop/UseStore";
 
 const positionToOffset = (position, gridSize) => {
   const result = Math.min(position / gridSize);
-  // console.log(position, gridSize, result);
-  // console.log(gridSize);
-
   return result;
 };
 
@@ -31,7 +28,6 @@ const useGridIncrement = () => {
   useEffect(() => {
     if (gridRef.current) {
       const bbox = gridRef.current.getBoundingClientRect();
-      console.log(bbox);
       const gridSize = bbox.width;
       const gridHeightSize = bbox.height;
       setGridSize(gridSize);
@@ -72,41 +68,36 @@ export const TimelineGrid = () => {
         active.data.current.previousLength,
         item.offset
       );
-      updateItem(item.id, item.offset, length);
+      updateItem(item.id, item.worker, item.offset, length);
     }
-    console.log(delta);
 
     if (active.data.current.action === "move") {
       //itemが縦で動いた時
       if (delta.y !== 0) {
-        // とりあえずここで下のグリットの枠に入るとworkerも変更してオフセットも変更したい
-        //delta.yが80以上動いたら次のオフセットに行く、オフセットはworkerと同じ
-        //delta.yは動いた分だけの数値
-        //要修正delta.y / 80この計算おかしくなる
-        const newVerticalOffset = Math.min(
-          Math.max(Math.floor(delta.y / 80), 1),
-          5
+        //下記のadjustedYと処理を共通化する
+        const adjustedY = delta?.y ? Math.round(delta.y / 80) * 80 : 0;
+
+        const worker = adjustedY / 80 + item.worker;
+        console.log(adjustedY, worker, item.worker);
+        updateItem(
+          item.id,
+          worker,
+          active.data.current.previousOffset,
+          Math.min(item.length, 24 - active.data.current.previousOffset)
         );
-
-        //これはdragendの関数で終了時に下記を記入する
-        // top: `calc(${previousVerticalOffset} * 80px)`,
-
-        //active.data.current.previousVerticalOffsetこれは実質workerと一緒
       }
-
-      const offsetDelta = Math.min(delta.y / gridHeightSize);
-      const offsetDelt = Math.min(delta.x / gridSize);
-
-      // console.log(offsetDelta, offsetDelt);
-      console.log(gridHeightSize, gridSize);
-      console.log(delta.y);
-      //itemが横に動いた時
+      //シフトitemが横に動いた時
       if (delta.x !== 0) {
         const newOffset = calculateOffset(
           delta.x,
           active.data.current.previousOffset
         );
-        updateItem(item.id, newOffset, Math.min(item.length, 24 - newOffset));
+        updateItem(
+          item.id,
+          active.data.current.verticalOffset,
+          newOffset,
+          Math.min(item.length, 24 - newOffset)
+        );
       }
     }
   };
@@ -121,7 +112,7 @@ export const TimelineGrid = () => {
   };
 
   const WorkerIds = Array.from(new Set(Object.keys(groupedItems)));
-
+  console.log(groupedItems);
   return (
     <div className={styles.timelineGrid}>
       <DndContext
@@ -144,13 +135,14 @@ export const TimelineGrid = () => {
                 id={item.id}
                 key={item.id}
                 offset={item.offset}
+                verticalOffset={item.worker}
                 previousVerticalOffset={item.worker}
                 length={item.length}
                 calculateOffset={calculateOffset}
                 calculateLength={calculateLength}
               >
                 <p>
-                  開始時{replaceFraction(item.offset)} - 終了時
+                  {item.worker}@{replaceFraction(item.offset)} -
                   {replaceFraction(item.offset + item.length)}
                 </p>
               </DraggableItem>
@@ -177,13 +169,12 @@ const Weekday = ({ children }) => {
 };
 
 const GridItem = forwardRef(
-  ({ offset, length, style, children, ...rest }, ref) => (
+  ({ offset, verticalOffset, length, style, children, ...rest }, ref) => (
     <div
       ref={ref}
       className={styles.timelineItem}
       style={{
-        // top:
-        height: 40,
+        "--worker-offset": verticalOffset,
         "--hour-offset": offset,
         "--hour-length": length,
         ...style,
@@ -200,6 +191,7 @@ GridItem.displayName = "GridItem";
 const DraggableItem = ({
   id,
   offset,
+  verticalOffset,
   previousVerticalOffset,
   length,
   calculateOffset,
@@ -220,6 +212,7 @@ const DraggableItem = ({
       id,
       action: "move",
       previousOffset: offset,
+      verticalOffset: verticalOffset,
       previousVerticalOffset: previousVerticalOffset,
     },
   });
@@ -271,6 +264,7 @@ const DraggableItem = ({
     <GridItem
       ref={mergeRefs(parentRef, setNodeRef, resizeSetNodeRef)}
       offset={offset}
+      verticalOffset={verticalOffset}
       length={length}
       style={style}
     >
