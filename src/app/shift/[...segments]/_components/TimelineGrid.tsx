@@ -30,6 +30,7 @@ function useGridIncrement() {
   return { gridSize, gridRef };
 }
 
+const GRIDITEMHEIGHT = 80;
 export const TimelineGrid = () => {
   const { gridSize, gridRef } = useGridIncrement();
 
@@ -40,7 +41,7 @@ export const TimelineGrid = () => {
 
   const snapToGridModifier = createSnapModifier(gridSize / 4);
 
-  function transformPosition(dx, lastX, clampFn) {
+  function transformXPosition(dx, lastX, clampFn) {
     const offsetDelta = positionToOffset(dx, gridSize);
     const newXOffset = lastX + offsetDelta;
     const clampedOffset = clampFn(newXOffset);
@@ -48,20 +49,22 @@ export const TimelineGrid = () => {
   }
 
   function calculateXOffset(pos, lastX) {
-    return transformPosition(pos, lastX, function (val) {
+    return transformXPosition(pos, lastX, function (val) {
       return clamp(val, 0, 23);
     });
   }
 
-  function calculateYOffset(pos, lastX) {
-    const gridItemHeight = 80;
-    const temporaryNewYOffset =
-      Math.round(pos / gridItemHeight) * gridItemHeight;
-    return temporaryNewYOffset / gridItemHeight + lastX;
+  function transformYPosition(dx, gridItemHeight) {
+    return Math.round(dx / gridItemHeight) * gridItemHeight;
+  }
+
+  function calculateYOffset(pos, lastY) {
+    const newYOffset = transformYPosition(pos, GRIDITEMHEIGHT);
+    return newYOffset / GRIDITEMHEIGHT + lastY;
   }
 
   function calculateLength(pos, lastX, xOffset) {
-    return transformPosition(pos, lastX, function (val) {
+    return transformXPosition(pos, lastX, function (val) {
       return clamp(val, 1, 24 - xOffset);
     });
   }
@@ -72,7 +75,8 @@ export const TimelineGrid = () => {
       const length = calculateLength(
         delta.x,
         active.data.current.previousLength,
-        item.xOffset
+        item.xOffset + item.length
+        // item.xOffset
       );
       updateItem(item.id, item.worker, item.xOffset, length);
     }
@@ -118,7 +122,7 @@ export const TimelineGrid = () => {
         <div
           ref={gridRef}
           className={styles.timelineWidthRef}
-          style={{ height: `calc(80px * ${WorkerIds.length})` }}
+          style={{ height: `calc(--worker-height * ${WorkerIds.length})` }}
         />
         {Object.entries(groupedItems).map(([worker, items]) => (
           <Weekday id={worker} key={worker}>
@@ -129,7 +133,9 @@ export const TimelineGrid = () => {
                 xOffset={item.xOffset}
                 yOffset={item.worker}
                 length={item.length}
+                gridItemHeight={GRIDITEMHEIGHT}
                 calculateXOffset={calculateXOffset}
+                transformYPosition={transformYPosition}
                 calculateLength={calculateLength}
               >
                 <p>
@@ -184,8 +190,10 @@ const DraggableItem = ({
   xOffset,
   yOffset,
   length,
+  gridItemHeight,
   calculateXOffset,
   calculateLength,
+  transformYPosition,
   children,
 }) => {
   const parentRef = useRef(null);
@@ -222,6 +230,7 @@ const DraggableItem = ({
   });
 
   const newXOffset = calculateXOffset(transform?.x, xOffset);
+  const newYOffset = transformYPosition(transform?.y, gridItemHeight);
   const newLength = calculateLength(resizeTransform?.x, length, xOffset);
 
   function handleTransformStyles() {
@@ -229,12 +238,10 @@ const DraggableItem = ({
     let resizeStyles = undefined;
     //移動中のcssを計算
     if (transform) {
-      const temporaryNewYOffset = Math.round(transform.y / 80) * 80;
-
       moveStyles = {
         "--hour-offset": newXOffset,
         "background-color": "#D0F3F5",
-        transform: `translateY(${temporaryNewYOffset}px)`,
+        transform: `translateY(${newYOffset}px)`,
       };
     }
 
@@ -261,6 +268,13 @@ const DraggableItem = ({
       style={style}
     >
       <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <button
+          ref={setResizeActivatorNodeRef}
+          {...resizeListeners}
+          {...resizeAttributes}
+        >
+          {`<`}
+        </button>
         <div>{children}</div>
         <div>
           <button ref={setActivatorNodeRef} {...listeners} {...attributes}>
@@ -271,7 +285,7 @@ const DraggableItem = ({
             {...resizeListeners}
             {...resizeAttributes}
           >
-            {`<>`}
+            {`>`}
           </button>
         </div>
       </div>

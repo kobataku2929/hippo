@@ -9,7 +9,8 @@
 }
 
 .timelineGridRow {
-  height: 80px;
+  --worker-height: 80px;
+  height: var(--worker-height);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   position: relative;
 }
