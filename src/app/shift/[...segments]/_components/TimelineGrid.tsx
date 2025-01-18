@@ -1,11 +1,6 @@
 import styles from "./styles.module.css";
 
-import {
-  DndContext,
-  useDroppable,
-  useDraggable,
-  // DragOverlay
-} from "@dnd-kit/core";
+import { DndContext, useDroppable, useDraggable } from "@dnd-kit/core";
 import {
   createSnapModifier,
   restrictToParentElement,
@@ -16,12 +11,12 @@ import { clamp, mergeRefs, groupBy } from "@/libs/dragAndDrop/utils";
 
 import { useStore } from "@/libs/dragAndDrop/UseStore";
 
-const positionToOffset = (position, gridSize) => {
+function positionToOffset(position, gridSize) {
   const result = Math.min(position / gridSize);
   return result;
-};
+}
 
-const useGridIncrement = () => {
+function useGridIncrement() {
   const [gridSize, setGridSize] = useState(0);
   const gridRef = useRef(null);
   useEffect(() => {
@@ -33,7 +28,7 @@ const useGridIncrement = () => {
   }, [gridRef]);
 
   return { gridSize, gridRef };
-};
+}
 
 export const TimelineGrid = () => {
   const { gridSize, gridRef } = useGridIncrement();
@@ -44,23 +39,34 @@ export const TimelineGrid = () => {
   const getItem = useStore((state) => state.getItem);
 
   const snapToGridModifier = createSnapModifier(gridSize / 4);
-  const transformPosition = (dx, lastX, clampFn) => {
+
+  function transformPosition(dx, lastX, clampFn) {
     const offsetDelta = positionToOffset(dx, gridSize);
     const newXOffset = lastX + offsetDelta;
-
     const clampedOffset = clampFn(newXOffset);
     return clampedOffset;
-  };
-  const calculateXOffset = (pos, lastX) =>
-    transformPosition(pos, lastX, (val) => clamp(val, 0, 23));
+  }
 
-  // const calculateYOffset = (pos, lastX) =>
-  //   transformPosition(pos, lastX, (val) => clamp(val, 0, 23));
+  function calculateXOffset(pos, lastX) {
+    return transformPosition(pos, lastX, function (val) {
+      return clamp(val, 0, 23);
+    });
+  }
 
-  const calculateLength = (pos, lastX, xOffset) =>
-    transformPosition(pos, lastX, (val) => clamp(val, 1, 24 - xOffset));
+  function calculateYOffset(pos, lastX) {
+    const gridItemHeight = 80;
+    const temporaryNewYOffset =
+      Math.round(pos / gridItemHeight) * gridItemHeight;
+    return temporaryNewYOffset / gridItemHeight + lastX;
+  }
 
-  const handleDragEnd = ({ active, delta, ...rest }) => {
+  function calculateLength(pos, lastX, xOffset) {
+    return transformPosition(pos, lastX, function (val) {
+      return clamp(val, 1, 24 - xOffset);
+    });
+  }
+
+  function handleDragEnd({ active, delta, ...rest }) {
     const item = getItem(active.data.current.id);
     if (active.data.current.action === "resize") {
       const length = calculateLength(
@@ -72,47 +78,33 @@ export const TimelineGrid = () => {
     }
 
     if (active.data.current.action === "move") {
-      //シフトitemが横に動いた時
-      if (delta.x !== 0) {
-        const newXOffset = calculateXOffset(
-          delta.x,
-          active.data.current.previousXOffset
-        );
-        updateItem(
-          item.id,
-          active.data.current.yOffset,
-          newXOffset,
-          Math.min(item.length, 24 - newXOffset)
-        );
-      }
-      //itemが縦で動いた時
-      if (delta.y !== 0) {
-        //下記のadjustedYと処理を共通化する
-        const newYOffset = delta?.y ? Math.round(delta.y / 80) * 80 : 0;
-        // const newYOffset = calculateYOffset(delta?.y)
+      const newXOffset =
+        delta.x == 0
+          ? active.data.current.previousXOffset
+          : calculateXOffset(delta.x, active.data.current.previousXOffset);
 
-        const worker = newYOffset / 80 + item.worker;
-        updateItem(
-          item.id,
-          worker,
-          active.data.current.previousXOffset,
-          Math.min(item.length, 24 - active.data.current.previousXOffset)
-        );
-      }
+      const newYOffset =
+        delta.y == 0
+          ? active.data.current.previousYOffset
+          : calculateYOffset(delta.y, active.data.current.previousYOffset);
+
+      const adjustedLength = Math.min(item.length, 24 - newXOffset);
+
+      updateItem(item.id, newYOffset, newXOffset, adjustedLength);
     }
-  };
+  }
 
   // 小数点以下を時刻ように置換する
-  const replaceFraction = (value) => {
+  function replaceFraction(value) {
     const strValue = value.toFixed(2);
     return strValue
       .replace(".25", ".15")
       .replace(".50", ".30")
       .replace(".75", ".45");
-  };
+  }
 
   const WorkerIds = Array.from(new Set(Object.keys(groupedItems)));
-  console.log(groupedItems);
+
   return (
     <div className={styles.timelineGrid}>
       <DndContext
@@ -136,7 +128,6 @@ export const TimelineGrid = () => {
                 key={item.id}
                 xOffset={item.xOffset}
                 yOffset={item.worker}
-                previousYOffset={item.worker}
                 length={item.length}
                 calculateXOffset={calculateXOffset}
                 calculateLength={calculateLength}
@@ -192,7 +183,6 @@ const DraggableItem = ({
   id,
   xOffset,
   yOffset,
-  previousYOffset,
   length,
   calculateXOffset,
   calculateLength,
@@ -212,8 +202,7 @@ const DraggableItem = ({
       id,
       action: "move",
       previousXOffset: xOffset,
-      yOffset: yOffset,
-      previousYOffset: previousYOffset,
+      previousYOffset: yOffset,
     },
   });
 
@@ -234,16 +223,18 @@ const DraggableItem = ({
 
   const newXOffset = calculateXOffset(transform?.x, xOffset);
   const newLength = calculateLength(resizeTransform?.x, length, xOffset);
-  const handleTransformStyles = () => {
+
+  function handleTransformStyles() {
     let moveStyles = undefined;
     let resizeStyles = undefined;
     //移動中のcssを計算
     if (transform) {
-      const newYOffset = transform?.y ? Math.round(transform.y / 80) * 80 : 0;
+      const temporaryNewYOffset = Math.round(transform.y / 80) * 80;
+
       moveStyles = {
         "--hour-offset": newXOffset,
         "background-color": "#D0F3F5",
-        transform: `translateY(${newYOffset}px)`,
+        transform: `translateY(${temporaryNewYOffset}px)`,
       };
     }
 
@@ -257,7 +248,8 @@ const DraggableItem = ({
       ...moveStyles,
       ...resizeStyles,
     };
-  };
+  }
+
   const style = handleTransformStyles();
 
   return (
