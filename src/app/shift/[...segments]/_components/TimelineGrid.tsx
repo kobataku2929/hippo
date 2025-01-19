@@ -70,27 +70,42 @@ export const TimelineGrid = () => {
   }
 
   function handleDragEnd({ active, delta, ...rest }) {
-    const item = getItem(active.data.current.id);
-    if (active.data.current.action === "resize") {
-      const length = calculateLength(
-        delta.x,
-        active.data.current.previousLength,
-        item.xOffset + item.length
-        // item.xOffset
-      );
-      updateItem(item.id, item.worker, item.xOffset, length);
+    const {
+      id,
+      action,
+      resizeSide,
+      previousLength,
+      previousXOffset,
+      previousYOffset,
+    } = active.data.current;
+    const item = getItem(id);
+
+    //要修正　リファクタ
+    if (action === "resize") {
+      if (resizeSide === "right") {
+        const length = calculateLength(delta.x, previousLength, item.xOffset);
+        updateItem(item.id, item.worker, item.xOffset, length);
+        return;
+      }
+
+      if (resizeSide === "left") {
+        const newXOffset = calculateXOffset(delta.x, previousXOffset);
+        const length = previousLength - (newXOffset - previousXOffset);
+        updateItem(item.id, item.worker, newXOffset, Math.max(length, 1));
+        return;
+      }
     }
 
-    if (active.data.current.action === "move") {
+    if (action === "move") {
       const newXOffset =
         delta.x == 0
-          ? active.data.current.previousXOffset
-          : calculateXOffset(delta.x, active.data.current.previousXOffset);
+          ? previousXOffset
+          : calculateXOffset(delta.x, previousXOffset);
 
       const newYOffset =
         delta.y == 0
-          ? active.data.current.previousYOffset
-          : calculateYOffset(delta.y, active.data.current.previousYOffset);
+          ? previousYOffset
+          : calculateYOffset(delta.y, previousYOffset);
 
       const adjustedLength = Math.min(item.length, 24 - newXOffset);
 
@@ -215,24 +230,46 @@ const DraggableItem = ({
   });
 
   const {
-    setNodeRef: resizeSetNodeRef,
-    listeners: resizeListeners,
-    transform: resizeTransform,
-    attributes: resizeAttributes,
-    setActivatorNodeRef: setResizeActivatorNodeRef,
+    setNodeRef: leftResizeSetNodeRef,
+    listeners: leftResizeListeners,
+    transform: leftResizeTransform,
+    attributes: leftResizeAttributes,
+    setActivatorNodeRef: setLeftResizeActivatorNodeRef,
   } = useDraggable({
-    id: `${id}-resize`,
+    id: `${id}-resize-left`,
     data: {
       id,
       action: "resize",
+      resizeSide: "left",
       previousLength: length,
+      previousXOffset: xOffset,
     },
   });
 
+  const {
+    setNodeRef: rightResizeSetNodeRef,
+    listeners: rightResizeListeners,
+    transform: rightResizeTransform,
+    attributes: rightResizeAttributes,
+    setActivatorNodeRef: setRightResizeActivatorNodeRef,
+  } = useDraggable({
+    id: `${id}-resize-right`,
+    data: {
+      id,
+      action: "resize",
+      resizeSide: "right",
+      previousLength: length,
+      previousXOffset: xOffset,
+    },
+  });
+
+  //要修正　リファクタ
   const newXOffset = calculateXOffset(transform?.x, xOffset);
   const newYOffset = transformYPosition(transform?.y, gridItemHeight);
-  const newLength = calculateLength(resizeTransform?.x, length, xOffset);
+  const newLength = calculateLength(rightResizeTransform?.x, length, xOffset);
 
+  const anewXOffset = calculateXOffset(leftResizeTransform?.x, xOffset);
+  const anewLength = Math.max(length - (anewXOffset - xOffset), 1);
   function handleTransformStyles() {
     let moveStyles = undefined;
     let resizeStyles = undefined;
@@ -244,8 +281,14 @@ const DraggableItem = ({
         transform: `translateY(${newYOffset}px)`,
       };
     }
+    if (leftResizeTransform) {
+      resizeStyles = {
+        "--hour-length": anewLength,
+        "--hour-offset": anewXOffset,
+      };
+    }
 
-    if (resizeTransform) {
+    if (rightResizeTransform) {
       resizeStyles = {
         "--hour-length": newLength,
       };
@@ -261,7 +304,12 @@ const DraggableItem = ({
 
   return (
     <GridItem
-      ref={mergeRefs(parentRef, setNodeRef, resizeSetNodeRef)}
+      ref={mergeRefs(
+        parentRef,
+        setNodeRef,
+        leftResizeSetNodeRef,
+        rightResizeSetNodeRef
+      )}
       xOffset={xOffset}
       yOffset={yOffset}
       length={length}
@@ -269,9 +317,9 @@ const DraggableItem = ({
     >
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <button
-          ref={setResizeActivatorNodeRef}
-          {...resizeListeners}
-          {...resizeAttributes}
+          ref={setLeftResizeActivatorNodeRef}
+          {...leftResizeListeners}
+          {...leftResizeAttributes}
         >
           {`<`}
         </button>
@@ -280,10 +328,11 @@ const DraggableItem = ({
           <button ref={setActivatorNodeRef} {...listeners} {...attributes}>
             ::
           </button>
+
           <button
-            ref={setResizeActivatorNodeRef}
-            {...resizeListeners}
-            {...resizeAttributes}
+            ref={setRightResizeActivatorNodeRef}
+            {...rightResizeListeners}
+            {...rightResizeAttributes}
           >
             {`>`}
           </button>
