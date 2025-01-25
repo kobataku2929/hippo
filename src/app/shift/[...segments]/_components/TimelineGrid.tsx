@@ -65,7 +65,7 @@ export const TimelineGrid = () => {
 
   function calculateLength(pos, lastX, xOffset) {
     return transformXPosition(pos, lastX, function (val) {
-      return clamp(val, 1, 24 - xOffset);
+      return clamp(val, 0.25, 24 - xOffset);
     });
   }
 
@@ -90,8 +90,12 @@ export const TimelineGrid = () => {
 
       if (resizeSide === "left") {
         const newXOffset = calculateXOffset(delta.x, previousXOffset);
-        const length = previousLength - (newXOffset - previousXOffset);
-        updateItem(item.id, item.worker, newXOffset, Math.max(length, 1));
+        const length = clamp(
+          previousLength - (newXOffset - previousXOffset),
+          0.25,
+          24 - previousXOffset
+        );
+        updateItem(item.id, item.worker, newXOffset, length);
         return;
       }
     }
@@ -263,13 +267,20 @@ const DraggableItem = ({
     },
   });
 
-  //要修正　リファクタ
   const newXOffset = calculateXOffset(transform?.x, xOffset);
   const newYOffset = transformYPosition(transform?.y, gridItemHeight);
-  const newLength = calculateLength(rightResizeTransform?.x, length, xOffset);
+  const newLengthRight = calculateLength(
+    rightResizeTransform?.x,
+    length,
+    xOffset
+  );
+  const newXOffsetLeft = calculateXOffset(leftResizeTransform?.x, xOffset);
+  const newLengthLeft = clamp(
+    length - (newXOffsetLeft - xOffset),
+    0.25,
+    24 - xOffset
+  );
 
-  const anewXOffset = calculateXOffset(leftResizeTransform?.x, xOffset);
-  const anewLength = Math.max(length - (anewXOffset - xOffset), 1);
   function handleTransformStyles() {
     let moveStyles = undefined;
     let resizeStyles = undefined;
@@ -283,14 +294,18 @@ const DraggableItem = ({
     }
     if (leftResizeTransform) {
       resizeStyles = {
-        "--hour-length": anewLength,
-        "--hour-offset": anewXOffset,
+        "--hour-length": newLengthLeft,
+        "--hour-offset": newXOffsetLeft,
       };
+      //dragItemの右側を固定
+      if (newXOffsetLeft >= length + xOffset) {
+        resizeStyles["--hour-offset"] = length + xOffset - 0.25;
+      }
     }
 
     if (rightResizeTransform) {
       resizeStyles = {
-        "--hour-length": newLength,
+        "--hour-length": newLengthRight,
       };
     }
 
