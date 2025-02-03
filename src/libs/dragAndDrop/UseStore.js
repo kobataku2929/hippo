@@ -1,9 +1,14 @@
 import { create } from "zustand";
 import data from "./data";
 
-const timeRangeToOffset = ({ start, duration }) => {
-  const xOffset = start / 60;
-  const length = duration / 60;
+function toMinutes(dateString) {
+  const date = new Date(dateString);
+  return date.getUTCHours() * 60 + date.getUTCMinutes();
+}
+
+const timeRangeToOffset = ({ from_time, to_time }) => {
+  const xOffset = toMinutes(from_time) / 60;
+  const length = (toMinutes(to_time) - toMinutes(from_time)) / 60;
   return { xOffset, length };
 };
 
@@ -12,28 +17,44 @@ const entryToDisplayItem = (obj) => {
 
   return {
     id: obj.id,
-    worker: obj.worker,
-    comfortRange: obj.comfortRange,
+    worker: obj.user_id,
     xOffset,
     length,
   };
 };
-export const useStore = create((set, get) => ({
-  items: data.map(entryToDisplayItem),
-  getItem: (findId) => get().items.find(({ id }) => id === findId),
-  updateItem: (idToUpdate, worker, xOffset, length) => {
-    set((state) => {
-      const newItems = [...state.items];
+// export const useStore = create((set, get) => ({
+//   items: data.map(entryToDisplayItem),
+//   getItem: (findId) => get().items.find(({ id }) => id === findId),
+//   updateItem: (idToUpdate, worker, xOffset, length) => {
+//     set((state) => {
+//       const newItems = [...state.items];
 
-      const item = newItems.find(({ id }) => idToUpdate === id);
-      item.xOffset = xOffset;
-      item.length = length;
-      item.worker = worker;
+//       const item = newItems.find(({ id }) => idToUpdate === id);
+//       item.xOffset = xOffset;
+//       item.length = length;
+//       item.worker = worker;
 
-      return {
-        ...state,
-        items: newItems,
-      };
-    });
-  },
-}));
+//       return {
+//         ...state,
+//         items: newItems,
+//       };
+//     });
+//   },
+// }));
+export const initializeStore = (data) =>
+  create((set, get) => ({
+    items: data.map(entryToDisplayItem),
+    getItem: (findId) => get().items.find(({ id }) => id === findId),
+    updateItem: (idToUpdate, worker, xOffset, length) => {
+      set((state) => {
+        const newItems = [...state.items];
+        const item = newItems.find(({ id }) => idToUpdate === id);
+        if (item) {
+          item.xOffset = xOffset;
+          item.length = length;
+          item.worker = worker;
+        }
+        return { ...state, items: newItems };
+      });
+    },
+  }));

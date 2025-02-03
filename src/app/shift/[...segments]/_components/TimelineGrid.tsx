@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./styles.module.css";
 
 import { DndContext, useDroppable, useDraggable } from "@dnd-kit/core";
@@ -8,8 +10,15 @@ import {
 } from "@dnd-kit/modifiers";
 import { forwardRef, useEffect, useState, useRef } from "react";
 import { clamp, mergeRefs, groupBy } from "@/libs/dragAndDrop/utils";
+import { initializeStore } from "@/libs/dragAndDrop/UseStore";
 
-import { useStore } from "@/libs/dragAndDrop/UseStore";
+type DailyShiftsProps = {
+  id: number;
+  user_id: string;
+  created_at: string;
+  from_time: string;
+  to_time: string;
+};
 
 function positionToOffset(position, gridSize) {
   const result = Math.min(position / gridSize);
@@ -31,9 +40,10 @@ function useGridIncrement() {
 }
 
 const GRIDITEMHEIGHT = 80;
-export const TimelineGrid = () => {
+export const TimelineGrid = ({ dailyShifts }: DailyShiftsProps) => {
   const { gridSize, gridRef } = useGridIncrement();
-
+  console.log(dailyShifts);
+  const useStore = initializeStore(dailyShifts);
   const items = useStore((state) => state.items);
   const groupedItems = groupBy(items, "worker");
   const updateItem = useStore((state) => state.updateItem);
@@ -80,7 +90,6 @@ export const TimelineGrid = () => {
     } = active.data.current;
     const item = getItem(id);
 
-    //要修正　リファクタ
     if (action === "resize") {
       if (resizeSide === "right") {
         const length = calculateLength(delta.x, previousLength, item.xOffset);
@@ -121,9 +130,9 @@ export const TimelineGrid = () => {
   function replaceFraction(value) {
     const strValue = value.toFixed(2);
     return strValue
-      .replace(".25", ".15")
-      .replace(".50", ".30")
-      .replace(".75", ".45");
+      .replace(".25", ":15")
+      .replace(".50", ":30")
+      .replace(".75", ":45");
   }
 
   const WorkerIds = Array.from(new Set(Object.keys(groupedItems)));

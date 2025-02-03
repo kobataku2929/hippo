@@ -1,4 +1,3 @@
-import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
 import { redirect, notFound } from "next/navigation";
 import {
@@ -12,7 +11,6 @@ import HalfMonthCalendar from "@/app/shift/[...segments]/_components/HalfMonthCa
 import WeekCalendar from "@/app/shift/[...segments]/_components/WeekCalendar";
 import DailyCalendar from "@/app/shift/[...segments]/_components/DailyCalendar";
 import ChangeCalenderType from "@/app/shift/[...segments]/_components/ChangeCalenderType";
-
 import { ShiftTypeView } from "@/libs/shift/settings";
 
 export default async function Shift({
@@ -54,10 +52,6 @@ export default async function Shift({
       return notFound();
     }
   }
-
-  // Check if the user is already logged in and redirect to the account page if so
-  const supabase = createClient();
-
   return (
     <div>
       <ChangeCalenderType />
