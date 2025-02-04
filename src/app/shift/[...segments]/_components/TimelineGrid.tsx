@@ -13,6 +13,10 @@ import { clamp, mergeRefs, groupBy } from "@/libs/dragAndDrop/utils";
 import { initializeStore } from "@/libs/dragAndDrop/UseStore";
 
 type DailyShiftsProps = {
+  dailyShifts: Shift[];
+};
+
+type Shift = {
   id: number;
   user_id: string;
   created_at: string;
@@ -42,7 +46,7 @@ function useGridIncrement() {
 const GRIDITEMHEIGHT = 80;
 export const TimelineGrid = ({ dailyShifts }: DailyShiftsProps) => {
   const { gridSize, gridRef } = useGridIncrement();
-  console.log(dailyShifts);
+
   const useStore = initializeStore(dailyShifts);
   const items = useStore((state) => state.items);
   const groupedItems = groupBy(items, "worker");

@@ -17,7 +17,8 @@ const entryToDisplayItem = (obj) => {
 
   return {
     id: obj.id,
-    worker: obj.user_id,
+    worker: obj.profiles.user_name,
+    // worker: obj.user_id,
     xOffset,
     length,
   };
