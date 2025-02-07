@@ -12,13 +12,13 @@ const timeRangeToOffset = ({ from_time, to_time }) => {
   return { xOffset, length };
 };
 
-const entryToDisplayItem = (obj) => {
+const entryToDisplayItem = (obj, index) => {
   const { xOffset, length } = timeRangeToOffset(obj);
 
   return {
     id: obj.id,
-    worker: obj.profiles.user_name,
-    // worker: obj.user_id,
+    worker: index,
+    workerName: obj.profiles.user_name,
     xOffset,
     length,
   };

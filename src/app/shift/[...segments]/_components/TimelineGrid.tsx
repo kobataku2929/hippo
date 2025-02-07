@@ -11,6 +11,7 @@ import {
 import { forwardRef, useEffect, useState, useRef } from "react";
 import { clamp, mergeRefs, groupBy } from "@/libs/dragAndDrop/utils";
 import { initializeStore } from "@/libs/dragAndDrop/UseStore";
+import { updateDailyShift } from "@/utils/supabase/action/queries";
 
 type DailyShiftsProps = {
   dailyShifts: Shift[];
@@ -83,7 +84,7 @@ export const TimelineGrid = ({ dailyShifts }: DailyShiftsProps) => {
     });
   }
 
-  function handleDragEnd({ active, delta, ...rest }) {
+  async function handleDragEnd({ active, delta, ...rest }) {
     const {
       id,
       action,
@@ -125,8 +126,15 @@ export const TimelineGrid = ({ dailyShifts }: DailyShiftsProps) => {
           : calculateYOffset(delta.y, previousYOffset);
 
       const adjustedLength = Math.min(item.length, 24 - newXOffset);
-
       updateItem(item.id, newYOffset, newXOffset, adjustedLength);
+
+      const today = "2024-12-08T22:00:00";
+      const fromTime = replaceToDate(today, replaceFraction(newXOffset));
+      const toTime = replaceToDate(
+        today,
+        replaceFraction(newXOffset + adjustedLength)
+      );
+      await updateDailyShift(fromTime, toTime, id);
     }
   }
 
@@ -134,9 +142,16 @@ export const TimelineGrid = ({ dailyShifts }: DailyShiftsProps) => {
   function replaceFraction(value) {
     const strValue = value.toFixed(2);
     return strValue
-      .replace(".25", ":15")
-      .replace(".50", ":30")
-      .replace(".75", ":45");
+      .replace(".25", ".15")
+      .replace(".50", ".30")
+      .replace(".75", ".45");
+  }
+
+  function replaceToDate(today, figure: string) {
+    // 15.15 を "15:15" に変換
+    const figureStr = figure.padStart(5, "0").replace(".", ":");
+    // today の "T" の後ろを置換
+    return new Date().toISOString().split("T")[0] + "T" + figureStr + ":00 ";
   }
 
   const WorkerIds = Array.from(new Set(Object.keys(groupedItems)));
@@ -171,7 +186,7 @@ export const TimelineGrid = ({ dailyShifts }: DailyShiftsProps) => {
                 calculateLength={calculateLength}
               >
                 <p>
-                  {item.worker}@{replaceFraction(item.xOffset)} -
+                  {item.workerName}@{replaceFraction(item.xOffset)} -
                   {replaceFraction(item.xOffset + item.length)}
                 </p>
               </DraggableItem>

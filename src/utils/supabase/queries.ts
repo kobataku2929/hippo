@@ -47,23 +47,7 @@ export const getDailyShifts = cache(async (supabase: SupabaseClient) => {
       "185f2f83-d63a-4c9b-b4a0-7e4a885799e2",
       "185f2f83-d63a-4c9b-b4a0-7e4a885799e1",
     ])
-    .gte("from_time", "2024-12-08T00:00:00+09:00")
-    .lt("to_time", "2024-12-09T00:00:00+09:00");
+    .gte("from_time", "2024-12-08T00:00:00")
+    .lt("to_time", "2024-12-09T00:00:00");
   return dailyShifts;
 });
-
-export const updateDailyShift = cache(
-  async (supabase: SupabaseClient, user_id: string) => {
-    const { error } = await supabase
-      .from("shifts")
-      .update({
-        from_time: "2024-12-08T17:00:00+09:00",
-        to_time: "2024-12-08T22:00:00+09:00",
-      })
-      .eq("user_id", "185f2f83-d63a-4c9b-b4a0-7e4a885799e2");
-
-    if (error) {
-      console.error("Error updating shift:", error);
-    }
-  }
-);
