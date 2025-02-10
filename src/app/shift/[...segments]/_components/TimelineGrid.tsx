@@ -139,7 +139,7 @@ export const TimelineGrid = ({ dailyShifts }: DailyShiftsProps) => {
   }
 
   // 小数点以下を時刻ように置換する
-  function replaceFraction(value) {
+  function replaceFraction(value: number) {
     const strValue = value.toFixed(2);
     return strValue
       .replace(".25", ".15")
@@ -147,11 +147,11 @@ export const TimelineGrid = ({ dailyShifts }: DailyShiftsProps) => {
       .replace(".75", ".45");
   }
 
-  function replaceToDate(today, figure: string) {
+  function replaceToDate(today, figureStr: string) {
     // 15.15 を "15:15" に変換
-    const figureStr = figure.padStart(5, "0").replace(".", ":");
+    const hourMinute = figureStr.padStart(5, "0").replace(".", ":");
     // today の "T" の後ろを置換
-    return new Date().toISOString().split("T")[0] + "T" + figureStr + ":00 ";
+    return new Date().toISOString().split("T")[0] + "T" + hourMinute + ":00 ";
   }
 
   const WorkerIds = Array.from(new Set(Object.keys(groupedItems)));

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { preferredShiftMonthViewCookiesSet } from "@/libs/shift/server";
+import { preferredShiftMonthViewCookiesSet } from "@/features/shift/libs/server";
 
 type ChangeCalenderDateProps = {
   shiftDate: string;

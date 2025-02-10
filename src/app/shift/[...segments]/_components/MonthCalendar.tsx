@@ -17,10 +17,11 @@ function MonthCalendar({ shiftDate }: MonthCalendarProps) {
   // const today = new Date();
   // const allDatesOfThisMonth = getAllDatesOfMonth(today);
   const month = getMonth(shiftDate);
-  console.log(month);
+
   return (
     <div>
       <ChangeCalenderDate shiftDate={shiftDate} />
+      <div>{shiftDate}</div>
       <div className="relative">
         {/* 労働時間ヘッダー */}
         <div className="grid grid-cols-2 w-52 text-xs">
