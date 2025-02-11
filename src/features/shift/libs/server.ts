@@ -1,13 +1,15 @@
 "use server";
 import { cookies } from "next/headers";
 
-export async function preferredShiftTypeViewCookiesSet(calendarType: string) {
+export async function preferredCalendarTypeViewCookiesSet(
+  calendarType: string
+) {
   const cookieStore = cookies();
-  cookieStore.set("preferredShiftTypeView", calendarType, { path: "/" });
+  cookieStore.set("preferredCalendarTypeView", calendarType, { path: "/" });
 }
-export async function preferredShiftMonthViewCookiesSet(monthDate: string) {
+export async function preferredMonthlyShiftViewCookiesSet(monthDate: string) {
   const cookieStore = cookies();
-  cookieStore.set("preferredShiftMonthView", monthDate, {
+  cookieStore.set("preferredMonthlyShiftView", monthDate, {
     path: "/",
   });
 }

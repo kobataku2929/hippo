@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { preferredShiftMonthViewCookiesSet } from "@/features/shift/libs/server";
+import { preferredMonthlyShiftViewCookiesSet } from "@/features/shift/libs/server";
 
 type ChangeCalenderDateProps = {
   shiftDate: string;
@@ -32,7 +32,7 @@ function ChangeCalenderDate({ shiftDate }: ChangeCalenderDateProps) {
     // 新しい URL パスを構築
     const newShiftDate = `${year}${String(month).padStart(2, "0")}`;
     const newPath = `/shift/monthly/${newShiftDate}`;
-    preferredShiftMonthViewCookiesSet(newShiftDate);
+    preferredMonthlyShiftViewCookiesSet(newShiftDate);
 
     router.push(newPath);
   }

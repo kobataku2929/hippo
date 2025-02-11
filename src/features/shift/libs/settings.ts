@@ -1,113 +1,130 @@
-import { getMonthShiftStatus } from "./getShiftStatus";
+import {
+  getMonthlyShiftStatus,
+  getHalfMonthlyShiftStatus,
+  getWeeklyShiftStatus,
+  getDailyShiftStatus,
+} from "./getShiftStatus";
 export const viewTypes = ["monthly", "halfmonthly", "weekly", "daily"] as const;
-export type ShiftTypeView = (typeof viewTypes)[number];
+export type CalendarTypeView = (typeof viewTypes)[number];
 
-export function getViewTypes(): readonly ShiftTypeView[] {
+export function getViewTypes(): readonly CalendarTypeView[] {
   return viewTypes;
 }
 
-export function getDefaultShiftTypeView(
-  preferredShiftTypeView: ShiftTypeView | null
-): ShiftTypeView {
-  const defaultShiftTypeView: ShiftTypeView = getViewTypes().includes(
-    preferredShiftTypeView || "monthly"
+export function getDefaultCalendarTypeView(
+  preferredCalendarTypeView: CalendarTypeView | null
+): CalendarTypeView {
+  const defaultCalendarTypeView: CalendarTypeView = getViewTypes().includes(
+    preferredCalendarTypeView || "monthly"
   )
-    ? preferredShiftTypeView || "monthly"
+    ? preferredCalendarTypeView || "monthly"
     : "monthly";
 
-  return defaultShiftTypeView;
+  return defaultCalendarTypeView;
+}
+
+function generateDateArray(num: number) {
+  const dateList = Array(num)
+    .fill(0)
+    .map((_, i) => {
+      const date = i + 1;
+      return date < 10 ? `0${date}` : `${date}`;
+    });
+  return dateList;
 }
 
 export function getMonthStatus() {
-  return [
-    "01",
-    "02",
-    "03",
-    "04",
-    "05",
-    "06",
-    "07",
-    "08",
-    "09",
-    "10",
-    "11",
-    "12",
-  ];
+  return generateDateArray(12);
+}
+
+export function getHalfMonthStatus() {
+  return ["first", "secound"];
+}
+
+export function isWeekStatus(v: string) {
+  return v[4] === "w";
+}
+
+export function getDayStatus() {
+  return generateDateArray(31);
 }
 
 //デフォルトのパス設定
 /**
- *
- * @param preferredShiftMonthView
+ * 月単位のデフォルトのパスを返します
+ * @param preferredMonthlyShiftView
  * @returns 例 202503
  */
-export function getDefaultShiftMonthStatusView(
-  preferredShiftMonthView: string | null
+export function getDefaultMonthlyShiftStatusView(
+  preferredMonthlyShiftView: string | null
 ) {
-  const thisMonth = getMonthShiftStatus();
+  const thisMonth = getMonthlyShiftStatus();
 
-  const defaultShiftMonthStatusView = getMonthStatus().includes(
-    (preferredShiftMonthView || "").slice(-2)
+  const defaultMonthlyShiftStatusView = getMonthStatus().includes(
+    (preferredMonthlyShiftView ?? "").slice(-2)
   )
-    ? preferredShiftMonthView
+    ? preferredMonthlyShiftView
     : thisMonth;
 
-  return defaultShiftMonthStatusView;
+  return defaultMonthlyShiftStatusView;
 }
 
 /**
- *
- * @param preferredShiftMonthView
- * @returns 例 202503
+ * 半月単位のデフォルトのパスを返します
+ * @param preferredHalfMonthlyShiftView
+ * @returns 例 202502/first
  */
-export function getDefaultShiftHalfMonthStatusView(
-  preferredShiftMonthView: string | null
+export function getDefaultHalfMonthlyShiftStatusView(
+  preferredHalfMonthlyShiftView: string | null
 ) {
-  const thisMonth = getMonthShiftStatus();
+  const thisHalfMonth = getHalfMonthlyShiftStatus();
+  const preferredHalfMonth = (preferredHalfMonthlyShiftView ?? "").split("/");
+  const preferredMonth = preferredHalfMonth[0]; // "202502"
+  const preferredDividedMonth = preferredHalfMonth[1]; // "first"
 
-  const defaultShiftMonthStatusView = getMonthStatus().includes(
-    (preferredShiftMonthView || "").slice(-2)
-  )
-    ? preferredShiftMonthView
-    : thisMonth;
+  const defaultHalfMonthlyShiftStatusView =
+    getMonthStatus().includes(preferredMonth.slice(-2)) &&
+    getHalfMonthStatus().includes(preferredDividedMonth)
+      ? preferredHalfMonthlyShiftView
+      : thisHalfMonth;
 
-  return defaultShiftMonthStatusView;
+  return defaultHalfMonthlyShiftStatusView;
 }
 
 /**
- *
- * @param preferredShiftMonthView
- * @returns 例 202503
+ * 週単位のデフォルトのパスを返します
+ * @param preferredWeeklyShiftView
+ * @returns 例 2025w1
  */
-export function getDefaultShiftWeekStatusView(
-  preferredShiftMonthView: string | null
+export function getDefaultWeeklyShiftStatusView(
+  preferredWeeklyShiftView: string | null
 ) {
-  const thisMonth = getMonthShiftStatus();
-
-  const defaultShiftMonthStatusView = getMonthStatus().includes(
-    (preferredShiftMonthView || "").slice(-2)
+  const thisWeek = getWeeklyShiftStatus();
+  const defaultWeeklyShiftStatusView = isWeekStatus(
+    preferredWeeklyShiftView ?? ""
   )
-    ? preferredShiftMonthView
-    : thisMonth;
+    ? preferredWeeklyShiftView
+    : thisWeek;
 
-  return defaultShiftMonthStatusView;
+  return defaultWeeklyShiftStatusView;
 }
 
 /**
- *
- * @param preferredShiftMonthView
- * @returns 例 202503
+ * 日単位のデフォルトのパスを返します
+ * @param preferredDailyShiftView
+ * @returns 例 20250714
  */
-export function getDefaultShiftDayStatusView(
-  preferredShiftMonthView: string | null
+export function getDefaultDailyShiftStatusView(
+  preferredDailyShiftView: string | null
 ) {
-  const thisMonth = getMonthShiftStatus();
+  const today = getDailyShiftStatus();
+  const preferredMonth = (preferredDailyShiftView ?? "").slice(4, 6);
+  const preferredDay = (preferredDailyShiftView ?? "").slice(6, 8);
+  const defaultMonthlyShiftStatusView =
+    getMonthStatus().includes(preferredMonth.slice(-2)) &&
+    getDayStatus().includes(preferredDay)
+      ? preferredDailyShiftView
+      : today;
 
-  const defaultShiftMonthStatusView = getMonthStatus().includes(
-    (preferredShiftMonthView || "").slice(-2)
-  )
-    ? preferredShiftMonthView
-    : thisMonth;
-
-  return defaultShiftMonthStatusView;
+  return defaultMonthlyShiftStatusView;
 }

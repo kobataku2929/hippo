@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
 // import { useRouter } from "next/navigation";
-import { preferredShiftTypeViewCookiesSet } from "@/features/shift/libs/server";
+import { preferredCalendarTypeViewCookiesSet } from "@/features/shift/libs/server";
 import { redirectCalenderType } from "@/features/shift/libs/action";
 
 function ChangeCalenderType() {
   // const router = useRouter();
 
   async function changeCalenderType(calendarType: string) {
-    await preferredShiftTypeViewCookiesSet(calendarType);
+    await preferredCalendarTypeViewCookiesSet(calendarType);
     redirectCalenderType(calendarType);
   }
 

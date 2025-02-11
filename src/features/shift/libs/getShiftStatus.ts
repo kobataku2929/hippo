@@ -5,7 +5,8 @@ const now: Date = new Date();
  *シフトの月のステータスを返します
  * @returns 例 202502
  */
-export function getMonthShiftStatus() {
+export function getMonthlyShiftStatus() {
+  //要修正　引数を受け取って引数がなければ今日の月のステータスを返すようにする
   const japanTime = new Date(now.getTime() + 9 * 60 * 60 * 1000);
   const year = japanTime.getFullYear();
   const month = String(japanTime.getMonth() + 1).padStart(2, "0");
@@ -15,7 +16,7 @@ export function getMonthShiftStatus() {
  *シフトの半月のステータスを返します
  * @returns 例 202502/first 202502/second
  */
-export function getHalfMonthShiftStatus() {
+export function getHalfMonthlyShiftStatus() {
   const japanTime = new Date(now.getTime() + 9 * 60 * 60 * 1000);
   const year = japanTime.getFullYear();
   const month = String(japanTime.getMonth() + 1).padStart(2, "0");
@@ -29,7 +30,7 @@ export function getHalfMonthShiftStatus() {
  *シフトの週のステータスを返します
  * @returns 例 2025w1 2025w29
  */
-export function getWeekShiftStatus() {
+export function getWeeklyShiftStatus() {
   const japanTime = new Date(now.getTime() + 9 * 60 * 60 * 1000);
   const year = japanTime.getFullYear();
   const startOfYear: Date = new Date(year, 0, 1);
@@ -44,7 +45,7 @@ export function getWeekShiftStatus() {
  *シフトの日のステータスを返します
  * @returns 例 20250714
  */
-export function getDayShiftStatus() {
+export function getDailyShiftStatus() {
   const japanTime = new Date(now.getTime() + 9 * 60 * 60 * 1000);
   const year = japanTime.getFullYear();
   const month = String(japanTime.getMonth() + 1).padStart(2, "0");

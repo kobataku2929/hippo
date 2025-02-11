@@ -1,42 +1,49 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import {
-  getDefaultShiftTypeView,
-  getDefaultShiftMonthStatusView,
-  getDefaultShiftHalfMonthStatusView,
-  getDefaultShiftWeekStatusView,
-  getDefaultShiftDayStatusView,
+  getDefaultCalendarTypeView,
+  getDefaultMonthlyShiftStatusView,
+  getDefaultHalfMonthlyShiftStatusView,
+  getDefaultWeeklyShiftStatusView,
+  getDefaultDailyShiftStatusView,
 } from "@/features/shift/libs/settings";
-import { ShiftTypeView } from "@/features/shift/libs/settings";
+import { CalendarTypeView } from "@/features/shift/libs/settings";
 
 export default function Shift() {
-  const preferredShiftTypeView =
-    cookies().get("preferredShiftTypeView")?.value || null;
-  const defaultShiftTypeView = getDefaultShiftTypeView(
-    preferredShiftTypeView as ShiftTypeView
+  const preferredCalendarTypeView =
+    cookies().get("preferredCalendarTypeView")?.value || null;
+  const defaultCalendarTypeView = getDefaultCalendarTypeView(
+    preferredCalendarTypeView as CalendarTypeView
   );
 
-  let defaultStatus;
+  let defaultShiftStatus;
 
-  if (defaultShiftTypeView === "monthly") {
-    const preferredShiftMonthView =
-      cookies().get("preferredShiftMonthView")?.value || null;
-    defaultStatus = getDefaultShiftMonthStatusView(preferredShiftMonthView);
-  } else if (defaultShiftTypeView === "halfmonthly") {
-    const preferredShiftHalfMonthView =
-      cookies().get("preferredShiftHalfMonthView")?.value || null;
-    defaultStatus = getDefaultShiftHalfMonthStatusView(
-      preferredShiftHalfMonthView
+  //要相談　これ早期リターンの方が見やすい？
+  if (defaultCalendarTypeView === "monthly") {
+    const preferredMonthlyShiftView =
+      cookies().get("preferredMonthlyShiftView")?.value || null;
+    defaultShiftStatus = getDefaultMonthlyShiftStatusView(
+      preferredMonthlyShiftView
     );
-  } else if (defaultShiftTypeView === "weekly") {
-    const preferredShiftWeekView =
-      cookies().get("preferredShiftWeekView")?.value || null;
-    defaultStatus = getDefaultShiftWeekStatusView(preferredShiftWeekView);
-  } else if (defaultShiftTypeView === "daily") {
-    const preferredShiftDayView =
-      cookies().get("preferredShiftDayView")?.value || null;
-    defaultStatus = getDefaultShiftDayStatusView(preferredShiftDayView);
+  } else if (defaultCalendarTypeView === "halfmonthly") {
+    const preferredHalfMonthlyShiftView =
+      cookies().get("preferredHalfMonthlyShiftView")?.value || null;
+    defaultShiftStatus = getDefaultHalfMonthlyShiftStatusView(
+      preferredHalfMonthlyShiftView
+    );
+  } else if (defaultCalendarTypeView === "weekly") {
+    const preferredWeeklyShiftView =
+      cookies().get("preferredWeeklyShiftView")?.value || null;
+    defaultShiftStatus = getDefaultWeeklyShiftStatusView(
+      preferredWeeklyShiftView
+    );
+  } else if (defaultCalendarTypeView === "daily") {
+    const preferredDailyShiftView =
+      cookies().get("preferredDailyShiftView")?.value || null;
+    defaultShiftStatus = getDefaultDailyShiftStatusView(
+      preferredDailyShiftView
+    );
   }
 
-  return redirect(`/shift/${defaultShiftTypeView}/${defaultStatus}`);
+  return redirect(`/shift/${defaultCalendarTypeView}/${defaultShiftStatus}`);
 }
