@@ -13,6 +13,12 @@ import DailyCalendar from "@/app/shift/[...segments]/_components/DailyCalendar";
 import ChangeCalenderType from "@/app/shift/[...segments]/_components/ChangeCalenderType";
 import { CalendarTypeView } from "@/features/shift/libs/settings";
 import { getHalfMonthStatus } from "@/features/shift/libs/settings";
+import {
+  getMonthlyShiftStatus,
+  getHalfMonthlyShiftStatus,
+  getWeeklyShiftStatus,
+  getDailyShiftStatus,
+} from "@/features/shift/libs/getShiftStatus";
 export default async function Shift({
   params,
 }: {
@@ -53,8 +59,10 @@ export default async function Shift({
       return notFound();
     }
   }
-  const thisHalfMonth: string[] = getHalfMonthStatus();
-  console.log(thisHalfMonth);
+  console.log(getHalfMonthlyShiftStatus());
+  console.log(getMonthlyShiftStatus());
+  console.log(getWeeklyShiftStatus());
+  console.log(getDailyShiftStatus());
 
   return (
     <div>
