@@ -1,5 +1,4 @@
 import React from "react";
-import ChangeCalenderDate from "./ChangeCalenderDate";
 import { getMonth } from "@/libs/calendar/getAllDatesOfYear";
 
 const workers = [
@@ -10,18 +9,17 @@ const workers = [
 ];
 
 type MonthCalendarProps = {
-  shiftDate: string;
+  shiftStatus: string;
 };
 
-function MonthCalendar({ shiftDate }: MonthCalendarProps) {
+function MonthCalendar({ shiftStatus }: MonthCalendarProps) {
   // const today = new Date();
   // const allDatesOfThisMonth = getAllDatesOfMonth(today);
-  const month = getMonth(shiftDate);
+  const month = getMonth(shiftStatus);
 
   return (
     <div>
-      <ChangeCalenderDate shiftDate={shiftDate} />
-      <div>{shiftDate}</div>
+      <div>{shiftStatus}</div>
       <div className="relative">
         {/* 労働時間ヘッダー */}
         <div className="grid grid-cols-2 w-52 text-xs">

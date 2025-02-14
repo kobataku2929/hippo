@@ -1,50 +1,51 @@
 "use client";
-
 import React from "react";
-import { useRouter } from "next/navigation";
+import {
+  changeMonthlytShiftStatus,
+  changeHalfMonthlyShiftStatus,
+  changeWeeklyShiftStatus,
+  changeDailyShiftStatus,
+} from "@/features/shift/libs/changeShiftStatus";
+import { redirectShiftStatus } from "@/features/shift/libs/redirect";
 import { preferredMonthlyShiftViewCookiesSet } from "@/features/shift/libs/server";
+import { CalendarTypeView } from "@/features/shift/libs/settings";
 
 type ChangeCalenderDateProps = {
-  shiftDate: string;
+  shiftStatus: string;
 };
 
-function ChangeCalenderDate({ shiftDate }: ChangeCalenderDateProps) {
-  const router = useRouter();
+function ChangeCalenderDate({
+  shiftStatus,
+  viewProp,
+}: ChangeCalenderDateProps & { viewProp: CalendarTypeView }) {
+  function changeshiftStatus(status: string) {
+    const shiftStatusFunctions = {
+      monthly: changeMonthlytShiftStatus,
+      halfmonthly: changeHalfMonthlyShiftStatus,
+      weekly: changeWeeklyShiftStatus,
+      daily: changeDailyShiftStatus,
+    };
 
-  function changeShiftDate(status: string) {
-    let year: string = shiftDate.slice(0, 4);
-    let month: number = parseInt(shiftDate.slice(4), 10);
+    const changeShiftFunction = shiftStatusFunctions[viewProp];
 
-    if (status === "back") {
-      month -= 1;
-    } else if (status === "head") {
-      month += 1;
-    }
+    if (!changeShiftFunction) return;
 
-    if (month === 0) {
-      month = 12;
-      year = (parseInt(year, 10) - 1).toString();
-    } else if (month === 13) {
-      month = 1;
-      year = (parseInt(year, 10) + 1).toString();
-    }
+    const newShiftStatus = changeShiftFunction(status, shiftStatus);
+    redirectShiftStatus(viewProp, newShiftStatus);
 
-    // 新しい URL パスを構築
-    const newShiftDate = `${year}${String(month).padStart(2, "0")}`;
-    const newPath = `/shift/monthly/${newShiftDate}`;
-    preferredMonthlyShiftViewCookiesSet(newShiftDate);
-
-    router.push(newPath);
+    // TODO: 修正が必要。クッキーに保存するとバグが発生する
+    // preferredMonthlyShiftViewCookiesSet(newShiftStatus);
   }
+
   return (
     <div>
       <button
-        onClick={() => changeShiftDate("back")}
+        onClick={() => changeshiftStatus("back")}
         className="bg-blue-100 m-1"
       >
         後ろ
       </button>
-      <button onClick={() => changeShiftDate("head")} className="bg-blue-100">
+      <button onClick={() => changeshiftStatus("head")} className="bg-blue-100">
         前
       </button>
     </div>

@@ -78,6 +78,7 @@ export function getDefaultHalfMonthlyShiftStatusView(
   preferredHalfMonthlyShiftView: string | null
 ) {
   const thisHalfMonth = getHalfMonthlyShiftStatus();
+  //要修正　[]の形で格納する
   const preferredHalfMonth = (preferredHalfMonthlyShiftView ?? "").split("/");
   const preferredMonth = preferredHalfMonth[0]; // "202502"
   const preferredDividedMonth = preferredHalfMonth[1]; // "first"

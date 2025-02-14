@@ -7,14 +7,14 @@ import { createClient } from "@/utils/supabase/server";
 import { getDailyShifts } from "@/utils/supabase/queries";
 
 type DailyCalendarProps = {
-  shiftDate: string;
+  shiftStatus: string;
 };
 
 const HOURS = 24;
 
 const hours = Array.from(Array(HOURS));
 
-async function DailyCalendar({ shiftDate }: DailyCalendarProps) {
+async function DailyCalendar({ shiftStatus }: DailyCalendarProps) {
   const supabase = createClient();
   const dailyShifts = await getDailyShifts(supabase);
   console.log(dailyShifts);

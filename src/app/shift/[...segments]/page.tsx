@@ -11,6 +11,7 @@ import HalfMonthCalendar from "@/app/shift/[...segments]/_components/HalfMonthCa
 import WeekCalendar from "@/app/shift/[...segments]/_components/WeekCalendar";
 import DailyCalendar from "@/app/shift/[...segments]/_components/DailyCalendar";
 import ChangeCalenderType from "@/app/shift/[...segments]/_components/ChangeCalenderType";
+import ChangeCalenderDate from "./_components/ChangeCalenderDate";
 import { CalendarTypeView } from "@/features/shift/libs/settings";
 import { getHalfMonthStatus } from "@/features/shift/libs/settings";
 import {
@@ -25,11 +26,14 @@ export default async function Shift({
   params: { segments: string[] };
 }) {
   const calendarType = params.segments[0];
-  let shiftDate = params.segments[1] ?? null;
+  // let shiftStatus = params.segments[1] ?? null;
+  let shiftStatus = params.segments.slice(1).join("/") ?? null;
+
+  console.log(params, "urlから取得したステータスa");
 
   //要修正　これ共通多分できる
-  if (!shiftDate && calendarType === "monthly") {
-    shiftDate = getDefaultMonthlyShiftStatusView(shiftDate);
+  if (!shiftStatus && calendarType === "monthly") {
+    shiftStatus = getDefaultMonthlyShiftStatusView(shiftStatus);
   }
   const viewTypes = getViewTypes();
 
@@ -53,24 +57,21 @@ export default async function Shift({
   //月カレンダーを選択した時にパスの違反をしていないか確認
   //要修正この条件分岐を変更
   if (calendarType === "monthly") {
-    const monthPram = shiftDate.slice(-2);
+    const monthPram = shiftStatus.slice(-2);
     const monthStatus = getMonthStatus();
     if (!monthStatus.includes(monthPram) && viewProp === "monthly") {
       return notFound();
     }
   }
-  console.log(getHalfMonthlyShiftStatus());
-  console.log(getMonthlyShiftStatus());
-  console.log(getWeeklyShiftStatus());
-  console.log(getDailyShiftStatus());
 
   return (
     <div>
       <ChangeCalenderType />
-      {viewProp === "monthly" && <MonthCalendar shiftDate={shiftDate} />}
+      <ChangeCalenderDate viewProp={viewProp} shiftStatus={shiftStatus} />
+      {viewProp === "monthly" && <MonthCalendar shiftStatus={shiftStatus} />}
       {viewProp === "halfmonthly" && <HalfMonthCalendar />}
       {viewProp === "weekly" && <WeekCalendar />}
-      {viewProp === "daily" && <DailyCalendar shiftDate={shiftDate} />}
+      {viewProp === "daily" && <DailyCalendar shiftStatus={shiftStatus} />}
     </div>
   );
 }
