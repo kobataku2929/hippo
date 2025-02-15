@@ -3,11 +3,17 @@ import { notFound, redirect } from "next/navigation";
 
 export async function redirectCalenderType(
   calendarType: string,
-  shiftStatus: string
+  shiftStatus: string,
+  firstDate: string
 ) {
-  console.log(calendarType, "はいあうう");
+  console.log(
+    `shift/${calendarType}/${shiftStatus}?transitionsource=${firstDate}`,
+    "はいあうう"
+  );
   //   try {
-  redirect(`shift/${calendarType}/${shiftStatus}`);
+  redirect(
+    `shift/${calendarType}/${shiftStatus}?transitionsource=${firstDate}`
+  );
   //   } catch {
   //     notFound();
   //   }

@@ -27,14 +27,15 @@ function generateDateRange(
 
 // 日付をフォーマットする関数
 function formatDate(year: number, month: number, day: number): string {
-  return new Date(year, month, day)
-    .toLocaleDateString("ja-JP", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      timeZone: "Asia/Tokyo",
-    })
-    .replace(/\//g, "-");
+  const dateStr = new Date(year, month, day).toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    timeZone: "Asia/Tokyo",
+  });
+
+  const dateParts = dateStr.split("/");
+  return `${dateParts[0]}-${dateParts[1]}-${dateParts[2]}`;
 }
 
 // 曜日を取得する関数
@@ -42,13 +43,14 @@ function getDayOfWeek(date: Date, weekdays: string[]): string {
   return `(${weekdays[date.getDay()]})`;
 }
 
-// 1ヶ月の日付データを返す関数
-export function getMonthlyDates(month: string): {
+// 1ヶ月の日付データを返す関数 202502
+export function getMonthlyDates(shiftStatus: string): {
   monthDays: { num: number; date: string; day: string }[];
   firstDate: string;
 } {
-  const year = parseInt(month.slice(0, 4), 10);
-  const monthIndex = parseInt(month.slice(4, 6), 10) - 1;
+  console.log(shiftStatus, "おいすすす");
+  const year = parseInt(shiftStatus.slice(0, 4), 10);
+  const monthIndex = parseInt(shiftStatus.slice(4, 6), 10) - 1;
   const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
   const startDate = new Date(year, monthIndex, 1);
 
@@ -58,12 +60,12 @@ export function getMonthlyDates(month: string): {
   return { monthDays, firstDate };
 }
 
-// 半月の日付データを返す関数
-export function getHalfMonthlyDates(halfMonth: string): {
+// 半月の日付データを返す関数 202502/first 202502/second
+export function getHalfMonthlyDates(shiftStatus: string): {
   halfMonthDays: { num: number; date: string; day: string }[];
   firstDate: string;
 } {
-  const [month, period] = halfMonth.split("/");
+  const [month, period] = shiftStatus.split("/");
   const year = parseInt(month.slice(0, 4), 10);
   const monthIndex = parseInt(month.slice(4, 6), 10) - 1;
   const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
@@ -79,13 +81,13 @@ export function getHalfMonthlyDates(halfMonth: string): {
   return { halfMonthDays, firstDate };
 }
 
-// 週の日付データを返す関数
-export function getWeeklyDates(week: string): {
+// 週の日付データを返す関数 2025w01
+export function getWeeklyDates(shiftStatus: string): {
   weekDays: { num: number; date: string; day: string }[];
   firstDate: string;
 } {
-  const year = parseInt(week.slice(0, 4), 10);
-  const weekNumber = parseInt(week.slice(5), 10);
+  const year = parseInt(shiftStatus.slice(0, 4), 10);
+  const weekNumber = parseInt(shiftStatus.slice(5), 10);
   const firstDayOfYear = new Date(year, 0, 1);
   const daysOffset = (weekNumber - 1) * 7;
   const firstDayOfWeek = new Date(
@@ -98,16 +100,18 @@ export function getWeeklyDates(week: string): {
   return { weekDays, firstDate };
 }
 
-// 1日の日付データを返す関数
-export function getDailyDate(date: string): {
-  dateInfo: { num: number; date: string; day: string };
+// 1日の日付データを返す関数 20250714
+export function getDailyDate(shiftStatus: string): {
+  thisDate: { num: number; date: string; day: string }[];
+  firstDate: string;
 } {
-  const year = parseInt(date.slice(0, 4), 10);
-  const monthIndex = parseInt(date.slice(4, 6), 10) - 1;
-  const day = parseInt(date.slice(6, 8), 10);
+  const year = parseInt(shiftStatus.slice(0, 4), 10);
+  const monthIndex = parseInt(shiftStatus.slice(4, 6), 10) - 1;
+  const day = parseInt(shiftStatus.slice(6, 8), 10);
   const targetDate = new Date(year, monthIndex, day);
 
-  const dateInfo = generateDateRange(targetDate, 1)[0];
+  const thisDate = generateDateRange(targetDate, 1);
+  const firstDate = thisDate[0] ? thisDate[0].date.split("-").join("") : "";
 
-  return { dateInfo };
+  return { thisDate, firstDate };
 }

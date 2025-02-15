@@ -1,26 +1,12 @@
 "use client";
 
 import React from "react";
-import { getDatesOfHalfMonth } from "@/features/shift/libs/getCalendarDate";
-
-const workers = [
-  { id: 1, name: "小林ライオン", worktime: 2 },
-  { id: 2, name: "宇都宮ベッカムうううううう", worktime: 2 },
-  { id: 3, name: "竹島日本", worktime: 800 },
-  { id: 4, name: "ちゃんアグネス", worktime: 40 },
-];
 
 function HalfMonthCalendar() {
-  const today = new Date();
-  console.log(today);
-  const allDatesOfThisMonth = getDatesOfHalfMonth(today);
-
-  console.log("オラ" + allDatesOfThisMonth);
   return (
     <div>
       <div>半月です</div>
-      <div className="relative">
-        {/* 労働時間ヘッダー */}
+      {/* <div className="relative">
         <div className="grid grid-cols-2 w-52 text-xs">
           <div className="col-start-2 whitespace-nowrap border-solid border-t-2 border-l-2 border-r-2 h-7">
             労働時間
@@ -42,8 +28,6 @@ function HalfMonthCalendar() {
             </>
           ))}
         </div>
-
-        {/* 月の日付ヘッダー */}
         <div className="absolute top-0 left-52 flex h-7">
           {allDatesOfThisMonth.map((monthdate) => (
             <div
@@ -56,7 +40,6 @@ function HalfMonthCalendar() {
           ))}
         </div>
 
-        {/* 労働者の作業日数 */}
         <div className="absolute top-7 left-52">
           {workers.map((worker) => (
             <div key={worker.name} className="flex">
@@ -75,7 +58,7 @@ function HalfMonthCalendar() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

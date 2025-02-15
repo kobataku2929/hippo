@@ -7,7 +7,7 @@
  * @param date 例"2024-12-15"
  * @returns
  */
-function getDateObject(date = null) {
+function getDateObject(date: string | null = null) {
   return date ? new Date(date) : new Date();
 }
 const formatter = new Intl.DateTimeFormat("ja-JP", {
@@ -21,7 +21,7 @@ const formatter = new Intl.DateTimeFormat("ja-JP", {
  * シフトの月のステータスを返します
  * @returns 例 202502
  */
-export function getMonthlyShiftStatus(date = null) {
+export function getMonthlyShiftStatus(date: string | null = null) {
   const now = getDateObject(date);
   const formattedDate = formatter.format(now);
   const [year, month] = formattedDate.split("/");
@@ -33,7 +33,7 @@ export function getMonthlyShiftStatus(date = null) {
  *シフトの半月のステータスを返します
  * @returns 例 202502/first 202502/second
  */
-export function getHalfMonthlyShiftStatus(date = null) {
+export function getHalfMonthlyShiftStatus(date: string | null = null) {
   const now = getDateObject(date);
   const formattedDate = formatter.format(now);
   const [year, month, day] = formattedDate.split("/");
@@ -42,10 +42,11 @@ export function getHalfMonthlyShiftStatus(date = null) {
   return `${year}${month}/${status}`;
 }
 /**
+ * 今週またはdateの
  *シフトの週のステータスを返します
  * @returns 例 2025w01 2025w29
  */
-export function getWeeklyShiftStatus(date = null) {
+export function getWeeklyShiftStatus(date: string | null = null) {
   const now = getDateObject(date);
   const japanTime = new Date(formatter.format(now));
   const year = japanTime.getFullYear();
@@ -65,7 +66,7 @@ export function getWeeklyShiftStatus(date = null) {
  *シフトの日のステータスを返します
  * @returns 例 20250714
  */
-export function getDailyShiftStatus(date = null) {
+export function getDailyShiftStatus(date: string | null = null) {
   const now = getDateObject(date);
   const formattedDate = formatter.format(now);
   const dateWithoutSlashes = formattedDate.split("/").join("");

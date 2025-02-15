@@ -98,7 +98,8 @@ export function changeWeeklyShiftStatus(status: string, shiftStatus: string) {
     year -= 1; // 年を減らす
     week = getLastWeekOfYear(year); // 前の年の最終週を取得
   }
-  return `${year}w${week}`;
+  const paddedWeekNumber = week.toString().padStart(2, "0");
+  return `${year}w${paddedWeekNumber}`;
 }
 
 // 与えられた年の最終週番号を計算（ISO 8601 に準拠）
