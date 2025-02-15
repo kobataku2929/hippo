@@ -1,5 +1,5 @@
 import React from "react";
-import { getDay } from "@/libs/calendar/getAllDatesOfYear";
+import { getDay } from "@/features/shift/libs/getCalendarDate";
 
 import { TimelineGrid } from "./TimelineGrid";
 import { createClient } from "@/utils/supabase/server";
@@ -17,8 +17,6 @@ const hours = Array.from(Array(HOURS));
 async function DailyCalendar({ shiftStatus }: DailyCalendarProps) {
   const supabase = createClient();
   const dailyShifts = await getDailyShifts(supabase);
-  console.log(dailyShifts);
-  const today = getDay("20241201");
   return (
     <div className="w-auto pt-4 px-4 relative absolute top-8 left-4 right-4 bottom-0">
       <TimelineGuides />

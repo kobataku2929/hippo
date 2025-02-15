@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { getDatesOfHalfMonth } from "@/libs/calendar/getAllDatesOfYear";
+import { getDatesOfHalfMonth } from "@/features/shift/libs/getCalendarDate";
 
 const workers = [
   { id: 1, name: "小林ライオン", worktime: 2 },

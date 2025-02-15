@@ -1,5 +1,5 @@
 import React from "react";
-import { getMonth } from "@/libs/calendar/getAllDatesOfYear";
+import { getMonth } from "@/features/shift/libs/getCalendarDate";
 
 const workers = [
   { id: 1, name: "小林ライオン", worktime: 2 },
@@ -15,13 +15,14 @@ type MonthCalendarProps = {
 function MonthCalendar({ shiftStatus }: MonthCalendarProps) {
   // const today = new Date();
   // const allDatesOfThisMonth = getAllDatesOfMonth(today);
-  const month = getMonth(shiftStatus);
+  // const month = getMonth(shiftStatus);
+  // console.log(shiftStatus, "オラオラお");
+  // console.log(month);
 
   return (
     <div>
       <div>{shiftStatus}</div>
-      <div className="relative">
-        {/* 労働時間ヘッダー */}
+      {/* <div className="relative">
         <div className="grid grid-cols-2 w-52 text-xs">
           <div className="col-start-2 whitespace-nowrap border-solid border-t-2 border-l-2 border-r-2 h-7">
             労働時間
@@ -44,7 +45,6 @@ function MonthCalendar({ shiftStatus }: MonthCalendarProps) {
           ))}
         </div>
 
-        {/* 月の日付ヘッダー */}
         <div className="absolute top-0 left-52 flex h-7">
           {month.map((monthdate) => (
             <div
@@ -57,7 +57,6 @@ function MonthCalendar({ shiftStatus }: MonthCalendarProps) {
           ))}
         </div>
 
-        {/* 労働者の作業日数 */}
         <div className="absolute top-7 left-52">
           {workers.map((worker) => (
             <div key={worker.name} className="flex">
@@ -76,7 +75,7 @@ function MonthCalendar({ shiftStatus }: MonthCalendarProps) {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

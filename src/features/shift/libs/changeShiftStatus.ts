@@ -87,7 +87,7 @@ export function changeWeeklyShiftStatus(status: string, shiftStatus: string) {
   }
 
   // その年の最終週を取得
-  let lastWeek = getLastWeekOfYear(year);
+  const lastWeek = getLastWeekOfYear(year);
 
   // 年を超える場合
   if (week > lastWeek) {

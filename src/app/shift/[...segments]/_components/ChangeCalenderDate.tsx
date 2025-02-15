@@ -30,8 +30,11 @@ function ChangeCalenderDate({
 
     if (!changeShiftFunction) return;
 
+    //TODO shiftstatusがurlにないとバグる
     const newShiftStatus = changeShiftFunction(status, shiftStatus);
     redirectShiftStatus(viewProp, newShiftStatus);
+
+    //TODO ?transitionsource=20241201 これを消す
 
     // TODO: 修正が必要。クッキーに保存するとバグが発生する
     // preferredMonthlyShiftViewCookiesSet(newShiftStatus);
