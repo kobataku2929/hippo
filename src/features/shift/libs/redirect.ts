@@ -6,14 +6,16 @@ export async function redirectCalenderType(
   shiftStatus: string,
   firstDate: string
 ) {
-  console.log(
-    `shift/${calendarType}/${shiftStatus}?transitionsource=${firstDate}`,
-    "はいあうう"
-  );
+  const baseUrl = `/shift/${calendarType}/${shiftStatus}`;
+  const url =
+    calendarType === "daily"
+      ? baseUrl
+      : `${baseUrl}?transitionsource=${firstDate}`;
+
+  redirect(url);
+
   //   try {
-  redirect(
-    `shift/${calendarType}/${shiftStatus}?transitionsource=${firstDate}`
-  );
+
   //   } catch {
   //     notFound();
   //   }

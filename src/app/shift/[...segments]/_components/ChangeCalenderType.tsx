@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { preferredCalendarTypeViewCookiesSet } from "@/features/shift/libs/server";
 import { redirectCalenderType } from "@/features/shift/libs/redirect";
 import { CalendarTypeView } from "@/features/shift/libs/settings";
@@ -11,7 +11,6 @@ import {
   getWeeklyDates,
   getDailyDate,
 } from "@/features/shift/libs/getCalendarDate";
-
 import {
   getMonthlyShiftStatus,
   getHalfMonthlyShiftStatus,
@@ -20,34 +19,34 @@ import {
 
 function ChangeCalenderType() {
   const { segments } = useParams();
-  const calenderType = (segments as CalendarTypeView[])?.[0];
-  const shiftStatus = (segments as string[])?.slice(1).join("/");
+  const nowCalenderType = (segments as CalendarTypeView[])?.[0];
+  const nowShiftStatus = (segments as string[])?.slice(1).join("/");
+  const searchParams = useSearchParams();
+  const transitionsource = searchParams.get("transitionsource");
 
   // console.log(getMonthlyDates("202501"));
   // console.log(getHalfMonthlyDates("202502/first"));
-  // console.log(getWeeklyDates("2025W07"));
+  // console.log(getWeeklyDates("2025W01"));
   // console.log(getDailyDate("20250101"));
   // console.log(shiftStatus, "まじすっか");
 
-  console.log(getMonthlyShiftStatus("2025-02-15"));
-  console.log(getHalfMonthlyShiftStatus("2025-02-15"));
-  console.log(getWeeklyShiftStatus("2025-02-15"));
+  // console.log(getMonthlyShiftStatus("2025-02-15"));
+  // console.log(getHalfMonthlyShiftStatus("2025-02-15"));
+  // console.log(getWeeklyShiftStatus("2025-02-15"));
+  // console.log(transitionsource, "hフィ絵shフィエhふぃえお");
 
-  async function changeCalenderType(calendarType: string) {
-    const getDate = {
-      monthly: getMonthlyDates,
-      halfmonthly: getHalfMonthlyDates,
-      weekly: getWeeklyDates,
-      daily: getDailyDate,
-    };
-    const getDates = getDate[calenderType];
-    const { firstDate } = getDates(shiftStatus);
+  async function changeCalenderType(newCalendarType: CalendarTypeView) {
+    const transitionDate = getTransitionDate(
+      transitionsource,
+      nowCalenderType,
+      nowShiftStatus
+    );
 
     const newShiftStatus = {
-      monthly: getMonthlyShiftStatus(addHyphensToDate(firstDate)),
-      halfmonthly: getHalfMonthlyShiftStatus(addHyphensToDate(firstDate)),
-      weekly: getWeeklyShiftStatus(addHyphensToDate(firstDate)),
-      daily: firstDate,
+      monthly: getMonthlyShiftStatus(addHyphensToDate(transitionDate)),
+      halfmonthly: getHalfMonthlyShiftStatus(addHyphensToDate(transitionDate)),
+      weekly: getWeeklyShiftStatus(addHyphensToDate(transitionDate)),
+      daily: transitionDate,
     };
 
     // if (!getDates) return;
@@ -58,11 +57,11 @@ function ChangeCalenderType() {
     //shiftstatusを変更する前後を押すとそのパラメーターはリセットされる
     // if(calendarType=)
     await redirectCalenderType(
-      calendarType,
-      newShiftStatus[calenderType],
-      firstDate
+      newCalendarType,
+      newShiftStatus[newCalendarType],
+      transitionDate
     );
-    preferredCalendarTypeViewCookiesSet(calendarType);
+    // preferredCalendarTypeViewCookiesSet(calendarType);
   }
 
   return (
@@ -77,3 +76,24 @@ function ChangeCalenderType() {
 }
 
 export default ChangeCalenderType;
+
+// TODO 相談 このコンポーネントでしか使わない関数はファイルを切り分けないでもいい？
+function getTransitionDate(
+  transitionsource: string | null,
+  nowCalenderType: CalendarTypeView,
+  nowShiftStatus: string
+) {
+  if (transitionsource) {
+    return transitionsource;
+  } else {
+    const dateGetters = {
+      monthly: getMonthlyDates,
+      halfmonthly: getHalfMonthlyDates,
+      weekly: getWeeklyDates,
+      daily: getDailyDate,
+    };
+    const getDatesFunction = dateGetters[nowCalenderType];
+    const { firstDate } = getDatesFunction(nowShiftStatus);
+    return firstDate;
+  }
+}

@@ -43,7 +43,11 @@ function getDayOfWeek(date: Date, weekdays: string[]): string {
   return `(${weekdays[date.getDay()]})`;
 }
 
-// 1ヶ月の日付データを返す関数 202502
+/**
+ * 1ヶ月の日付データを返す関数
+ * @param shiftStatus 202502
+ * @returns
+ */
 export function getMonthlyDates(shiftStatus: string): {
   monthDays: { num: number; date: string; day: string }[];
   firstDate: string;
@@ -60,7 +64,11 @@ export function getMonthlyDates(shiftStatus: string): {
   return { monthDays, firstDate };
 }
 
-// 半月の日付データを返す関数 202502/first 202502/second
+/**
+ * 半月の日付データを返す関数
+ * @param shiftStatus 202502/first 202502/second
+ * @returns
+ */
 export function getHalfMonthlyDates(shiftStatus: string): {
   halfMonthDays: { num: number; date: string; day: string }[];
   firstDate: string;
@@ -81,17 +89,33 @@ export function getHalfMonthlyDates(shiftStatus: string): {
   return { halfMonthDays, firstDate };
 }
 
-// 週の日付データを返す関数 2025w01
+/**
+ * 週の日付データを返す関数
+ * @param shiftStatus 2025w01
+ * @returns
+ */
 export function getWeeklyDates(shiftStatus: string): {
   weekDays: { num: number; date: string; day: string }[];
   firstDate: string;
 } {
   const year = parseInt(shiftStatus.slice(0, 4), 10);
   const weekNumber = parseInt(shiftStatus.slice(5), 10);
-  const firstDayOfYear = new Date(year, 0, 1);
+
+  // その年の最初の木曜日を見つける
+  const januaryFourth = new Date(year, 0, 4);
+  const firstThursdayOfYear = new Date(
+    januaryFourth.setDate(
+      januaryFourth.getDate() - ((januaryFourth.getDay() + 4) % 7)
+    )
+  );
+
+  // 週番号から週の最初の日付（日曜日）を計算
   const daysOffset = (weekNumber - 1) * 7;
   const firstDayOfWeek = new Date(
-    firstDayOfYear.setDate(firstDayOfYear.getDate() + daysOffset)
+    firstThursdayOfYear.setDate(firstThursdayOfYear.getDate() + daysOffset)
+  );
+  firstDayOfWeek.setDate(
+    firstDayOfWeek.getDate() - (firstDayOfWeek.getDay() % 7)
   );
 
   const weekDays = generateDateRange(firstDayOfWeek, 7);
@@ -100,7 +124,11 @@ export function getWeeklyDates(shiftStatus: string): {
   return { weekDays, firstDate };
 }
 
-// 1日の日付データを返す関数 20250714
+/**
+ * 1日の日付データを返す関数
+ * @param shiftStatus 20250714
+ * @returns
+ */
 export function getDailyDate(shiftStatus: string): {
   thisDate: { num: number; date: string; day: string }[];
   firstDate: string;
