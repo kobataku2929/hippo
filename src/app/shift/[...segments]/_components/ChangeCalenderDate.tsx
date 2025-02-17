@@ -7,7 +7,12 @@ import {
   changeDailyShiftStatus,
 } from "@/features/shift/libs/changeShiftStatus";
 import { redirectShiftStatus } from "@/features/shift/libs/redirect";
-import { preferredMonthlyShiftViewCookiesSet } from "@/features/shift/libs/server";
+import {
+  preferredMonthlyShiftViewCookiesSet,
+  preferredHalfMonthlyShiftViewCookiesSet,
+  preferredWeeklyShiftViewCookiesSet,
+  preferredDailyShiftViewCookiesSet,
+} from "@/features/shift/libs/setCookies";
 import { CalendarTypeView } from "@/features/shift/libs/settings";
 
 type ChangeCalenderDateProps = {
@@ -30,14 +35,19 @@ function ChangeCalenderDate({
 
     if (!changeShiftFunction) return;
 
-    //TODO shiftstatusがurlにないとバグる
     const newShiftStatus = changeShiftFunction(status, shiftStatus);
+
+    const shiftViewCookiesSet = {
+      monthly: preferredMonthlyShiftViewCookiesSet,
+      halfmonthly: preferredHalfMonthlyShiftViewCookiesSet,
+      weekly: preferredWeeklyShiftViewCookiesSet,
+      daily: preferredDailyShiftViewCookiesSet,
+    };
+    const preferredShiftViewCookiesSet = shiftViewCookiesSet[viewProp];
+
+    //TODO 要相談　クッキーを保存したらpostされる　なぜ？
+    preferredShiftViewCookiesSet(newShiftStatus);
     redirectShiftStatus(viewProp, newShiftStatus);
-
-    //TODO ?transitionsource=20241201 これを消す
-
-    // TODO: 修正が必要。クッキーに保存するとバグが発生する
-    // preferredMonthlyShiftViewCookiesSet(newShiftStatus);
   }
 
   return (

@@ -13,12 +13,6 @@ export async function redirectCalenderType(
       : `${baseUrl}?transitionsource=${firstDate}`;
 
   redirect(url);
-
-  //   try {
-
-  //   } catch {
-  //     notFound();
-  //   }
 }
 
 export async function redirectShiftStatus(

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useParams, useSearchParams } from "next/navigation";
-import { preferredCalendarTypeViewCookiesSet } from "@/features/shift/libs/server";
+import { preferredCalendarTypeViewCookiesSet } from "@/features/shift/libs/setCookies";
 import { redirectCalenderType } from "@/features/shift/libs/redirect";
 import { CalendarTypeView } from "@/features/shift/libs/settings";
 import { addHyphensToDate } from "@/features/shift/libs/format";
@@ -49,19 +49,12 @@ function ChangeCalenderType() {
       daily: transitionDate,
     };
 
-    // if (!getDates) return;
-
-    // で新しいカレンダータイプ用のシフトステータスを作り引数に入れる
-    //airshiftでは大→小の時は一番若い日にちを移行してる
-    //小→大の時も同等　20250224日付単位
-    //shiftstatusを変更する前後を押すとそのパラメーターはリセットされる
-    // if(calendarType=)
     await redirectCalenderType(
       newCalendarType,
       newShiftStatus[newCalendarType],
       transitionDate
     );
-    // preferredCalendarTypeViewCookiesSet(calendarType);
+    preferredCalendarTypeViewCookiesSet(newCalendarType);
   }
 
   return (

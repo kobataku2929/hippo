@@ -29,17 +29,16 @@ export default async function Shift({
   // let shiftStatus = params.segments[1] ?? null;
   let shiftStatus = params.segments.slice(1).join("/") ?? null;
 
-  console.log(params, "urlから取得したステータスa");
+  // console.log(params, "urlから取得したステータスa");
 
-  //要修正　これ共通多分できる
-  if (!shiftStatus && calendarType === "monthly") {
-    shiftStatus = getDefaultMonthlyShiftStatusView(shiftStatus);
-  }
+  //TODO 要修正　これ共通多分できる
+  // if (!shiftStatus && calendarType === "monthly") {
+  //   shiftStatus = getDefaultMonthlyShiftStatusView(shiftStatus);
+  // }
   const viewTypes = getViewTypes();
 
   let viewProp: CalendarTypeView;
 
-  // Assign url id to 'viewProp' if it's a valid string and ViewTypes includes it
   if (
     typeof calendarType === "string" &&
     viewTypes.includes(calendarType as CalendarTypeView)
@@ -51,6 +50,7 @@ export default async function Shift({
     viewProp = getDefaultCalendarTypeView(
       preferredSignInView as CalendarTypeView
     );
+
     return redirect(`/shift/${viewProp}`);
   }
 
@@ -63,6 +63,7 @@ export default async function Shift({
       return notFound();
     }
   }
+  console.log("unnko");
 
   return (
     <div>
