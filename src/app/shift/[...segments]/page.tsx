@@ -56,15 +56,13 @@ export default async function Shift({
 
   //月カレンダーを選択した時にパスの違反をしていないか確認
   //要修正この条件分岐を変更
-  if (calendarType === "monthly") {
-    const monthPram = shiftStatus.slice(-2);
-    const monthStatus = getMonthStatus();
-    if (!monthStatus.includes(monthPram) && viewProp === "monthly") {
-      return notFound();
-    }
-  }
-  console.log("unnko");
-
+  // if (calendarType === "monthly") {
+  //   const monthPram = shiftStatus.slice(-2);
+  //   const monthStatus = getMonthStatus();
+  //   if (!monthStatus.includes(monthPram) && viewProp === "monthly") {
+  //     return notFound();
+  //   }
+  // }
   return (
     <div>
       <ChangeCalenderType />

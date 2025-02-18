@@ -46,7 +46,7 @@ function ChangeCalenderDate({
     const preferredShiftViewCookiesSet = shiftViewCookiesSet[viewProp];
 
     //TODO 要相談　クッキーを保存したらpostされる　なぜ？
-    preferredShiftViewCookiesSet(newShiftStatus);
+    // preferredShiftViewCookiesSet(newShiftStatus);
     redirectShiftStatus(viewProp, newShiftStatus);
   }
 

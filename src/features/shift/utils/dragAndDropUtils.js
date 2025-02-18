@@ -9,7 +9,7 @@ export const mergeRefs = (...refs) => {
 };
 
 export const groupBy = (items, key) =>
-  items.reduce(
+  items?.reduce(
     (result, item) => ({
       ...result,
       [item[key]]: [...(result[item[key]] || []), item],

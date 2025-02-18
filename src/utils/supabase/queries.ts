@@ -39,15 +39,17 @@ export const getUserDetails = cache(async (supabase: SupabaseClient) => {
   return userDetails;
 });
 
-export const getDailyShifts = cache(async (supabase: SupabaseClient) => {
-  const { data: dailyShifts } = await supabase
-    .from("shifts")
-    .select("*, profiles(user_name)")
-    .in("user_id", [
-      "185f2f83-d63a-4c9b-b4a0-7e4a885799e2",
-      "185f2f83-d63a-4c9b-b4a0-7e4a885799e1",
-    ])
-    .gte("from_time", "2024-12-08T00:00:00")
-    .lt("to_time", "2024-12-09T00:00:00");
-  return dailyShifts;
-});
+export const getDailyShifts = cache(
+  async (supabase: SupabaseClient, fromTime: string, toTime: string) => {
+    const { data: dailyShifts } = await supabase
+      .from("shifts")
+      .select("*, profiles(user_name)")
+      .in("user_id", [
+        "185f2f83-d63a-4c9b-b4a0-7e4a885799e2",
+        "185f2f83-d63a-4c9b-b4a0-7e4a885799e1",
+      ])
+      .gte("from_time", fromTime)
+      .lt("to_time", toTime);
+    return dailyShifts;
+  }
+);

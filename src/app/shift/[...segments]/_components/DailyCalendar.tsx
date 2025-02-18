@@ -5,6 +5,8 @@ import { TimelineGrid } from "./TimelineGrid";
 import { createClient } from "@/utils/supabase/server";
 
 import { getDailyShifts } from "@/utils/supabase/queries";
+import { addHyphensToDate } from "@/features/shift/libs/format";
+import { changeDailyShiftStatus } from "@/features/shift/libs/changeShiftStatus";
 
 type DailyCalendarProps = {
   shiftStatus: string;
@@ -15,8 +17,19 @@ const HOURS = 24;
 const hours = Array.from(Array(HOURS));
 
 async function DailyCalendar({ shiftStatus }: DailyCalendarProps) {
+  const fromTime = addHyphensToDate(shiftStatus) + "T00:00:00";
+  //todo ここプラス一する　propsにもハイフンが付けれられたものを渡す
+  const toTime =
+    addHyphensToDate(changeDailyShiftStatus("head", shiftStatus)) + "T00:00:00";
+
   const supabase = createClient();
-  const dailyShifts = await getDailyShifts(supabase);
+  const dailyShifts = await getDailyShifts(supabase, fromTime, toTime);
+
+  console.log(dailyShifts);
+
+  if (!dailyShifts) {
+    return <div>shiftdataからっすわ</div>;
+  }
   return (
     <div className="w-auto pt-4 px-4 relative absolute top-8 left-4 right-4 bottom-0">
       <TimelineGuides />
@@ -31,7 +44,7 @@ async function DailyCalendar({ shiftStatus }: DailyCalendarProps) {
         ))}
       </div>
 
-      <TimelineGrid dailyShifts={dailyShifts} />
+      <TimelineGrid dailyShifts={dailyShifts} shiftStatus={shiftStatus} />
     </div>
   );
 }

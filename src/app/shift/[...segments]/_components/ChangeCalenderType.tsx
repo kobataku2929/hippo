@@ -54,7 +54,7 @@ function ChangeCalenderType() {
       newShiftStatus[newCalendarType],
       transitionDate
     );
-    preferredCalendarTypeViewCookiesSet(newCalendarType);
+    // preferredCalendarTypeViewCookiesSet(newCalendarType);
   }
 
   return (

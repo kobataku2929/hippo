@@ -8,10 +8,15 @@ import {
   restrictToParentElement,
   restrictToHorizontalAxis,
 } from "@dnd-kit/modifiers";
-import { forwardRef, useEffect, useState, useRef } from "react";
-import { clamp, mergeRefs, groupBy } from "@/libs/dragAndDrop/utils";
-import { initializeStore } from "@/libs/dragAndDrop/UseStore";
+import { forwardRef, useEffect, useState, useRef, use } from "react";
+import {
+  clamp,
+  mergeRefs,
+  groupBy,
+} from "@/features/shift/utils/dragAndDropUtils";
+import { initializeStore } from "@/features/shift/hooks/UseStore";
 import { updateDailyShift } from "@/utils/supabase/action/queries";
+import { addHyphensToDate } from "@/features/shift/libs/format";
 
 type DailyShiftsProps = {
   dailyShifts: Shift[];
@@ -23,6 +28,10 @@ type Shift = {
   created_at: string;
   from_time: string;
   to_time: string;
+};
+type TimelineGridProps = {
+  dailyShifts: DailyShiftsProps[] | null;
+  shiftStatus: string;
 };
 
 function positionToOffset(position, gridSize) {
@@ -45,7 +54,11 @@ function useGridIncrement() {
 }
 
 const GRIDITEMHEIGHT = 80;
-export const TimelineGrid = ({ dailyShifts }: DailyShiftsProps) => {
+
+export const TimelineGrid: React.FC<TimelineGridProps> = ({
+  dailyShifts,
+  shiftStatus,
+}) => {
   const { gridSize, gridRef } = useGridIncrement();
 
   const useStore = initializeStore(dailyShifts);
@@ -128,7 +141,8 @@ export const TimelineGrid = ({ dailyShifts }: DailyShiftsProps) => {
       const adjustedLength = Math.min(item.length, 24 - newXOffset);
       updateItem(item.id, newYOffset, newXOffset, adjustedLength);
 
-      const today = "2024-12-08T22:00:00";
+      const today = addHyphensToDate(shiftStatus);
+
       const fromTime = replaceToDate(today, replaceFraction(newXOffset));
       const toTime = replaceToDate(
         today,
@@ -147,11 +161,11 @@ export const TimelineGrid = ({ dailyShifts }: DailyShiftsProps) => {
       .replace(".75", ".45");
   }
 
-  function replaceToDate(today, figureStr: string) {
+  function replaceToDate(today: string, figureStr: string) {
     // 15.15 を "15:15" に変換
     const hourMinute = figureStr.padStart(5, "0").replace(".", ":");
     // today の "T" の後ろを置換
-    return new Date().toISOString().split("T")[0] + "T" + hourMinute + ":00 ";
+    return today + "T" + hourMinute + ":00 ";
   }
 
   const WorkerIds = Array.from(new Set(Object.keys(groupedItems)));

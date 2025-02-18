@@ -1,10 +1,6 @@
 "use client";
 
 import React from "react";
-import {
-  getAllDatesOfMonth,
-  getDatesOfHalfMonth,
-} from "@/features/shift/libs/getCalendarDate";
 
 function WeekCalendar() {
   return (

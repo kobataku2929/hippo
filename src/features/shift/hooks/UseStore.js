@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import data from "./data";
+// import data from "./data";
 
 function toMinutes(dateString) {
   const date = new Date(dateString);
@@ -44,7 +44,7 @@ const entryToDisplayItem = (obj, index) => {
 // }));
 export const initializeStore = (data) =>
   create((set, get) => ({
-    items: data.map(entryToDisplayItem),
+    items: data?.map(entryToDisplayItem),
     getItem: (findId) => get().items.find(({ id }) => id === findId),
     updateItem: (idToUpdate, worker, xOffset, length) => {
       set((state) => {
