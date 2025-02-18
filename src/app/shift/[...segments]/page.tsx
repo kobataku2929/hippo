@@ -32,9 +32,9 @@ export default async function Shift({
   // console.log(params, "urlから取得したステータスa");
 
   //TODO 要修正　これ共通多分できる
-  // if (!shiftStatus && calendarType === "monthly") {
-  //   shiftStatus = getDefaultMonthlyShiftStatusView(shiftStatus);
-  // }
+  if (!shiftStatus && calendarType === "monthly") {
+    shiftStatus = getDefaultMonthlyShiftStatusView(shiftStatus);
+  }
   const viewTypes = getViewTypes();
 
   let viewProp: CalendarTypeView;
@@ -56,13 +56,14 @@ export default async function Shift({
 
   //月カレンダーを選択した時にパスの違反をしていないか確認
   //要修正この条件分岐を変更
-  // if (calendarType === "monthly") {
-  //   const monthPram = shiftStatus.slice(-2);
-  //   const monthStatus = getMonthStatus();
-  //   if (!monthStatus.includes(monthPram) && viewProp === "monthly") {
-  //     return notFound();
-  //   }
-  // }
+  if (calendarType === "monthly") {
+    const monthPram = shiftStatus.slice(-2);
+    const monthStatus = getMonthStatus();
+    if (!monthStatus.includes(monthPram) && viewProp === "monthly") {
+      return notFound();
+    }
+  }
+  console.log("shiftStatusおす", shiftStatus);
   return (
     <div>
       <ChangeCalenderType />

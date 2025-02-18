@@ -16,12 +16,10 @@ export async function preferredCalendarTypeViewCookiesSet(
  * @param monthDate
  */
 export async function preferredMonthlyShiftViewCookiesSet(monthDate: string) {
-  console.log("顔顔");
   const cookieStore = cookies();
   cookieStore.set("preferredMonthlyShiftView", monthDate, {
     path: "/",
   });
-  console.log("卍");
 }
 /**
  * 選択された半月をクッキーに保存します

@@ -52,7 +52,6 @@ export function getMonthlyDates(shiftStatus: string): {
   monthDays: { num: number; date: string; day: string }[];
   firstDate: string;
 } {
-  console.log(shiftStatus, "おいすすす");
   const year = parseInt(shiftStatus.slice(0, 4), 10);
   const monthIndex = parseInt(shiftStatus.slice(4, 6), 10) - 1;
   const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();

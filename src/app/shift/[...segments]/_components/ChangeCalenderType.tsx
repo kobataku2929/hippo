@@ -49,12 +49,12 @@ function ChangeCalenderType() {
       daily: transitionDate,
     };
 
-    await redirectCalenderType(
+    await preferredCalendarTypeViewCookiesSet(newCalendarType);
+    redirectCalenderType(
       newCalendarType,
       newShiftStatus[newCalendarType],
       transitionDate
     );
-    // preferredCalendarTypeViewCookiesSet(newCalendarType);
   }
 
   return (

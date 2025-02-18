@@ -23,7 +23,7 @@ function ChangeCalenderDate({
   shiftStatus,
   viewProp,
 }: ChangeCalenderDateProps & { viewProp: CalendarTypeView }) {
-  function changeshiftStatus(status: string) {
+  async function changeshiftStatus(status: string) {
     const shiftStatusFunctions = {
       monthly: changeMonthlytShiftStatus,
       halfmonthly: changeHalfMonthlyShiftStatus,
@@ -45,8 +45,7 @@ function ChangeCalenderDate({
     };
     const preferredShiftViewCookiesSet = shiftViewCookiesSet[viewProp];
 
-    //TODO 要相談　クッキーを保存したらpostされる　なぜ？
-    // preferredShiftViewCookiesSet(newShiftStatus);
+    await preferredShiftViewCookiesSet(newShiftStatus);
     redirectShiftStatus(viewProp, newShiftStatus);
   }
 
