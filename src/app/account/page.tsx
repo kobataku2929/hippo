@@ -7,7 +7,7 @@ import {
   getUserDetails,
   getSubscription,
   getUser,
-} from "@/utils/supabase/queries";
+} from "@/utils/supabase/getQueries";
 
 export default async function Account() {
   const supabase = createClient();

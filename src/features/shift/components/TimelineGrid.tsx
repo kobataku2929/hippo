@@ -15,7 +15,7 @@ import {
   groupBy,
 } from "@/features/shift/utils/dragAndDropUtils";
 import { initializeStore } from "@/features/shift/hooks/UseStore";
-import { updateDailyShift } from "@/utils/supabase/action/queries";
+import { updateDailyShift } from "@/utils/supabase/updateQueries";
 import { addHyphensToDate } from "@/features/shift/libs/format";
 
 type DailyShiftsProps = {

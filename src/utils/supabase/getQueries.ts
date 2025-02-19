@@ -14,8 +14,9 @@ export const getSubscription = cache(async (supabase: SupabaseClient) => {
     .select("*, prices(*, products(*))")
     .in("status", ["trialing", "active"])
     .maybeSingle();
-
-  return subscription;
+  if (!error) {
+    return subscription;
+  }
 });
 
 export const getProducts = cache(async (supabase: SupabaseClient) => {
@@ -51,5 +52,15 @@ export const getDailyShifts = cache(
       .gte("from_time", fromTime)
       .lt("to_time", toTime);
     return dailyShifts;
+  }
+);
+
+export const getWorkers = cache(
+  async (supabase: SupabaseClient, workPlace: string) => {
+    const { data: workers } = await supabase
+      .from("profiles")
+      .select("*")
+      .eq("work_place", workPlace);
+    return workers;
   }
 );

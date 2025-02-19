@@ -13,6 +13,8 @@ import DailyCalendar from "@/features/shift/components/DailyCalendar";
 import ChangeCalenderType from "@/features/shift/components/ChangeCalenderType";
 import ChangeCalenderDate from "../../../features/shift/components/ChangeCalenderDate";
 import { CalendarTypeView } from "@/features/shift/libs/settings";
+import { createClient } from "@/utils/supabase/server";
+import { getWorkers } from "@/utils/supabase/getQueries";
 import { getHalfMonthStatus } from "@/features/shift/libs/settings";
 import {
   getMonthlyShiftStatus,
@@ -26,10 +28,11 @@ export default async function Shift({
   params: { segments: string[] };
 }) {
   const calendarType = params.segments[0];
-  // let shiftStatus = params.segments[1] ?? null;
   let shiftStatus = params.segments.slice(1).join("/") ?? null;
 
-  // console.log(params, "urlから取得したステータスa");
+  const supabase = createClient();
+  const workers = await getWorkers(supabase, "堂山餃子チャオズ");
+  console.log(workers);
 
   //TODO 要修正　これ共通多分できる
   if (!shiftStatus && calendarType === "monthly") {
@@ -71,7 +74,9 @@ export default async function Shift({
       {viewProp === "monthly" && <MonthCalendar shiftStatus={shiftStatus} />}
       {viewProp === "halfmonthly" && <HalfMonthCalendar />}
       {viewProp === "weekly" && <WeekCalendar />}
-      {viewProp === "daily" && <DailyCalendar shiftStatus={shiftStatus} />}
+      {viewProp === "daily" && (
+        <DailyCalendar shiftStatus={shiftStatus} workers={workers} />
+      )}
     </div>
   );
 }

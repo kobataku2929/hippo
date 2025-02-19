@@ -125,7 +125,7 @@ export function getWeeklyDates(shiftStatus: string): {
 
 /**
  * 1日の日付データを返す関数
- * @param shiftStatus 20250714
+ * @param shiftStatus 20250714 YYYYMMDD
  * @returns
  */
 export function getDailyDate(shiftStatus: string): {

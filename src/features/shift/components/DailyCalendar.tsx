@@ -4,13 +4,14 @@ import { getDay } from "@/features/shift/libs/getCalendarDate";
 import { TimelineGrid } from "./TimelineGrid";
 import { createClient } from "@/utils/supabase/server";
 
-import { getDailyShifts } from "@/utils/supabase/queries";
+import { getDailyShifts } from "@/utils/supabase/getQueries";
 import { addHyphensToDate } from "@/features/shift/libs/format";
 import { changeDailyShiftStatus } from "@/features/shift/libs/changeShiftStatus";
 
 type DailyCalendarProps = {
   shiftStatus: string;
 };
+type Props = {};
 
 const HOURS = 24;
 

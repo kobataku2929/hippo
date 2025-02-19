@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "../ui/Button";
-import { signInWithOAuth } from "@/utils/auth-helpers/client";
+import { signInWithOAuth } from "@/features/auth/utils/client";
 import { type Provider } from "@supabase/supabase-js";
 import { Github } from "lucide-react";
 import GoogleLogo from "@/assets/GoogleLogo.svg";

@@ -40,10 +40,10 @@ values
 ('Monica Hall');
 
 INSERT INTO
-public.profiles (id,user_name,user_type,created_at)
+public.profiles (id,user_name,user_type,work_place,created_at)
 VALUES
-((SELECT id FROM auth.users WHERE email = 'my@email.com'),'チャンス大城','admin',timezone('utc'::text, now())),
-((SELECT id FROM auth.users WHERE email = '2my@email.com'),'ジミー大西','worker',timezone('utc'::text, now()));
+((SELECT id FROM auth.users WHERE email = 'my@email.com'),'チャンス大城','admin','堂山餃子チャオズ',timezone('utc'::text, now())),
+((SELECT id FROM auth.users WHERE email = '2my@email.com'),'ジミー大西','worker','堂山餃子チャオズ',timezone('utc'::text, now()));
 
 INSERT INTO public.shifts (user_id, created_at,from_time,to_time) 
 VALUES
