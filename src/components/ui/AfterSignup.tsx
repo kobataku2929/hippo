@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import RegisterWorkPlace from "../../app/shift/[...segments]/_components/RegisterWorkPlace";
+import RegisterWorkPlace from "../../features/shift/components/RegisterWorkPlace";
 
 function AfterSignup() {
   function isAdmin(worker: String) {

@@ -6,12 +6,12 @@ import {
   getMonthStatus,
   getDefaultMonthlyShiftStatusView,
 } from "@/features/shift/libs/settings";
-import MonthCalendar from "@/app/shift/[...segments]/_components/MonthCalendar";
-import HalfMonthCalendar from "@/app/shift/[...segments]/_components/HalfMonthCalendar";
-import WeekCalendar from "@/app/shift/[...segments]/_components/WeekCalendar";
-import DailyCalendar from "@/app/shift/[...segments]/_components/DailyCalendar";
-import ChangeCalenderType from "@/app/shift/[...segments]/_components/ChangeCalenderType";
-import ChangeCalenderDate from "./_components/ChangeCalenderDate";
+import MonthCalendar from "@/features/shift/components/MonthCalendar";
+import HalfMonthCalendar from "@/features/shift/components/HalfMonthCalendar";
+import WeekCalendar from "@/features/shift/components/WeekCalendar";
+import DailyCalendar from "@/features/shift/components/DailyCalendar";
+import ChangeCalenderType from "@/features/shift/components/ChangeCalenderType";
+import ChangeCalenderDate from "../../../features/shift/components/ChangeCalenderDate";
 import { CalendarTypeView } from "@/features/shift/libs/settings";
 import { getHalfMonthStatus } from "@/features/shift/libs/settings";
 import {
@@ -66,7 +66,7 @@ export default async function Shift({
   console.log("shiftStatusおす", shiftStatus);
   return (
     <div>
-      <ChangeCalenderType />
+      <ChangeCalenderType viewProp={viewProp} shiftStatus={shiftStatus} />
       <ChangeCalenderDate viewProp={viewProp} shiftStatus={shiftStatus} />
       {viewProp === "monthly" && <MonthCalendar shiftStatus={shiftStatus} />}
       {viewProp === "halfmonthly" && <HalfMonthCalendar />}

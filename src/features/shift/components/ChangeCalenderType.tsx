@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useParams, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { preferredCalendarTypeViewCookiesSet } from "@/features/shift/libs/setCookies";
 import { redirectCalenderType } from "@/features/shift/libs/redirect";
 import { CalendarTypeView } from "@/features/shift/libs/settings";
@@ -17,29 +17,22 @@ import {
   getWeeklyShiftStatus,
 } from "@/features/shift/libs/getShiftStatus";
 
-function ChangeCalenderType() {
-  const { segments } = useParams();
-  const nowCalenderType = (segments as CalendarTypeView[])?.[0];
-  const nowShiftStatus = (segments as string[])?.slice(1).join("/");
+type ChangeCalenderDateProps = {
+  shiftStatus: string;
+};
+
+function ChangeCalenderType({
+  shiftStatus,
+  viewProp,
+}: ChangeCalenderDateProps & { viewProp: CalendarTypeView }) {
   const searchParams = useSearchParams();
   const transitionsource = searchParams.get("transitionsource");
-
-  // console.log(getMonthlyDates("202501"));
-  // console.log(getHalfMonthlyDates("202502/first"));
-  // console.log(getWeeklyDates("2025W01"));
-  // console.log(getDailyDate("20250101"));
-  // console.log(shiftStatus, "まじすっか");
-
-  // console.log(getMonthlyShiftStatus("2025-02-15"));
-  // console.log(getHalfMonthlyShiftStatus("2025-02-15"));
-  // console.log(getWeeklyShiftStatus("2025-02-15"));
-  // console.log(transitionsource, "hフィ絵shフィエhふぃえお");
 
   async function changeCalenderType(newCalendarType: CalendarTypeView) {
     const transitionDate = getTransitionDate(
       transitionsource,
-      nowCalenderType,
-      nowShiftStatus
+      viewProp,
+      shiftStatus
     );
 
     const newShiftStatus = {

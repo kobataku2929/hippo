@@ -1,5 +1,5 @@
 "use server";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export async function redirectCalenderType(
   calendarType: string,
@@ -19,6 +19,5 @@ export async function redirectShiftStatus(
   viewProp: string,
   shiftStatus: string
 ) {
-  console.log(`/shift/${viewProp}/${shiftStatus}`, "いくぜええええ");
   redirect(`/shift/${viewProp}/${shiftStatus}`);
 }
