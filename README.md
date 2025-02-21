@@ -1,5 +1,19 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## description
+
+アルバイトのシフトを作成する webapp
+参考にしてる app:
+(https://connect.airregi.jp/login?timeout=1&client_id=SFT&redirect_uri=https://connect.airregi.jp/oauth/authorize?client_id%3DSFT%26redirect_uri%3Dhttps%253A%252F%252Fairshift.jp%252Fsft%252Fcallback%26response_type%3Dcode%26state%3DredirectTo%253A%25252Fsft%25252Fmonthlyshift)
+
+参考にしてる code:
+ログイン周り(https://github.com/vercel/nextjs-subscription-payments)
+ドラックアンドドロップ(https://github.com/RyKilleen/scheduler/tree/main)
+
+## wanna do
+
+#reusable.ts を date オブジェクトのところで上手く使いたい
+
 ## Getting Started
 
 First, run the development server:
