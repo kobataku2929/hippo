@@ -1,23 +1,21 @@
 import React from "react";
-import { getDay } from "@/features/shift/libs/getCalendarDate";
-
 import { TimelineGrid } from "./TimelineGrid";
 import { createClient } from "@/utils/supabase/server";
-
 import { getDailyShifts } from "@/utils/supabase/getQueries";
 import { addHyphensToDate } from "@/features/shift/libs/format";
 import { changeDailyShiftStatus } from "@/features/shift/libs/changeShiftStatus";
+import { profiles } from "../../../../database.types";
 
-type DailyCalendarProps = {
+type Props = {
   shiftStatus: string;
+  profiles: profiles;
 };
-type Props = {};
 
 const HOURS = 24;
 
 const hours = Array.from(Array(HOURS));
 
-async function DailyCalendar({ shiftStatus }: DailyCalendarProps) {
+async function DailyCalendar({ shiftStatus, profiles }: Props) {
   const fromTime = addHyphensToDate(shiftStatus) + "T00:00:00";
   //todo ここプラス一する　propsにもハイフンが付けれられたものを渡す
   const toTime =
@@ -26,13 +24,11 @@ async function DailyCalendar({ shiftStatus }: DailyCalendarProps) {
   const supabase = createClient();
   const dailyShifts = await getDailyShifts(supabase, fromTime, toTime);
 
-  console.log(dailyShifts);
-
   if (!dailyShifts) {
     return <div>shiftdataからっすわ</div>;
   }
   return (
-    <div className="w-auto  pt-4 px-4 relative absolute top-8 left-4 right-4 bottom-0">
+    <div className="w-auto pt-4 px-4 relative absolute top-8 left-4 right-4 bottom-0">
       <TimelineGuides />
 
       <div className="w-full flex justify-between ">
@@ -45,13 +41,17 @@ async function DailyCalendar({ shiftStatus }: DailyCalendarProps) {
         ))}
       </div>
 
-      <TimelineGrid dailyShifts={dailyShifts} shiftStatus={shiftStatus} />
+      <TimelineGrid
+        dailyShifts={dailyShifts}
+        shiftStatus={shiftStatus}
+        profiles={profiles}
+      />
     </div>
   );
 }
 
 const TimelineGuides = () => (
-  <div className="w-auto flex justify-evenly  border-solid border-l border-r border-gray-300  absolute top-8 left-4 right-4 bottom-0">
+  <div className="w-auto flex justify-evenly border-solid border-l border-r border-gray-300  absolute top-8 left-4 right-4 bottom-0">
     {Array.from(Array(hours.length - 1)).map((x, i) => (
       <span key={i} className="border-solid border-l border-gray-300"></span>
     ))}

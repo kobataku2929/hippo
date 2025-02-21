@@ -12,39 +12,30 @@ const timeRangeToOffset = ({ from_time, to_time }) => {
   return { xOffset, length };
 };
 
-const entryToDisplayItem = (obj, index) => {
-  const { xOffset, length } = timeRangeToOffset(obj);
+const entryToDisplayItem = (entries) => {
+  const userToWorkerMap = new Map();
+  let workerCounter = 0;
 
-  return {
-    id: obj.id,
-    worker: index,
-    workerName: obj.profiles.user_name,
-    xOffset,
-    length,
-  };
+  return entries.map((obj) => {
+    const { xOffset, length } = timeRangeToOffset(obj);
+
+    if (!userToWorkerMap.has(obj.user_id)) {
+      userToWorkerMap.set(obj.user_id, workerCounter++);
+    }
+
+    return {
+      id: obj.id,
+      user: obj.user_id,
+      worker: userToWorkerMap.get(obj.user_id),
+      workerName: obj.profiles.user_name,
+      xOffset,
+      length,
+    };
+  });
 };
-// export const useStore = create((set, get) => ({
-//   items: data.map(entryToDisplayItem),
-//   getItem: (findId) => get().items.find(({ id }) => id === findId),
-//   updateItem: (idToUpdate, worker, xOffset, length) => {
-//     set((state) => {
-//       const newItems = [...state.items];
-
-//       const item = newItems.find(({ id }) => idToUpdate === id);
-//       item.xOffset = xOffset;
-//       item.length = length;
-//       item.worker = worker;
-
-//       return {
-//         ...state,
-//         items: newItems,
-//       };
-//     });
-//   },
-// }));
 export const initializeStore = (data) =>
   create((set, get) => ({
-    items: data?.map(entryToDisplayItem),
+    items: entryToDisplayItem(data),
     getItem: (findId) => get().items.find(({ id }) => id === findId),
     updateItem: (idToUpdate, worker, xOffset, length) => {
       set((state) => {
@@ -59,3 +50,47 @@ export const initializeStore = (data) =>
       });
     },
   }));
+
+//TODO TSにする際
+
+// type Entry = {
+//   id: string;
+//   user_id: string;
+//   profiles: {
+//     user_name: string;
+//   };
+//   // timeRangeToOffset に渡すプロパティ（型を適宜調整）
+//   start_time: string;
+//   end_time: string;
+// };
+
+// type DisplayItem = {
+//   id: string;
+//   user: string;
+//   worker: number;
+//   workerName: string;
+//   xOffset: number;
+//   length: number;
+// };
+
+// const entryToDisplayItem = (entries: Entry[]): DisplayItem[] => {
+//   const userToWorkerMap = new Map<string, number>();
+//   let workerCounter = 0;
+
+//   return entries.map((obj) => {
+//     const { xOffset, length } = timeRangeToOffset(obj);
+
+//     if (!userToWorkerMap.has(obj.user_id)) {
+//       userToWorkerMap.set(obj.user_id, workerCounter++);
+//     }
+
+//     return {
+//       id: obj.id,
+//       user: obj.user_id,
+//       worker: userToWorkerMap.get(obj.user_id) as number, // Map にあることが保証されているので `as number` を使用
+//       workerName: obj.profiles.user_name,
+//       xOffset,
+//       length,
+//     };
+//   });
+// };

@@ -66,7 +66,6 @@ export default async function Shift({
       return notFound();
     }
   }
-  console.log("shiftStatusおす", shiftStatus);
   return (
     <div>
       <ChangeCalenderType viewProp={viewProp} shiftStatus={shiftStatus} />
@@ -75,7 +74,7 @@ export default async function Shift({
       {viewProp === "halfmonthly" && <HalfMonthCalendar />}
       {viewProp === "weekly" && <WeekCalendar />}
       {viewProp === "daily" && (
-        <DailyCalendar shiftStatus={shiftStatus} workers={workers} />
+        <DailyCalendar shiftStatus={shiftStatus} profiles={workers} />
       )}
     </div>
   );

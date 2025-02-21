@@ -8,7 +8,7 @@ import {
   restrictToParentElement,
   restrictToHorizontalAxis,
 } from "@dnd-kit/modifiers";
-import { forwardRef, useEffect, useState, useRef, use } from "react";
+import { forwardRef, useEffect, useState, useRef } from "react";
 import {
   clamp,
   mergeRefs,
@@ -17,21 +17,12 @@ import {
 import { initializeStore } from "@/features/shift/hooks/UseStore";
 import { updateDailyShift } from "@/utils/supabase/updateQueries";
 import { addHyphensToDate } from "@/features/shift/libs/format";
-
-type DailyShiftsProps = {
-  dailyShifts: Shift[];
-};
-
-type Shift = {
-  id: number;
-  user_id: string;
-  created_at: string;
-  from_time: string;
-  to_time: string;
-};
+import { getUserByYOffset } from "../utils/getUserByYOffset";
+import { shifts, profiles } from "../../../../database.types";
 type TimelineGridProps = {
-  dailyShifts: DailyShiftsProps[] | null;
+  dailyShifts: shifts;
   shiftStatus: string;
+  profiles: profiles;
 };
 
 function positionToOffset(position, gridSize) {
@@ -58,6 +49,7 @@ const GRIDITEMHEIGHT = 80;
 export const TimelineGrid: React.FC<TimelineGridProps> = ({
   dailyShifts,
   shiftStatus,
+  profiles,
 }) => {
   const { gridSize, gridRef } = useGridIncrement();
 
@@ -148,7 +140,12 @@ export const TimelineGrid: React.FC<TimelineGridProps> = ({
         today,
         replaceFraction(newXOffset + adjustedLength)
       );
-      await updateDailyShift(fromTime, toTime, id);
+      await updateDailyShift(
+        getUserByYOffset(items, newYOffset),
+        fromTime,
+        toTime,
+        id
+      );
     }
   }
 
@@ -207,14 +204,37 @@ export const TimelineGrid: React.FC<TimelineGridProps> = ({
             ))}
           </Weekday>
         ))}
+        {/* {profiles?.length &&
+          Array.from({ length: profiles.length }).map((_, index) => (
+            <Weekday id={index} key={index}>
+              {groupedItems[index]?.map((item) => (
+                <DraggableItem
+                  id={item.id}
+                  key={item.id}
+                  xOffset={item.xOffset}
+                  yOffset={item.worker}
+                  length={item.length}
+                  gridItemHeight={GRIDITEMHEIGHT}
+                  calculateXOffset={calculateXOffset}
+                  transformYPosition={transformYPosition}
+                  calculateLength={calculateLength}
+                >
+                  <p>
+                    {item.workerName}@{replaceFraction(item.xOffset)} -
+                    {replaceFraction(item.xOffset + item.length)}
+                  </p>
+                </DraggableItem>
+              ))}
+            </Weekday>
+          ))} */}
       </DndContext>
     </div>
   );
 };
 
-const Weekday = ({ children }) => {
+const Weekday = ({ id, children }) => {
   const { isOver, setNodeRef } = useDroppable({
-    id: "droppable",
+    id: `droppable-${id}`,
   });
   const style = {
     color: isOver ? "green" : undefined,
