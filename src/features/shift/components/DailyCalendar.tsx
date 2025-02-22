@@ -28,7 +28,7 @@ async function DailyCalendar({ shiftStatus, profiles }: Props) {
     return <div>shiftdataからっすわ</div>;
   }
   return (
-    <div className="w-auto pt-4 px-4 relative absolute top-8 left-4 right-4 bottom-0">
+    <div className="max-w-4xl w-full pt-4 px-4 absolute top-8 left-4 right-4">
       <TimelineGuides />
 
       <div className="w-full flex justify-between ">
