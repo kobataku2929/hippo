@@ -26,35 +26,93 @@ SET default_tablespace = '';
 SET default_table_access_method = "heap";
 
 
-CREATE TABLE IF NOT EXISTS "public"."employees" (
-    "id" bigint NOT NULL,
-    "name" "text",
-    "email" "text",
-    "created_at" timestamp with time zone DEFAULT "now"(),
-    "department" "text" DEFAULT 'Hooli'::"text"
+CREATE TABLE IF NOT EXISTS "public"."profiles" (
+    "id" integer NOT NULL,
+    "user_id" "uuid" NOT NULL,
+    "user_name" "text",
+    "user_type" "text",
+    "work_place" "text",
+    "created_at" timestamp with time zone DEFAULT "now"()
 );
 
 
-ALTER TABLE "public"."employees" OWNER TO "postgres";
+ALTER TABLE "public"."profiles" OWNER TO "postgres";
 
 
-ALTER TABLE "public"."employees" ALTER COLUMN "id" ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME "public"."employees_id_seq"
+CREATE SEQUENCE IF NOT EXISTS "public"."profiles_id_seq"
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
-    CACHE 1
+    CACHE 1;
+
+
+ALTER TABLE "public"."profiles_id_seq" OWNER TO "postgres";
+
+
+ALTER SEQUENCE "public"."profiles_id_seq" OWNED BY "public"."profiles"."id";
+
+
+
+CREATE TABLE IF NOT EXISTS "public"."shifts" (
+    "id" bigint NOT NULL,
+    "user_id" integer NOT NULL,
+    "created_at" timestamp with time zone DEFAULT ("now"() AT TIME ZONE 'Asia/Tokyo'::"text") NOT NULL,
+    "from_time" timestamp with time zone DEFAULT ("now"() AT TIME ZONE 'Asia/Tokyo'::"text") NOT NULL,
+    "to_time" timestamp with time zone DEFAULT ("now"() AT TIME ZONE 'Asia/Tokyo'::"text") NOT NULL
 );
 
 
-
-ALTER TABLE ONLY "public"."employees"
-    ADD CONSTRAINT "employees_pkey" PRIMARY KEY ("id");
+ALTER TABLE "public"."shifts" OWNER TO "postgres";
 
 
+CREATE SEQUENCE IF NOT EXISTS "public"."shifts_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
-ALTER TABLE "public"."employees" ENABLE ROW LEVEL SECURITY;
+
+ALTER TABLE "public"."shifts_id_seq" OWNER TO "postgres";
+
+
+ALTER SEQUENCE "public"."shifts_id_seq" OWNED BY "public"."shifts"."id";
+
+
+
+ALTER TABLE ONLY "public"."profiles" ALTER COLUMN "id" SET DEFAULT "nextval"('"public"."profiles_id_seq"'::"regclass");
+
+
+
+ALTER TABLE ONLY "public"."shifts" ALTER COLUMN "id" SET DEFAULT "nextval"('"public"."shifts_id_seq"'::"regclass");
+
+
+
+ALTER TABLE ONLY "public"."profiles"
+    ADD CONSTRAINT "profiles_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."profiles"
+    ADD CONSTRAINT "profiles_user_id_key" UNIQUE ("user_id");
+
+
+
+ALTER TABLE ONLY "public"."shifts"
+    ADD CONSTRAINT "shifts_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."profiles"
+    ADD CONSTRAINT "profiles_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "auth"."users"("id");
+
+
+
+ALTER TABLE ONLY "public"."shifts"
+    ADD CONSTRAINT "shifts_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "public"."profiles"("id");
+
 
 
 GRANT USAGE ON SCHEMA "public" TO "postgres";
@@ -64,15 +122,27 @@ GRANT USAGE ON SCHEMA "public" TO "service_role";
 
 
 
-GRANT ALL ON TABLE "public"."employees" TO "anon";
-GRANT ALL ON TABLE "public"."employees" TO "authenticated";
-GRANT ALL ON TABLE "public"."employees" TO "service_role";
+GRANT ALL ON TABLE "public"."profiles" TO "anon";
+GRANT ALL ON TABLE "public"."profiles" TO "authenticated";
+GRANT ALL ON TABLE "public"."profiles" TO "service_role";
 
 
 
-GRANT ALL ON SEQUENCE "public"."employees_id_seq" TO "anon";
-GRANT ALL ON SEQUENCE "public"."employees_id_seq" TO "authenticated";
-GRANT ALL ON SEQUENCE "public"."employees_id_seq" TO "service_role";
+GRANT ALL ON SEQUENCE "public"."profiles_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."profiles_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."profiles_id_seq" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."shifts" TO "anon";
+GRANT ALL ON TABLE "public"."shifts" TO "authenticated";
+GRANT ALL ON TABLE "public"."shifts" TO "service_role";
+
+
+
+GRANT ALL ON SEQUENCE "public"."shifts_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."shifts_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."shifts_id_seq" TO "service_role";
 
 
 

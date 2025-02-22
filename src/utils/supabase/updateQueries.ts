@@ -3,7 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 const supabase = createClient();
 
 export const updateDailyShift = async (
-  userId: string | null,
+  userId: number | null,
   fromTime: string,
   toTime: string,
   id: number

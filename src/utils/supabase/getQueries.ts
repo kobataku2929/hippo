@@ -45,11 +45,7 @@ export const getDailyShifts = cache(
     const { data: dailyShifts } = await supabase
       .from("shifts")
       .select("*, profiles(user_name)")
-      .in("user_id", [
-        "185f2f83-d63a-4c9b-b4a0-7e4a885799e2",
-        "185f2f83-d63a-4c9b-b4a0-7e4a885799e1",
-        "185f2f83-d63a-4c9b-b4a0-7e4a885799e3",
-      ])
+      .in("user_id", [1, 2, 3])
       .gte("from_time", fromTime)
       .lt("to_time", toTime);
     return dailyShifts;
