@@ -1,16 +1,16 @@
 export type DisplayItem = {
   id: string;
   user: string;
-  worker: number;
   workerName: string;
   xOffset: number;
+  yOffset: number;
   length: number;
 };
 
 export const getUserByYOffset = (
   items: DisplayItem[],
-  worker: number
+  newYOffset: number
 ): string | null => {
-  const item = items.find(({ worker: w }) => w === worker);
+  const item = items.find(({ yOffset }) => yOffset === newYOffset);
   return item ? item.user : null;
 };

@@ -13,22 +13,22 @@ const timeRangeToOffset = ({ from_time, to_time }) => {
 };
 
 const entryToDisplayItem = (entries) => {
-  const userToWorkerMap = new Map();
-  let workerCounter = 0;
+  const userToYOffsetMap = new Map();
+  let yOffsetCounter = 0;
 
   return entries.map((obj) => {
     const { xOffset, length } = timeRangeToOffset(obj);
 
-    if (!userToWorkerMap.has(obj.user_id)) {
-      userToWorkerMap.set(obj.user_id, workerCounter++);
+    if (!userToYOffsetMap.has(obj.user_id)) {
+      userToYOffsetMap.set(obj.user_id, yOffsetCounter++);
     }
 
     return {
       id: obj.id,
       user: obj.user_id,
-      worker: userToWorkerMap.get(obj.user_id),
       workerName: obj.profiles.user_name,
       xOffset,
+      yOffset: userToYOffsetMap.get(obj.user_id),
       length,
     };
   });
@@ -37,14 +37,14 @@ export const initializeStore = (data) =>
   create((set, get) => ({
     items: entryToDisplayItem(data),
     getItem: (findId) => get().items.find(({ id }) => id === findId),
-    updateItem: (idToUpdate, worker, xOffset, length) => {
+    updateItem: (idToUpdate, yOffset, xOffset, length) => {
       set((state) => {
         const newItems = [...state.items];
         const item = newItems.find(({ id }) => idToUpdate === id);
         if (item) {
           item.xOffset = xOffset;
+          item.yOffset = yOffset;
           item.length = length;
-          item.worker = worker;
         }
         return { ...state, items: newItems };
       });

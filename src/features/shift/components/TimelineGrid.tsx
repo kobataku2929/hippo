@@ -3,11 +3,7 @@
 import styles from "./styles.module.css";
 
 import { DndContext, useDroppable, useDraggable } from "@dnd-kit/core";
-import {
-  createSnapModifier,
-  restrictToParentElement,
-  restrictToHorizontalAxis,
-} from "@dnd-kit/modifiers";
+import { createSnapModifier } from "@dnd-kit/modifiers";
 import { forwardRef, useEffect, useState, useRef } from "react";
 import {
   clamp,
@@ -55,7 +51,7 @@ export const TimelineGrid: React.FC<TimelineGridProps> = ({
 
   const useStore = initializeStore(dailyShifts);
   const items = useStore((state) => state.items);
-  const groupedItems = groupBy(items, "worker");
+  const groupedItems = groupBy(items, "yOffset");
   const updateItem = useStore((state) => state.updateItem);
   const getItem = useStore((state) => state.getItem);
 
@@ -103,7 +99,7 @@ export const TimelineGrid: React.FC<TimelineGridProps> = ({
     if (action === "resize") {
       if (resizeSide === "right") {
         const length = calculateLength(delta.x, previousLength, item.xOffset);
-        updateItem(item.id, item.worker, item.xOffset, length);
+        updateItem(item.id, item.yOffset, item.xOffset, length);
         return;
       }
 
@@ -114,7 +110,7 @@ export const TimelineGrid: React.FC<TimelineGridProps> = ({
           0.25,
           24 - previousXOffset
         );
-        updateItem(item.id, item.worker, newXOffset, length);
+        updateItem(item.id, item.yOffset, newXOffset, length);
         return;
       }
     }
@@ -140,6 +136,7 @@ export const TimelineGrid: React.FC<TimelineGridProps> = ({
         today,
         replaceFraction(newXOffset + adjustedLength)
       );
+
       await updateDailyShift(
         getUserByYOffset(items, newYOffset),
         fromTime,
@@ -166,30 +163,23 @@ export const TimelineGrid: React.FC<TimelineGridProps> = ({
   }
 
   const WorkerIds = Array.from(new Set(Object.keys(groupedItems)));
-
+  console.log(groupedItems);
   return (
     <div className={styles.timelineGrid}>
-      <DndContext
-        modifiers={[
-          // restrictToHxorizontalAxis,
-          // restrictToParentElement,
-          snapToGridModifier,
-        ]}
-        onDragEnd={handleDragEnd}
-      >
+      <DndContext modifiers={[snapToGridModifier]} onDragEnd={handleDragEnd}>
         <div
           ref={gridRef}
           className={styles.timelineWidthRef}
           style={{ height: `calc(--worker-height * ${WorkerIds.length})` }}
         />
-        {Object.entries(groupedItems).map(([worker, items]) => (
-          <Weekday id={worker} key={worker}>
+        {Object.entries(groupedItems).map(([yOffset, items]) => (
+          <Weekday id={yOffset} key={yOffset}>
             {items.map((item) => (
               <DraggableItem
                 id={item.id}
                 key={item.id}
                 xOffset={item.xOffset}
-                yOffset={item.worker}
+                yOffset={item.yOffset}
                 length={item.length}
                 gridItemHeight={GRIDITEMHEIGHT}
                 calculateXOffset={calculateXOffset}
@@ -204,29 +194,6 @@ export const TimelineGrid: React.FC<TimelineGridProps> = ({
             ))}
           </Weekday>
         ))}
-        {/* {profiles?.length &&
-          Array.from({ length: profiles.length }).map((_, index) => (
-            <Weekday id={index} key={index}>
-              {groupedItems[index]?.map((item) => (
-                <DraggableItem
-                  id={item.id}
-                  key={item.id}
-                  xOffset={item.xOffset}
-                  yOffset={item.worker}
-                  length={item.length}
-                  gridItemHeight={GRIDITEMHEIGHT}
-                  calculateXOffset={calculateXOffset}
-                  transformYPosition={transformYPosition}
-                  calculateLength={calculateLength}
-                >
-                  <p>
-                    {item.workerName}@{replaceFraction(item.xOffset)} -
-                    {replaceFraction(item.xOffset + item.length)}
-                  </p>
-                </DraggableItem>
-              ))}
-            </Weekday>
-          ))} */}
       </DndContext>
     </div>
   );
@@ -350,7 +317,7 @@ const DraggableItem = ({
     if (transform) {
       moveStyles = {
         "--hour-offset": newXOffset,
-        "background-color": "#D0F3F5",
+        backgroundColor: "#D0F3F5",
         transform: `translateY(${newYOffset}px)`,
       };
     }
