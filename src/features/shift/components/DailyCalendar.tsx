@@ -8,14 +8,14 @@ import { profiles } from "../../../../database.types";
 
 type Props = {
   shiftStatus: string;
-  profiles: profiles;
+  workers: profiles;
 };
 
 const HOURS = 24;
 
 const hours = Array.from(Array(HOURS));
 
-async function DailyCalendar({ shiftStatus, profiles }: Props) {
+async function DailyCalendar({ shiftStatus, workers }: Props) {
   const fromTime = addHyphensToDate(shiftStatus) + "T00:00:00";
   //todo ここプラス一する　propsにもハイフンが付けれられたものを渡す
   const toTime =
@@ -28,25 +28,32 @@ async function DailyCalendar({ shiftStatus, profiles }: Props) {
     return <div>shiftdataからっすわ</div>;
   }
   return (
-    <div className="max-w-4xl w-full pt-4 px-4 absolute top-8 left-4 right-4">
-      <TimelineGuides />
-
-      <div className="w-full flex justify-between ">
-        {hours.map((_val, i) => (
-          <TimelineHour
-            key={i}
-            hour={i}
-            end={i + 1 === hours.length ? i + 1 : undefined}
-          />
+    <>
+      <div className="mr-2">
+        {workers?.map((worker) => (
+          <div key={worker.id}>{worker.user_name}</div>
         ))}
       </div>
+      <div className="max-w-4xl w-full pt-4 px-4 absolute top-8 left-4 right-4">
+        <TimelineGuides />
 
-      <TimelineGrid
-        dailyShifts={dailyShifts}
-        shiftStatus={shiftStatus}
-        profiles={profiles}
-      />
-    </div>
+        <div className="w-full flex justify-between ">
+          {hours.map((_val, i) => (
+            <TimelineHour
+              key={i}
+              hour={i}
+              end={i + 1 === hours.length ? i + 1 : undefined}
+            />
+          ))}
+        </div>
+
+        <TimelineGrid
+          dailyShifts={dailyShifts}
+          shiftStatus={shiftStatus}
+          workers={workers}
+        />
+      </div>
+    </>
   );
 }
 

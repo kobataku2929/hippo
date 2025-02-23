@@ -8,17 +8,16 @@ import { forwardRef, useEffect, useState, useRef } from "react";
 import {
   clamp,
   mergeRefs,
-  groupBy,
+  createUserYOffsetMaps,
 } from "@/features/shift/utils/dragAndDropUtils";
 import { initializeStore } from "@/features/shift/hooks/UseStore";
 import { updateDailyShift } from "@/utils/supabase/updateQueries";
 import { addHyphensToDate } from "@/features/shift/libs/format";
-import { getUserByYOffset } from "../utils/getUserByYOffset";
 import { shifts, profiles } from "../../../../database.types";
 type TimelineGridProps = {
   dailyShifts: shifts;
   shiftStatus: string;
-  profiles: profiles;
+  workers: profiles;
 };
 
 function positionToOffset(position, gridSize) {
@@ -45,13 +44,13 @@ const GRIDITEMHEIGHT = 80;
 export const TimelineGrid: React.FC<TimelineGridProps> = ({
   dailyShifts,
   shiftStatus,
-  profiles,
+  workers,
 }) => {
   const { gridSize, gridRef } = useGridIncrement();
+  const { yOffsetToUserMap } = createUserYOffsetMaps(workers);
 
-  const useStore = initializeStore(dailyShifts);
+  const useStore = initializeStore(dailyShifts, workers);
   const items = useStore((state) => state.items);
-  const groupedItems = groupBy(items, "yOffset");
   const updateItem = useStore((state) => state.updateItem);
   const getItem = useStore((state) => state.getItem);
 
@@ -138,7 +137,7 @@ export const TimelineGrid: React.FC<TimelineGridProps> = ({
       );
 
       await updateDailyShift(
-        getUserByYOffset(items, newYOffset),
+        yOffsetToUserMap[newYOffset],
         fromTime,
         toTime,
         id
@@ -162,44 +161,45 @@ export const TimelineGrid: React.FC<TimelineGridProps> = ({
     return today + "T" + hourMinute + ":00 ";
   }
 
-  const WorkerIds = Array.from(new Set(Object.keys(groupedItems)));
-  console.log(groupedItems);
   return (
     <div className={styles.timelineGrid}>
       <DndContext modifiers={[snapToGridModifier]} onDragEnd={handleDragEnd}>
         <div
           ref={gridRef}
           className={styles.timelineWidthRef}
-          style={{ height: `calc(--worker-height * ${WorkerIds.length})` }}
+          style={{ height: `calc(--worker-height * ${workers?.length})` }}
         />
-        {Object.entries(groupedItems).map(([yOffset, items]) => (
-          <Weekday id={yOffset} key={yOffset}>
-            {items.map((item) => (
-              <DraggableItem
-                id={item.id}
-                key={item.id}
-                xOffset={item.xOffset}
-                yOffset={item.yOffset}
-                length={item.length}
-                gridItemHeight={GRIDITEMHEIGHT}
-                calculateXOffset={calculateXOffset}
-                transformYPosition={transformYPosition}
-                calculateLength={calculateLength}
-              >
-                <p>
-                  {item.workerName}@{replaceFraction(item.xOffset)} -
-                  {replaceFraction(item.xOffset + item.length)}
-                </p>
-              </DraggableItem>
-            ))}
-          </Weekday>
-        ))}
+        {workers?.map((worker, index) => {
+          const workerShifhts = items.filter((item) => item.user === worker.id);
+          return (
+            <Worker id={worker.id} key={worker.id}>
+              {workerShifhts.map((item) => (
+                <DraggableItem
+                  id={item.id}
+                  key={item.id}
+                  xOffset={item.xOffset}
+                  yOffset={index}
+                  length={item.length}
+                  gridItemHeight={GRIDITEMHEIGHT}
+                  calculateXOffset={calculateXOffset}
+                  transformYPosition={transformYPosition}
+                  calculateLength={calculateLength}
+                >
+                  <p>
+                    {item.workerName}@{replaceFraction(item.xOffset)} -{" "}
+                    {replaceFraction(item.xOffset + item.length)}
+                  </p>
+                </DraggableItem>
+              ))}
+            </Worker>
+          );
+        })}
       </DndContext>
     </div>
   );
 };
 
-const Weekday = ({ id, children }) => {
+const Worker = ({ id, children }) => {
   const { isOver, setNodeRef } = useDroppable({
     id: `droppable-${id}`,
   });

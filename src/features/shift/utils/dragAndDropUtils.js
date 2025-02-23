@@ -16,3 +16,20 @@ export const groupBy = (items, key) =>
     }),
     {}
   );
+
+export const createUserYOffsetMaps = (workers) => {
+  // `user_id` のユニークなリストを取得し、ソート
+  const uniqueUsers = [...new Set(workers.map((obj) => obj.id))].sort();
+
+  // `user_id` → `yOffset`
+  const userToYOffsetMap = Object.fromEntries(
+    uniqueUsers.map((user, i) => [user, i])
+  );
+
+  // `yOffset` → `user_id`
+  const yOffsetToUserMap = Object.fromEntries(
+    uniqueUsers.map((user, i) => [i, user])
+  );
+
+  return { userToYOffsetMap, yOffsetToUserMap };
+};
